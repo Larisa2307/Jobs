@@ -1,0 +1,26 @@
+#page-title {
+    font-size: 2rem;
+}
+
+.formm {
+    box-sizing: border-box;
+    position: relative;
+    width: 70%;
+    height: 500px;
+    background: #ffffff;
+    border: 1px solid #090010;
+    border-radius: 5px;
+    font-size: 100%;
+
+    margin-bottom: 20%;
+}
+
+#content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.companyName, .email, .street, .city, .country {
+    margin-left: 5%
+}

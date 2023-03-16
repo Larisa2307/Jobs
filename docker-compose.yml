@@ -1,0 +1,15 @@
+version: '3'
+services:
+  postgres:
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_DB=jobs
+      - POSTGRES_USER=jobs
+      - POSTGRES_PASSWORD=jobs
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+volumes:
+  postgres-data:

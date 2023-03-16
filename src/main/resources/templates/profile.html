@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Jobs - My Profile</title>
+
+    {{>fragments/links}}
+    <link rel="stylesheet" href="../static/style/navigation-style.css">
+    <link rel="stylesheet" href="../static/style/company-profile-style.css">
+    <!-- Page style -->
+
+</head>
+<body>
+
+<!--Main Navigation-->
+<header>
+
+    {{>fragments/sidebar}}
+    {{>fragments/navbar}}
+
+</header>
+<!--Main Navigation-->
+
+<!--Main layout-->
+<main style="margin-top: 6%; margin-left: 3%">
+    <div class="container pt-4">
+        <div id="content">
+            <div class="formm">
+                <div class="col-6">
+                    <p id="page-title" style="margin-top: 5%; margin-left: 5%"><b>My Profile</b></p>
+                    {{#employer}}
+                    <br>
+                    <label class="companyName" ><b>Company Name</b></label><br>
+                    <input maxlength="100" class="companyName" name="name" disabled value="{{companyName}}">
+                    <br><br>
+                    <label class="email"><b>Email</b></label><br>
+                    <input type="email" value="{{email}}" class="email" name="email" disabled>
+                    <br><br>
+                    <label class="street"><b>Street</b></label><br>
+                    <input type="text" value="{{street}}" class="street" name="street" disabled>
+                    <br><br>
+                    <label class="city"><b>City</b></label><br>
+                    <input type="text" value="{{city}}" class="city" name="city" disabled>
+                    <br><br>
+                    <label class="country"><b>Country</b></label><br>
+                    <input type="text" value="{{country}}" class="country" name="country" disabled>
+                    {{/employer}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</main>
+
+<!--Main layout-->
+
+
+</body>
+</html>
