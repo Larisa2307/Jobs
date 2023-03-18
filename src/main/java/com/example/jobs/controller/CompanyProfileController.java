@@ -1,4 +1,4 @@
-package com.example.jobs.controller.controller;
+package com.example.jobs.controller;
 
 import com.example.jobs.service.EmployerService;
 import lombok.RequiredArgsConstructor;

@@ -1,7 +1,6 @@
-package com.example.jobs.controller.controller;
+package com.example.jobs.controller;
 
 import com.example.jobs.entity.UserApp;
-import com.example.jobs.service.EmployerService;
 import com.example.jobs.service.UserAppService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -21,7 +20,7 @@ public class RegisterController {
 
     @GetMapping("/register")
     public String getRegisterEmployeePage(@RequestParam(required = false) final boolean errorEmail,
-                                  @RequestParam(required = false) final boolean errorPassword, Model model) {
+                                          @RequestParam(required = false) final boolean errorPassword, Model model) {
         model.addAttribute("errorEmail", errorEmail);
         model.addAttribute("errorPassword", errorPassword);
         return "register";
@@ -29,7 +28,7 @@ public class RegisterController {
 
     @PostMapping("/register/submit")
     public String submitRegisterEmployee(@ModelAttribute("userApp") UserApp userApp,
-                                 @ModelAttribute("confirmPassword") String confirmPassword) {
+                                         @ModelAttribute("confirmPassword") String confirmPassword) {
 
         if ("".equals(userApp.getPhone())) {
             userApp.setPhone(null);
