@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Jobs - My Profile</title>
@@ -26,31 +26,53 @@
     <div class="container pt-4">
         <div id="content">
             <div class="formm">
-                <div class="col-6">
-                    <p id="page-title" style="margin-top: 5%; margin-left: 5%"><b>My Profile</b></p>
+                <form class="form-container" method="post" enctype="multipart/form-data">
                     {{#employer}}
-                    <br>
-                    <label class="companyName" ><b>Company Name</b></label><br>
-                    <input maxlength="100" class="companyName" name="name" disabled value="{{companyName}}">
-                    <br><br>
-                    <label class="email"><b>Email</b></label><br>
-                    <input type="email" value="{{email}}" class="email" name="email" disabled>
-                    <br><br>
-                    <label class="street"><b>Street</b></label><br>
-                    <input type="text" value="{{street}}" class="street" name="street" disabled>
-                    <br><br>
-                    <label class="city"><b>City</b></label><br>
-                    <input type="text" value="{{city}}" class="city" name="city" disabled>
-                    <br><br>
-                    <label class="country"><b>Country</b></label><br>
-                    <input type="text" value="{{country}}" class="country" name="country" disabled>
-                    {{/employer}}
-                </div>
+                    <div class="row" id="myForm">
+                        <div class="col-6">
+                            <p id="page-title"><b>My Profile</b></p>
+
+                            <label for="companyName"><b>Company name</b></label><br>
+                            <input maxlength="100" id="companyName" name="name" disabled value="{{companyName}}">
+                            <br><br>
+                            <label for="street"><b>Street</b></label><br>
+                            <input type="text" value="{{street}}" id="street" name="street" disabled>
+                            <br><br>
+                        </div>
+                        <div class="col-6">
+                            <div id="editButton">
+                                <button class="btn btn-primary btn-lg" href="#">Edit</button>
+                            </div>
+                            <br>
+                            <label for="email"><b>Email</b></label><br>
+                            <input type="email" value="{{email}}" id="email" name="email" disabled>
+                            <br><br>
+                        </div>
+                        <div class="col-6">
+                            <label for="country"><b>Country</b></label><br>
+                            <input type="text" value="{{country}}" id="country" name="country" disabled>
+                            <br><br>
+                        </div>
+                        <div class="col-6">
+                            <label for="city"><b>City</b></label><br>
+                            <input type="text" value="{{city}}" id="city" name="city" disabled>
+                            <br><br>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <label for="description"><b>Company description</b></label>
+                                <br>
+                                <textarea maxlength="250" class="textarea_component" id="description" name="description"
+                                          rows="4"
+                                          cols="25" disabled>{{description}}</textarea>
+                            </div>
+                        </div>
+                        {{/employer}}
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-
-
 
 
 </main>

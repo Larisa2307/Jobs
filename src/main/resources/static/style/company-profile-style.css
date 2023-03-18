@@ -1,18 +1,27 @@
+@font-face {
+    font-family: 'Trispace';
+    src: url('../fonts/Trispace.ttf');
+}
+
 #page-title {
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 
 .formm {
     box-sizing: border-box;
     position: relative;
     width: 70%;
-    height: 500px;
+    height: 530px;
     background: #ffffff;
     border: 1px solid #090010;
     border-radius: 5px;
     font-size: 100%;
-
+    margin-left: 7.5%;
     margin-bottom: 20%;
+}
+
+#myForm {
+    padding: 40px 0 0 70px;
 }
 
 #content {
@@ -21,6 +30,33 @@
     flex-direction: column;
 }
 
-.companyName, .email, .street, .city, .country {
-    margin-left: 5%
+#companyName, #email, #street, #city, #country {
+    box-sizing: border-box;
+
+    width: 250px;
+    height: 36px;
+    background: #FFFFFF;
+    border: 0.5px solid #E0E0E0;
+    border-radius: 8px;
+    padding-left: 8px;
+}
+
+.textarea_component {
+    box-sizing: border-box;
+
+    width: 88%;
+    height: 100px;
+    resize: none;
+
+    background: #FFFFFF;
+    border: 0.5px solid #E0E0E0;
+    border-radius: 8px;
+    padding-left: 10px;
+    padding-top: 7px;
+}
+
+#editButton {
+    /*align: right;*/
+    /*padding-left: 20%;*/
+    padding-left: 178px;
 }

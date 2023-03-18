@@ -33,11 +33,9 @@ public class LoginController {
 
         if (userApp.isPresent()) {
             return "redirect:/dashboard";
-        } else if (employer.isPresent()){
-            return "redirect:/profile/"+employer.get().getId();
-        } else {
-            return "redirect:/login?error=true";
-        }
+        } else
+            return employer.map(value -> "redirect:/dashboard-employer/" + value.getId())
+                    .orElse("redirect:/login?error=true");
     }
 
 }
