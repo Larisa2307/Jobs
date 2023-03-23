@@ -1,11 +1,15 @@
 package com.example.jobs.controller;
 
+import com.example.jobs.entity.Employer;
 import com.example.jobs.service.EmployerService;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @RequiredArgsConstructor
 @Controller
@@ -23,6 +27,27 @@ public class CompanyProfileController {
 
         model.addAttribute("employer", employer);
         return "profile";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String getUpdateCustomer(final Model model, @PathVariable("id") final String id) throws EntityNotFoundException {
+
+        var company = employerService.getbyId(id);
+        model.addAttribute("employer", company);
+        return "redirect:/profile/"+id;
+    }
+
+    @PostMapping("/edit/{id}")
+    public String postUpdateCustomer(@ModelAttribute("employer") Employer employer, @PathVariable("id") String id) {
+
+            var company = employerService.getbyId(id);
+            employer.setId(id);
+            employer.setPassword(company.getPassword());
+            employer.setUniqueCode(company.getUniqueCode());
+            employer.setUsername(company.getUsername());
+            employerService.saveAdmin(employer);
+
+        return "redirect:/profile/"+id;
     }
 
 }

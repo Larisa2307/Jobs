@@ -29,7 +29,7 @@ public class LoginSecurityConfig {
         try {
             http
                     .csrf().disable()
-                    .formLogin((form) -> form
+                    .formLogin(form -> form
                             .loginPage("/")
                             .permitAll())
                     .authorizeHttpRequests()
@@ -39,14 +39,7 @@ public class LoginSecurityConfig {
                     .requestMatchers("/dashboard/**").permitAll()
                     .requestMatchers("/dashboard-employer/**").permitAll()
                     .requestMatchers("/profile/**").permitAll()
-                    .requestMatchers("/myprofile/**").permitAll()
-                    .requestMatchers("/**").permitAll()
-                    .requestMatchers("/users/**").permitAll()
-                    .requestMatchers("/categories/**").permitAll()
-                    .requestMatchers("/add**").permitAll()
-                    .requestMatchers("/delete-category/**").permitAll()
-                    .requestMatchers("/edit-category/**").permitAll()
-                    .requestMatchers("/skills/**").permitAll()
+                    .requestMatchers("/edit/**").permitAll()
                     .requestMatchers("/favicon.ico").permitAll()
                     .requestMatchers("/static/**").permitAll()
                     .and()

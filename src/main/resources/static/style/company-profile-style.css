@@ -2,6 +2,9 @@
     font-family: 'Trispace';
     src: url('../fonts/Trispace.ttf');
 }
+#content{
+background: #e7e7e7
+}
 
 #page-title {
     font-size: 1.5rem;
@@ -16,12 +19,13 @@
     border: 1px solid #090010;
     border-radius: 5px;
     font-size: 100%;
-    margin-left: 7.5%;
+    margin-left: 10.5%;
     margin-bottom: 20%;
+    margin-top: 6%;
 }
 
 #myForm {
-    padding: 40px 0 0 70px;
+    padding: 50px 0 0 70px;
 }
 
 #content {
@@ -30,7 +34,7 @@
     flex-direction: column;
 }
 
-#companyName, #email, #street, #city, #country {
+#companyName, #email, #street, #city, #country, .fields {
     box-sizing: border-box;
 
     width: 250px;
@@ -56,7 +60,13 @@
 }
 
 #editButton {
-    /*align: right;*/
-    /*padding-left: 20%;*/
     padding-left: 178px;
+}
+
+.error {
+    color: #d71313;
+}
+
+.mymodal {
+    margin-left: 7.5%;
 }

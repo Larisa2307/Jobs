@@ -22,61 +22,138 @@
 <!--Main Navigation-->
 
 <!--Main layout-->
-<main style="margin-top: 6%; margin-left: 3%">
+<main id="content">
     <div class="container pt-4">
-        <div id="content">
-            <div class="formm">
-                <form class="form-container" method="post" enctype="multipart/form-data">
-                    {{#employer}}
-                    <div class="row" id="myForm">
-                        <div class="col-6">
-                            <p id="page-title"><b>My Profile</b></p>
+        <div class="formm">
+            <form class="form-container" method="post" enctype="multipart/form-data">
+                {{#employer}}
+                <div class="row" id="myForm">
+                    <div class="col-6">
+                        <p id="page-title"><b>My Profile</b></p>
 
-                            <label for="companyName"><b>Company name</b></label><br>
-                            <input maxlength="100" id="companyName" name="name" disabled value="{{companyName}}">
-                            <br><br>
-                            <label for="street"><b>Street</b></label><br>
-                            <input type="text" value="{{street}}" id="street" name="street" disabled>
-                            <br><br>
-                        </div>
-                        <div class="col-6">
-                            <div id="editButton">
-                                <button class="btn btn-primary btn-lg" href="#">Edit</button>
-                            </div>
-                            <br>
-                            <label for="email"><b>Email</b></label><br>
-                            <input type="email" value="{{email}}" id="email" name="email" disabled>
-                            <br><br>
-                        </div>
-                        <div class="col-6">
-                            <label for="country"><b>Country</b></label><br>
-                            <input type="text" value="{{country}}" id="country" name="country" disabled>
-                            <br><br>
-                        </div>
-                        <div class="col-6">
-                            <label for="city"><b>City</b></label><br>
-                            <input type="text" value="{{city}}" id="city" name="city" disabled>
-                            <br><br>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <label for="description"><b>Company description</b></label>
-                                <br>
-                                <textarea maxlength="250" class="textarea_component" id="description" name="description"
-                                          rows="4"
-                                          cols="25" disabled>{{description}}</textarea>
-                            </div>
-                        </div>
-                        {{/employer}}
+                        <label for="companyName"><b>Company name</b></label><br>
+                        <input maxlength="100" id="companyName" name="name" disabled value="{{companyName}}">
+                        <br><br>
+                        <label for="street"><b>Street</b></label><br>
+                        <input type="text" value="{{street}}" id="street" name="street" disabled>
+                        <br><br>
                     </div>
-                </form>
-            </div>
+                    <div class="col-6">
+                        <div id="editButton">
+                            <button type="button" class="btn btn-primary icon-spacing" data-mdb-toggle="modal"
+                                    data-mdb-target="#edit{{id}}">
+                                <i class="fa-regular fa-pen-to-square"></i>
+                                <span class="remove-action-name">Edit</span>
+                            </button>
+                        </div>
+                        <br>
+                        <label for="email"><b>Email</b></label><br>
+                        <input type="email" value="{{email}}" id="email" name="email" disabled>
+                        <br><br>
+                    </div>
+                    <div class="col-6">
+                        <label for="country"><b>Country</b></label><br>
+                        <input type="text" value="{{country}}" id="country" name="country" disabled>
+                        <br><br>
+                    </div>
+                    <div class="col-6">
+                        <label for="city"><b>City</b></label><br>
+                        <input type="text" value="{{city}}" id="city" name="city" disabled>
+                        <br><br>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <label for="description"><b>Company description</b></label>
+                            <br>
+                            <textarea maxlength="250" class="textarea_component" id="description" name="description"
+                                      rows="4"
+                                      cols="25" disabled>{{description}}</textarea>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 
+    <div class="d-flex justify-content-end col-6">
+        <!-- Modal Edit -->
+        <div class="modal modal-lg fade" id="edit{{id}}" tabindex="-1" role="dialog" aria-labelledby="editCompany{{id}}"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <form action="/edit/{{id}}" method="POST" name="employer">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editCompany{{id}}">Edit profile</h5>
+                            <button type="button" class="btn-close" data-mdb-dismiss="modal"
+                                    aria-label="Close"></button>
+                        </div>
+                        <div class="mymodal">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="mb-3">
+                                        <div class="form-outline">
+                                            <label for="companyName{{id}}">Company name<span
+                                                    class="error">*</span></label><br>
+                                            <input id="companyName{{id}}" class="fields" name="companyName"
+                                                   value="{{companyName}}"
+                                                   required>
+                                            <br><br>
+                                            <label for="street{{id}}">Street<span class="error">*</span></label><br>
+                                            <input type="text" value="{{street}}" class="fields" id="street{{id}}"
+                                                   name="street"
+                                                   required>
+                                            <br><br>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <label for="email{{id}}">Email<span class="error">*</span></label><br>
+                                    <input type="email" value="{{email}}" class="fields" id="email{{id}}" name="email"
+                                           required>
+                                    <br><br>
+                                </div>
+                                <div class="col-6">
+                                    <label for="country{{id}}">Country<span class="error">*</span></label><br>
+                                    <input type="text" value="{{country}}" class="fields" id="country{{id}}"
+                                           name="country"
+                                           required>
+                                    <br><br>
+                                </div>
+                                <div class="col-6">
+                                    <label for="city{{id}}">City<span class="error">*</span></label><br>
+                                    <input type="text" value="{{city}}" class="fields" id="city{{id}}" name="city"
+                                           required>
+                                    <br><br>
+                                </div>
+                            </div>
 
+                            <div class="row">
+                                <div class="col-12">
+                                    <label for="description{{id}}">Company description<span
+                                            class="error">*</span></label>
+                                    <br>
+                                    <textarea maxlength="250" class="textarea_component" id="description{{id}}"
+                                              name="description"
+                                              rows="4"
+                                              cols="25" required>{{description}}</textarea>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close
+                                </button>
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </main>
 
+{{/employer}}
 <!--Main layout-->
 
 
