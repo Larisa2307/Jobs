@@ -14,18 +14,10 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class Employer {
+public class Industry {
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     String id;
-    String companyName;
-    String uniqueCode;
-    String street;
-    String country;
-    String city;
-    String username;
-    String email;
-    String password;
-    String description;
+    String name;
 }

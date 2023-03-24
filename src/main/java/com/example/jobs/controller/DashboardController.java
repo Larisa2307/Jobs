@@ -29,7 +29,7 @@ public class DashboardController {
         var employer = employerService.getbyId(id);
 
         model.addAttribute("employer", employer);
-        navbarService.activateNavbarTab(Page.DASHBOARDEMPLOYER, model);
+        navbarService.activateNavbarTab(Page.DASHBOARD_EMPLOYER, model);
         return "dashboard-employer";
     }
 

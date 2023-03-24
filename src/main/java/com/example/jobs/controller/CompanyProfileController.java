@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @RequiredArgsConstructor
 @Controller
-//@Slf4j
 public class CompanyProfileController {
     final EmployerService employerService;
 
@@ -34,20 +33,20 @@ public class CompanyProfileController {
 
         var company = employerService.getbyId(id);
         model.addAttribute("employer", company);
-        return "redirect:/profile/"+id;
+        return "redirect:/profile/" + id;
     }
 
     @PostMapping("/edit/{id}")
     public String postUpdateCustomer(@ModelAttribute("employer") Employer employer, @PathVariable("id") String id) {
 
-            var company = employerService.getbyId(id);
-            employer.setId(id);
-            employer.setPassword(company.getPassword());
-            employer.setUniqueCode(company.getUniqueCode());
-            employer.setUsername(company.getUsername());
-            employerService.saveAdmin(employer);
+        var company = employerService.getbyId(id);
+        employer.setId(id);
+        employer.setPassword(company.getPassword());
+        employer.setUniqueCode(company.getUniqueCode());
+        employer.setUsername(company.getUsername());
+        employerService.saveAdmin(employer);
 
-        return "redirect:/profile/"+id;
+        return "redirect:/profile/" + id;
     }
 
 }

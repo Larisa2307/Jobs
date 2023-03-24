@@ -1,8 +1,6 @@
 package com.example.jobs.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,18 +12,15 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class Employer {
+public class EmployerAnnouncement {
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     String id;
-    String companyName;
-    String uniqueCode;
-    String street;
-    String country;
-    String city;
-    String username;
-    String email;
-    String password;
-    String description;
+    @ManyToOne
+    @JoinColumn(name = "employer_id")
+    Employer employer;
+    @ManyToOne
+    @JoinColumn(name = "announcement_id")
+    Announcement announcement;
 }
