@@ -5,9 +5,14 @@
     <title>Jobs - Announcement</title>
 
     {{>fragments/links}}
+
+
     <link rel="stylesheet" href="../static/style/navigation-style.css">
+    <link rel="stylesheet" href="../static/style/announcement-style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/css/bootstrap-select.min.css">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/css/bootstrap-select.min.css">
+
 
     <!-- Page style -->
 
@@ -25,8 +30,9 @@
 
 <!--Main layout-->
 
-<main style="margin-top: 58px;">
-    <div class="container-fluid container-custom pt-4 table-responsive-lg">
+<main id="myContainer">
+    <p id="page-title"><b>Announcement</b></p>
+    <div class="container-fluid pt-4 table-responsive-lg">
 
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#addAnnouncement">
@@ -35,7 +41,7 @@
         <br>
 
         <!-- Modal Add -->
-        <div class="modal fade" id="addAnnouncement" tabindex="-1" role="dialog"
+        <div class="modal modal-lg fade" id="addAnnouncement" tabindex="-1" role="dialog"
              aria-labelledby="addAnnouncementTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -45,154 +51,142 @@
                             <button type="button" class="btn-close" data-mdb-dismiss="modal"
                                     aria-label="Close"></button>
                         </div>
-                        <div class="modal-body">
 
+                        <div class="mymodal">
                             <div class="row">
-                                <div class="mb-3">
-                                    <div class="form-outline">
-                                        <input type="text" id="jobName" name="jobName"
-                                               class="form-control form-control-lg" required/>
+                                <div class="col-6">
+                                    <div class="mb-3">
                                         <label class="form-label" for="jobName">Job name<span
                                                 class="error">*</span></label>
+                                        <input type="text" id="jobName" name="jobName"
+                                               class="form-control form-control-lg" required/>
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <label class="form-label" for="jobType">Job type<span
+                                            class="error">*</span></label> <select aria-autocomplete="none" id="jobType"
+                                                                                   class="form-control form-control-lg active"
+                                                                                   name="jobType" required>
+                                    <option style="display: none" value="">Select a type</option>
+                                    <option class="autocomplete-item" value="Full-time">Full-time</option>
+                                    <option class="autocomplete-item" value="Part-time">Part-time</option>
+                                    <option class="autocomplete-item" value="Internship">Internship</option>
+                                </select>
+                                    <div class="form-notch">
+                                        <div class="form-notch-leading" style="width: 9px;"></div>
+                                        <div class="form-notch-middle" style="width: 87.2px;"></div>
+                                        <div class="form-notch-trailing"></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6 mb-4 pb-2">
-                                    <div class="form-outline">
-                                        <select aria-autocomplete="none" id="jobType"
-                                                class="form-control form-control-lg active" name="jobType" required>
-                                            <option style="display: none" value="">Select a type</option>
-                                            <option class="autocomplete-item" value="Full-time">Full-time</option>
-                                            <option class="autocomplete-item" value="Part-time">Part-time</option>
-                                            <option class="autocomplete-item" value="Internship">Internship</option>
-                                        </select>
-                                        <label class="form-label" for="jobType">Job type<span
-                                                class="error">*</span></label>
-                                        <div class="form-notch">
-                                            <div class="form-notch-leading" style="width: 9px;"></div>
-                                            <div class="form-notch-middle" style="width: 87.2px;"></div>
-                                            <div class="form-notch-trailing"></div>
-                                        </div>
+                                <div class="col-6">
+                                    <label class="form-label" for="jobLevel">Job level<span
+                                            class="error">*</span></label>
+                                    <select aria-autocomplete="none" id="jobLevel"
+                                            class="form-control form-control-lg active" name="jobLevel"
+                                            required>
+                                        <option style="display: none" value="">Select a level</option>
+                                        <option class="autocomplete-item" value="Entry level">Entry level
+                                        </option>
+                                        <option class="autocomplete-item" value="Junior">Junior</option>
+                                        <option class="autocomplete-item" value="Mid level">Mid level
+                                        </option>
+                                        <option class="autocomplete-item" value="Senior">Senior</option>
+                                        <option class="autocomplete-item" value="Project manager">Project
+                                            manager
+                                        </option>
+                                        <option class="autocomplete-item" value="Architect">Architect</option>
+                                    </select>
+                                    <div class="form-notch">
+                                        <div class="form-notch-leading" style="width: 9px;"></div>
+                                        <div class="form-notch-middle" style="width: 87.2px;"></div>
+                                        <div class="form-notch-trailing"></div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6 mb-4 pb-2">
-                                        <div class="form-outline">
-                                            <select aria-autocomplete="none" id="jobLevel"
-                                                    class="form-control form-control-lg active" name="jobLevel"
-                                                    required>
-                                                <option style="display: none" value="">Select a level</option>
-                                                <option class="autocomplete-item" value="Entry level">Entry level
-                                                </option>
-                                                <option class="autocomplete-item" value="Junior">Junior</option>
-                                                <option class="autocomplete-item" value="Mid level">Mid level
-                                                </option>
-                                                <option class="autocomplete-item" value="Senior">Senior</option>
-                                                <option class="autocomplete-item" value="Project manager">Project
-                                                    manager
-                                                </option>
-                                                <option class="autocomplete-item" value="Architect">Architect</option>
-                                            </select>
-                                            <label class="form-label" for="jobLevel">Job level<span
-                                                    class="error">*</span></label>
-                                            <div class="form-notch">
-                                                <div class="form-notch-leading" style="width: 9px;"></div>
-                                                <div class="form-notch-middle" style="width: 87.2px;"></div>
-                                                <div class="form-notch-trailing"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6 mb-4 pb-2">
-                                        <div class="form-outline">
-                                            <select aria-autocomplete="none" id="industries"
-                                                    class="form-control form-control-lg active" name="industries"
-                                                    required>
-                                                <option style="display: none" value="">Select a industry</option>
-                                                {{#industry}}
-                                                <option class="autocomplete-item" value="{{id}}">{{name}}</option>
-                                                {{/industry}}
-                                            </select>
-                                            <label class="form-label" for="industries">Industry<span
-                                                    class="error">*</span></label>
-                                            <div class="form-notch">
-                                                <div class="form-notch-leading" style="width: 9px;"></div>
-                                                <div class="form-notch-middle" style="width: 87.2px;"></div>
-                                                <div class="form-notch-trailing"></div>
-                                            </div>
 
-                                        </div>
-                                    </div>
                                 </div>
-                                <div class="row">
-                                    <div class="mb-3">
-                                        <div class="form-outline">
-                                    <textarea id="description" rows="4"
-                                              name="description" class="form-control form-control-lg"></textarea>
-                                            <label class="form-label" for="description">Description<span
-                                                    class="error">*</span></label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="mb-3">
-                                        <div class="form-outline">
-                                    <textarea id="responsability" rows="4"
-                                              name="responsability" class="form-control form-control-lg"></textarea>
-                                            <label class="form-label" for="responsability">Responsability<span
-                                                    class="error">*</span></label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6 mb-4 pb-2">
-                                        <div class="form-outline">
-                                            <select id="announcementSkills"
-                                                    class="form-control form-control-lg selectpicker active" multiple name="announcementSkills"
-                                                    required>
-                                                <option style="display: none" value="">Select a skills</option>
-                                                {{#skill}}
-                                                <option class="autocomplete-item" value="{{id}}">{{name}}</option>
-                                                {{/skill}}
-                                            </select>
-                                            <label class="form-label" for="announcementSkills">Skills<span
-                                                    class="error">*</span></label>
-                                            <div class="form-notch">
-                                                <div class="form-notch-leading" style="width: 9px;"></div>
-                                                <div class="form-notch-middle" style="width: 87.2px;"></div>
-                                                <div class="form-notch-trailing"></div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="mb-3">
-                                        <div class="form-outline">
-                                    <textarea id="requirement" rows="4"
-                                              name="requirement" class="form-control form-control-lg"></textarea>
-                                            <label class="form-label" for="requirement">Requirement<span
-                                                    class="error">*</span></label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="mb-3">
-                                        <div class="form-outline">
-                                    <textarea id="benefit" rows="4"
-                                              name="benefit" class="form-control form-control-lg"></textarea>
-                                            <label class="form-label" for="benefit">Benefit</label>
-                                        </div>
+                                <div class="col-6">
+                                    <label class="form-label" for="industries">Industry<span
+                                            class="error">*</span></label>
+                                    <select aria-autocomplete="none" id="industries"
+                                            class="form-control form-control-lg active" name="industries"
+                                            required>
+                                        <option style="display: none" value="">Select a industry</option>
+                                        {{#industry}}
+                                        <option class="autocomplete-item" value="{{id}}">{{name}}</option>
+                                        {{/industry}}
+                                    </select>
+                                    <div class="form-notch">
+                                        <div class="form-notch-leading" style="width: 9px;"></div>
+                                        <div class="form-notch-middle" style="width: 87.2px;"></div>
+                                        <div class="form-notch-trailing"></div>
                                     </div>
                                 </div>
                             </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-12">
+                                    <label class="form-label" for="announcementSkills">Skills<span
+                                            class="error">*</span></label>
+                                    <select id="announcementSkills"
+                                            class="form-control form-control-lg selectpicker active" multiple
+                                            name="announcementSkills"
+                                            required>
+                                        <option style="display: none" value="">Select a skills</option>
+                                        {{#skill}}
+                                        <option class="autocomplete-item" value="{{id}}">{{name}}</option>
+                                        {{/skill}}
+                                    </select>
 
+                                    <div class="form-notch">
+                                        <div class="form-notch-leading" style="width: 9px;"></div>
+                                        <div class="form-notch-middle" style="width: 87.2px;"></div>
+                                        <div class="form-notch-trailing"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-12">
+                                    <label class="form-label" for="description">Description<span
+                                            class="error">*</span></label>
+                                    <textarea id="description" rows="4"
+                                              name="description" class="form-control form-control-lg"></textarea>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-12">
+                                    <label class="form-label" for="responsability">Responsability<span
+                                            class="error">*</span></label>
+                                    <textarea id="responsability" rows="4"
+                                              name="responsability" class="form-control form-control-lg"></textarea>
+
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-12">
+                                    <label class="form-label" for="requirement">Requirement<span
+                                            class="error">*</span></label>
+                                    <textarea id="requirement" rows="4"
+                                              name="requirement" class="form-control form-control-lg"></textarea>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-12">
+                                    <label class="form-label" for="benefit">Benefits</label>
+                                    <textarea id="benefit" rows="4"
+                                              name="benefit" class="form-control form-control-lg"></textarea>
+                                </div>
+                            </div>
+                            <br>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close
                                 </button>
-                                <button type="submit" class="btn btn-primary">Add</button>
+                                <button type="submit" class="btn btn-primary">Save</button>
                             </div>
                         </div>
                     </form>
@@ -201,304 +195,314 @@
         </div>
         <br>
         {{#employer}}
-        <table id="dtBasicExample" class="table table-hover table-striped table-bordered table-sm">
+        <div class="tableFixHead">
+            <table class="table table-bordered table-sm announcement-table">
 
-            <thead>
-            <tr>
-                <th class="th-sm">Nr.</th>
-                <th class="th-sm">Job name</th>
-                <th class="th-sm">Job type</th>
-                <th class="th-sm">Job level</th>
-                <th class="th-sm">Industry</th>
-                <th class="th-sm remove-description">Description</th>
-                <th class="th-sm">Skills</th>
-                <th class="th-sm">Responsability</th>
-                <th class="th-sm">Requirement</th>
-                <th class="th-sm">Benefit</th>
-                <th class="th-sm">Actions</th>
-            </tr>
-            </thead>
+                <thead>
+                <tr>
+                    <th class="col1" scope="col">Nr.</th>
+                    <th class="col2">Job name</th>
+                    <th class="col2">Job type</th>
+                    <th class="col2">Job level</th>
+                    <th class="col2">Industry</th>
+                    <th class="col3 remove-description">Description</th>
+                    <th class="col2">Skills</th>
+                    <th class="col3">Responsability</th>
+                    <th class="col3">Requirement</th>
+                    <th class="col3">Benefit</th>
+                    <th class="col4">Actions</th>
+                </tr>
+                </thead>
 
-            <tbody>
-            {{#announcements}}
-            <tr>
-                <td>{{index}}</td>
-                <td class="col-2">{{jobName}}</td>
-                <td class="col-2">{{jobType}}</td>
-                <td class="col-2">{{jobLevel}}</td>
-                <td class="col-2">{{industries}}</td>
-                <td class="remove-description">{{description}}</td>
-                <td class="col-2">{{#announcementSkills}}<li>{{.}}</li>{{/announcementSkills}}</td>
-                <td class="col-2">{{responsability}}</td>
-                <td class="col-2">{{requirement}}</td>
-                <td class="col-2">{{benefit}}</td>
-                <td class="col-3">
+                <tbody>
+                {{#announcements}}
+                <tr>
+                    <td class="col1">{{index}}</td>
+                    <td class="col2">{{jobName}}</td>
+                    <td class="col2">{{jobType}}</td>
+                    <td class="col2">{{jobLevel}}</td>
+                    <td class="col2">{{industries}}</td>
+                    <td class="remove-description">{{description}}</td>
+                    <td class="col2">{{#announcementSkills}}
+                        <li>{{.}}</li>
+                        {{/announcementSkills}}
+                    </td>
+                    <td class="col3">{{responsability}}</td>
+                    <td class="col3">{{requirement}}</td>
+                    <td class="col3">{{benefit}}</td>
+                    <td class="col4">
+                        <div class="row">
+                            <div class="col-6" style="padding-left: 20px">
+                                <div id="editButton">
+                                    <button type="button" class="btn btn-primary btn-sm icon-spacing"
+                                            data-mdb-toggle="modal"
+                                            data-mdb-target="#edit{{index}}">
+                                        <i class="fa-regular fa-pen-to-square"></i>
+                                        <span>Edit</span>
+                                    </button>
 
-                    <div class="row">
-                        <div class="d-flex justify-content-end col-6">
+                                    <!-- Modal Edit -->
+                                    <div class="modal modal-lg fade" id="edit{{index}}" tabindex="-1" role="dialog"
+                                         aria-labelledby="editAnnouncementTitle{{index}}" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <form action="/edit-announcement/{{id}}" method="POST"
+                                                      name="announcement">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="editAnnouncementTitle{{index}}">Edit
+                                                            announcement {{jobName}}</h5>
+                                                        <button type="button" class="btn-close" data-mdb-dismiss="modal"
+                                                                aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="mymodal">
+                                                        <div class="row">
+                                                            <div class="col-6">
+                                                                <label class="form-label" for="jobName{{index}}">Job
+                                                                    name<span
+                                                                            class="error">*</span></label>
+                                                                <input type="text" value="{{jobName}}"
+                                                                       id="jobName{{index}}"
+                                                                       name="jobName"
+                                                                       class="form-control form-control-lg"
+                                                                       required/>
+                                                            </div>
+                                                            <div class="col-6">
+                                                                <label class="form-label" for="jobType{{index}}">Job
+                                                                    type<span class="error">*</span></label>
+                                                                <select aria-autocomplete="none"
+                                                                        id="jobType{{index}}"
+                                                                        class="form-control form-control-lg active"
+                                                                        name="jobType" required>
 
-                            <button type="button" class="btn btn-primary icon-spacing" data-mdb-toggle="modal"
-                                    data-mdb-target="#edit{{index}}">
-                                <i class="fa-regular fa-pen-to-square"></i>
-                                <span class="remove-action-name">Edit</span>
-                            </button>
+                                                                    <option style="display: none"
+                                                                            value="{{jobType}}">
+                                                                        {{jobType}}
+                                                                    </option>
+                                                                    <option class="autocomplete-item"
+                                                                            value="Full-time">
+                                                                        Full-time
+                                                                    </option>
+                                                                    <option class="autocomplete-item"
+                                                                            value="Part-time">
+                                                                        Part-time
+                                                                    </option>
+                                                                    <option class="autocomplete-item"
+                                                                            value="Internship">
+                                                                        Internship
+                                                                    </option>
+                                                                </select>
+                                                                <div class="form-notch">
+                                                                    <div class="form-notch-leading"
+                                                                         style="width: 9px;"></div>
+                                                                    <div class="form-notch-middle"
+                                                                         style="width: 87.2px;"></div>
+                                                                    <div class="form-notch-trailing"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <br>
+                                                        <div class="row">
+                                                            <div class="col-6">
+                                                                <label class="form-label" for="jobLevel{{index}}">Job
+                                                                    level<span class="error">*</span></label>
+                                                                <select aria-autocomplete="none"
+                                                                        id="jobLevel{{index}}"
+                                                                        class="form-control form-control-lg active"
+                                                                        name="jobLevel" required>
 
-                            <!-- Modal Edit -->
-                            <div class="modal fade" id="edit{{index}}" tabindex="-1" role="dialog"
-                                 aria-labelledby="editAnnouncementTitle{{index}}" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content">
-                                        <form action="/edit-announcement/{{id}}" method="POST" name="announcement">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="editAnnouncementTitle{{index}}">Edit
-                                                    announcement {{jobName}}</h5>
-                                                <button type="button" class="btn-close" data-mdb-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
+                                                                    <option style="display: none"
+                                                                            value="{{jobLevel}}">
+                                                                        {{jobLevel}}
+                                                                    </option>
+                                                                    <option class="autocomplete-item"
+                                                                            value="Entry level">
+                                                                        Entry level
+                                                                    </option>
+                                                                    <option class="autocomplete-item"
+                                                                            value="Junior">
+                                                                        Junior
+                                                                    </option>
+                                                                    <option class="autocomplete-item"
+                                                                            value="Mid level">
+                                                                        Mid level
+                                                                    </option>
+                                                                    <option class="autocomplete-item"
+                                                                            value="Senior">
+                                                                        Senior
+                                                                    </option>
+                                                                    <option class="autocomplete-item"
+                                                                            value="Project manager">Project manager
+                                                                    </option>
+                                                                    <option class="autocomplete-item"
+                                                                            value="Architect">
+                                                                        Architect
+                                                                    </option>
+                                                                </select>
+                                                                <div class="form-notch">
+                                                                    <div class="form-notch-leading"
+                                                                         style="width: 9px;"></div>
+                                                                    <div class="form-notch-middle"
+                                                                         style="width: 87.2px;"></div>
+                                                                    <div class="form-notch-trailing"></div>
+                                                                </div>
+                                                            </div>
 
-                                                <div class="row">
-                                                    <div class="mb-3">
-                                                        <div class="form-outline">
-                                                            <input type="text" value="{{jobName}}" id="jobName{{index}}"
-                                                                   name="jobName" class="form-control form-control-lg"
-                                                                   required/>
-                                                            <label class="form-label" for="jobName{{index}}">Job
-                                                                name<span
+                                                            <div class="col-6">
+                                                                <label class="form-label" for="industries{{index}}">Industry<span
                                                                         class="error">*</span></label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-md-6 mb-4 pb-2">
-                                                        <div class="form-outline">
-                                                            <select aria-autocomplete="none" id="jobType{{index}}"
-                                                                    class="form-control form-control-lg active"
-                                                                    name="jobType" required>
-
-                                                                <option style="display: none" value="{{jobType}}">Select
-                                                                    a type
-                                                                </option>
-                                                                <option class="autocomplete-item" value="Full-time">
-                                                                    Full-time
-                                                                </option>
-                                                                <option class="autocomplete-item" value="Part-time">
-                                                                    Part-time
-                                                                </option>
-                                                                <option class="autocomplete-item" value="Internship">
-                                                                    Internship
-                                                                </option>
-                                                            </select>
-                                                            <label class="form-label" for="jobType{{index}}">Job
-                                                                type<span class="error">*</span></label>
-                                                            <div class="form-notch">
-                                                                <div class="form-notch-leading"
-                                                                     style="width: 9px;"></div>
-                                                                <div class="form-notch-middle"
-                                                                     style="width: 87.2px;"></div>
-                                                                <div class="form-notch-trailing"></div>
+                                                                <select aria-autocomplete="none"
+                                                                        id="industries{{index}}"
+                                                                        class="form-control form-control-lg active"
+                                                                        name="industries" required>
+                                                                    <option style="display: none" value="">
+                                                                        {{industries}}
+                                                                    </option>
+                                                                    {{#industry}}
+                                                                    <option class="autocomplete-item"
+                                                                            value="{{id}}">
+                                                                        {{name}}
+                                                                    </option>
+                                                                    {{/industry}}
+                                                                </select>
+                                                                <div class="form-notch">
+                                                                    <div class="form-notch-leading"
+                                                                         style="width: 9px;"></div>
+                                                                    <div class="form-notch-middle"
+                                                                         style="width: 87.2px;"></div>
+                                                                    <div class="form-notch-trailing"></div>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-md-6 mb-4 pb-2">
-                                                        <div class="form-outline">
-                                                            <select aria-autocomplete="none" id="jobLevel{{index}}"
-                                                                    class="form-control form-control-lg active"
-                                                                    name="jobLevel" required>
-
-                                                                <option style="display: none" value="{{jobLevel}}">
-                                                                    Select a level
-                                                                </option>
-                                                                <option class="autocomplete-item" value="Entry level">
-                                                                    Entry level
-                                                                </option>
-                                                                <option class="autocomplete-item" value="Junior">
-                                                                    Junior
-                                                                </option>
-                                                                <option class="autocomplete-item" value="Mid level">Mid
-                                                                    level
-                                                                </option>
-                                                                <option class="autocomplete-item" value="Senior">
-                                                                    Senior
-                                                                </option>
-                                                                <option class="autocomplete-item"
-                                                                        value="Project manager">Project manager
-                                                                </option>
-                                                                <option class="autocomplete-item" value="Architect">
-                                                                    Architect
-                                                                </option>
-                                                            </select>
-                                                            <label class="form-label" for="jobLevel{{index}}">Job
-                                                                level<span class="error">*</span></label>
-                                                            <div class="form-notch">
-                                                                <div class="form-notch-leading"
-                                                                     style="width: 9px;"></div>
-                                                                <div class="form-notch-middle"
-                                                                     style="width: 87.2px;"></div>
-                                                                <div class="form-notch-trailing"></div>
+                                                        <br>
+                                                        <div class="row">
+                                                            <div class="col12">
+                                                                <label class="form-label"
+                                                                       for="announcementSkills{{index}}">Skills<span
+                                                                        class="error">*</span></label>
+                                                                <select id="announcementSkills{{index}}"
+                                                                        class="form-control form-control-lg selectpicker active"
+                                                                        multiple name="announcementSkills"
+                                                                        required>
+                                                                    {{#announcementSkills}}
+                                                                    <option class="autocomplete-item" selected>
+                                                                        {{.}}
+                                                                    </option>
+                                                                    {{/announcementSkills}}
+                                                                    {{#skill}}
+                                                                    <option class="autocomplete-item"
+                                                                            value="{{id}}">
+                                                                        {{name}}
+                                                                    </option>
+                                                                    {{/skill}}
+                                                                </select>
+                                                                <div class="form-notch">
+                                                                    <div class="form-notch-leading"
+                                                                         style="width: 9px;"></div>
+                                                                    <div class="form-notch-middle"
+                                                                         style="width: 87.2px;"></div>
+                                                                    <div class="form-notch-trailing"></div>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-md-6 mb-4 pb-2">
-                                                        <div class="form-outline">
-                                                            <select aria-autocomplete="none" id="industries{{index}}"
-                                                                    class="form-control form-control-lg active"
-                                                                    name="industries" required>
-                                                                <option style="display: none" value="">Select
-                                                                    a industry
-                                                                </option>
-                                                                {{#industry}}
-                                                                <option class="autocomplete-item" value="{{id}}">
-                                                                    {{name}}
-                                                                </option>
-                                                                {{/industry}}
-                                                            </select>
-                                                            <label class="form-label" for="industries{{index}}">Industry<span class="error">*</span></label>
-                                                            <div class="form-notch">
-                                                                <div class="form-notch-leading"
-                                                                     style="width: 9px;"></div>
-                                                                <div class="form-notch-middle"
-                                                                     style="width: 87.2px;"></div>
-                                                                <div class="form-notch-trailing"></div>
+                                                        <br>
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <label class="form-label"
+                                                                       for="description{{index}}">Description</label>
+                                                                <textarea id="description{{index}}" rows="4"
+                                                                          name="description"
+                                                                          class="form-control form-control-lg">{{description}}</textarea>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="mb-3">
-                                                        <div class="form-outline">
-                                                            <textarea id="description{{index}}" rows="4"
-                                                                      name="description"
-                                                                      class="form-control form-control-lg">{{description}}</textarea>
-                                                            <label class="form-label" for="description{{index}}">Description</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-6 mb-4 pb-2">
-                                                        <div class="form-outline">
-                                                            <select id="announcementSkills{{index}}"
-                                                                    class="form-control form-control-lg selectpicker active" multiple name="announcementSkills"
-                                                                    required>
-                                                                {{#announcementSkills}}
-                                                                <option style="display: none" value="">{{.}}</option>
-                                                                {{/announcementSkills}}
-                                                                {{#skill}}
-                                                                <option class="autocomplete-item" value="{{id}}">{{name}}</option>
-                                                                {{/skill}}
-                                                            </select>
-                                                            <label class="form-label" for="announcementSkills{{index}}">Skills<span
-                                                                    class="error">*</span></label>
-                                                            <div class="form-notch">
-                                                                <div class="form-notch-leading" style="width: 9px;"></div>
-                                                                <div class="form-notch-middle" style="width: 87.2px;"></div>
-                                                                <div class="form-notch-trailing"></div>
+                                                        <br>
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <label class="form-label"
+                                                                       for="responsability{{index}}">Responsabilities</label>
+                                                                <textarea id="responsability{{index}}" rows="4"
+                                                                          name="responsability"
+                                                                          class="form-control form-control-lg">{{responsability}}</textarea>
                                                             </div>
-
                                                         </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="mb-3">
-                                                        <div class="form-outline">
-                                                            <textarea id="responsability{{index}}" rows="4"
-                                                                      name="responsability"
-                                                                      class="form-control form-control-lg">{{responsability}}</textarea>
-                                                            <label class="form-label" for="responsability{{index}}">Responsabilities</label>
+                                                        <br>
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <label class="form-label"
+                                                                       for="requirement{{index}}">Requirements</label>
+                                                                <textarea id="requirement{{index}}" rows="4"
+                                                                          name="requirement"
+                                                                          class="form-control form-control-lg">{{requirement}}</textarea>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </div>
 
-                                                <div class="row">
-                                                    <div class="mb-3">
-                                                        <div class="form-outline">
-                                                            <textarea id="requirement{{index}}" rows="4"
-                                                                      name="requirement"
-                                                                      class="form-control form-control-lg">{{requirement}}</textarea>
-                                                            <label class="form-label" for="requirement{{index}}">Requirements</label>
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <label class="form-label"
+                                                                       for="benefit{{index}}">Benefits</label>
+                                                                <textarea id="benefit{{index}}" rows="4"
+                                                                          name="benefit"
+                                                                          class="form-control form-control-lg">{{benefit}}</textarea>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </div>
 
-                                                <div class="row">
-                                                    <div class="mb-3">
-                                                        <div class="form-outline">
-                                                            <textarea id="benefit{{index}}" rows="4"
-                                                                      name="benefit"
-                                                                      class="form-control form-control-lg">{{benefit}}</textarea>
-                                                            <label class="form-label"
-                                                                   for="benefit{{index}}">Benefits</label>
-                                                        </div>
                                                     </div>
-                                                </div>
 
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                                data-mdb-dismiss="modal">Close
+                                                        </button>
+                                                        <button type="submit" class="btn btn-primary">Save</button>
+                                                    </div>
+                                                </form>
                                             </div>
-
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                        data-mdb-dismiss="modal">Close
-                                                </button>
-                                                <button type="submit" class="btn btn-primary">Edit</button>
-                                            </div>
-                                        </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-6">
+                                <div id="deleteButton">
+                                    <button type="button" class="btn btn-primary btn-sm icon-spacing"
+                                            data-mdb-toggle="modal"
+                                            data-mdb-target="#delete{{index}}">
+                                        <i class="fa-regular fa-trash-can"></i>Delete
+                                    </button>
+                                </div>
+                                <!-- Modal Delete -->
+                                <div class="modal fade" id="delete{{index}}" tabindex="-1" role="dialog"
+                                     aria-labelledby="deleteAnnouncementTitle{{index}}" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <form action="/delete-announcement/{{id}}" method="POST">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="deleteAnnouncementTitle{{index}}">
+                                                        Delete
+                                                        category {{jobName}}</h5>
+                                                    <button type="button" class="btn-close" data-mdb-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                </div>
+                                                <div class="mymodal">
+                                                    Are you sure you want to permanently delete this announcement?
+                                                </div>
 
-                        </div>
-
-                        <div class="d-flex justify-content-start col-6">
-
-                            <button type="button" class="btn btn-primary icon-spacing" data-mdb-toggle="modal"
-                                    data-mdb-target="#delete{{index}}">
-                                <i class="fa-regular fa-trash-can"></i>
-                                <span class="remove-action-name">Delete</span>
-                            </button>
-
-                            <!-- Modal Delete -->
-                            <div class="modal fade" id="delete{{index}}" tabindex="-1" role="dialog"
-                                 aria-labelledby="deleteAnnouncementTitle{{index}}" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content">
-                                        <form action="/delete-announcement/{{id}}" method="POST">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="deleteAnnouncementTitle{{index}}">Delete
-                                                    category {{jobName}}</h5>
-                                                <button type="button" class="btn-close" data-mdb-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                Are you sure you want to permanently delete this announcement?
-                                            </div>
-
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                        data-mdb-dismiss="modal">Close
-                                                </button>
-                                                <button type="submit" class="btn btn-primary">Delete</button>
-                                            </div>
-                                        </form>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                            data-mdb-dismiss="modal">Close
+                                                    </button>
+                                                    <button type="submit" class="btn btn-primary">Delete</button>
+                                                </div>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
-                    </div>
-                </td>
-            </tr>
-            {{/announcements}}
-            </tbody>
-        </table>
 
+                    </td>
+                </tr>
+                {{/announcements}}
+                </tbody>
+            </table>
+        </div>
     </div>
     {{#duplicate}}
     <script>alert("Announcement name already exists!")</script>
@@ -509,7 +513,9 @@
 
 <!--Main layout-->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/js/bootstrap-select.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/js/i18n/defaults-*.min.js"></script>
@@ -517,7 +523,7 @@
     $('#lang').selectpicker();
 </script>
 <script>
-    model['announcementSkills'][ model['announcementSkills'].length - 1 ].last = true;
+    model['announcementSkills'][model['announcementSkills'].length - 1].last = true;
 </script>
 
 </body>

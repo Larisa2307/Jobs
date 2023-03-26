@@ -24,12 +24,14 @@ public class AnnouncementController {
         var announcements = announcementService.getAnnouncementModelList(employer);
         var industry = industryService.findAll();
         var skills = skillService.findAll();
+
         model.addAttribute("employer", employer);
         model.addAttribute("industry", industry);
         model.addAttribute("skill", skills);
         model.addAttribute("announcements", announcements);
         model.addAttribute("duplicate", duplicate);
         navbarService.activateNavbarTab(Page.ANNOUNCEMENT, model);
+
         return "announcement";
     }
 
