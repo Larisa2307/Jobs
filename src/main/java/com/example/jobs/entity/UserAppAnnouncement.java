@@ -12,17 +12,17 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class EmployerAnnouncement {
+public class UserAppAnnouncement {
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     String id;
 
     @ManyToOne
-    @JoinColumn(name = "employer_id")
-
-    Employer employer;
-    @ManyToOne
     @JoinColumn(name = "announcement_id")
     Announcement announcement;
+
+    @ManyToOne
+    @JoinColumn(name = "user_app_id")
+    UserApp userApp;
 }

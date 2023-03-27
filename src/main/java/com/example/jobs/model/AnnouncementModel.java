@@ -21,4 +21,5 @@ public class AnnouncementModel {
     String benefit;
     String industries;
     List<String> announcementSkills;
+    Integer numberOfCandidates;
 }

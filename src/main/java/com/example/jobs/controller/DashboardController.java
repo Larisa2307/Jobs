@@ -1,7 +1,9 @@
 package com.example.jobs.controller;
 
 import com.example.jobs.entity.Page;
+import com.example.jobs.service.AnnouncementService;
 import com.example.jobs.service.EmployerService;
+import com.example.jobs.service.UserAppAnnouncementService;
 import com.example.jobs.service.NavbarService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,8 @@ public class DashboardController {
 
     final NavbarService navbarService;
     final EmployerService employerService;
+    final AnnouncementService announcementService;
+    final UserAppAnnouncementService employerUserAppService;
 
     @GetMapping("/dashboard")
     String getDashboardPage(Model model) {
@@ -27,8 +31,9 @@ public class DashboardController {
     @GetMapping("/dashboard-employer/{id}")
     String getDashboardEmployerPage(Model model, @PathVariable String id) {
         var employer = employerService.getbyId(id);
-
+        var announcements = announcementService.getAnnouncementModelList(employer);
         model.addAttribute("employer", employer);
+        model.addAttribute("announcements", announcements);
         navbarService.activateNavbarTab(Page.DASHBOARD_EMPLOYER, model);
         return "dashboard-employer";
     }

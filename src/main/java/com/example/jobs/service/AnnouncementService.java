@@ -18,10 +18,11 @@ import java.util.concurrent.atomic.AtomicInteger;
 @AllArgsConstructor
 public class AnnouncementService {
 
-    final AnnouncementRepository announcementRepository;
-    final IndustryService industryService;
-    final AnnouncementSkillService announcementSkillService;
     final SkillService skillService;
+    final IndustryService industryService;
+    final AnnouncementRepository announcementRepository;
+    final AnnouncementSkillService announcementSkillService;
+    final UserAppAnnouncementService userAppAnnouncementService;
 
     public Announcement getAnnouncementById(String announcementId) {
         return announcementRepository.findById(announcementId).get();
@@ -62,8 +63,8 @@ public class AnnouncementService {
     private AnnouncementModel toAnnouncementModel(Announcement announcement, int index) {
         var skills = announcementSkillService.getSkillsByAnnouncement(announcement)
                 .stream().map(as -> as.getSkill().getName()).toList();
-
-        return AnnouncementMapper.toModel(announcement, skills, index);
+        var numberOfCandidates = userAppAnnouncementService.getUserAppByAnnouncement(announcement).size();
+        return AnnouncementMapper.toModel(announcement, skills, numberOfCandidates, index);
     }
 
     public void saveNewAnnouncement(AnnouncementModel announcementModel, Employer employer) {

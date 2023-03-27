@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Jobs - Dashboard</title>
 
     {{>fragments/links}}
     <link rel="stylesheet" href="../static/style/navigation-style.css">
+    <link rel="stylesheet" href="../static/style/dashboard-employer-style.css">
     <!-- Page style -->
 
 </head>
@@ -22,12 +23,43 @@
 
 <!--Main layout-->
 
-<main style="margin-top: 58px;">
+<main id="myContainer">
+    <p id="page-title"><b>Dashboard</b></p>
+    <div class="container-fluid pt-4 table-responsive-lg">
+        <div class="tableFixHead">
+            <table class="table table-bordered table-sm dashboard-table">
+                <thead>
+                <tr>
+                    <th class="th-sm">Nr.</th>
+                    <th class="th-sm">Job name</th>
+                    <th class="th-sm">Number of candidates</th>
+                    <th class="th-sm">Actions</th>
+                </tr>
+                </thead>
 
+                <tbody>
+                {{#announcements}}
+                <tr>
+                    <td class="col1">{{index}}</td>
+                    <td class="col-3">{{jobName}}</td>
+                    <td class="col-2">{{numberOfCandidates}}</td>
+                    <td class="col-1">
+
+                        <div class="row">
+                            <div class="d-flex justify-content-end col-11">
+                                <button type="button" class="btn btn-primary">Show details
+                                </button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                {{/announcements}}
+                </tbody>
+            </table>
+        </div>
+    </div>
 </main>
 
 <!--Main layout-->
-
-
 </body>
 </html>

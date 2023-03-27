@@ -11,7 +11,7 @@ import static lombok.AccessLevel.PRIVATE;
 @NoArgsConstructor(access = PRIVATE)
 public class AnnouncementMapper {
 
-    public static AnnouncementModel toModel(final Announcement announcement, final List<String> skills, final int index) {
+    public static AnnouncementModel toModel(final Announcement announcement, final List<String> skills, final int numberOfCandidates, final int index) {
         return AnnouncementModel.builder()
                 .id(announcement.getId())
                 .jobName(announcement.getJobName())
@@ -24,6 +24,7 @@ public class AnnouncementMapper {
                 .responsability(announcement.getResponsability())
                 .index(index)
                 .announcementSkills(skills)
+                .numberOfCandidates(numberOfCandidates)
                 .build();
     }
 

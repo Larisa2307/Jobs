@@ -1,0 +1,63 @@
+@font-face {
+    font-family: 'Trispace';
+    src: url('../fonts/Trispace.ttf');
+}
+
+#myContainer {
+    margin-left: 3%;
+    margin-bottom: 5%;
+    margin-top: 4.5%;
+}
+
+#page-title {
+    font-size: 1.5rem;
+}
+
+body {
+    background: #F5F5F5;
+}
+
+.dashboard-table {
+    height: 100%;
+    width: 99.6%;
+    display: inline-block;
+    position: static;
+    left: 22%;
+    top: 25%;
+    background: #EFF2F7;
+    margin: auto;
+    color: #3183B1;
+}
+
+#table-body {
+    color: #000000;
+}
+
+.tableFixHead {
+    overflow-y: scroll;
+    width: 75%;
+    height: 480px;
+}
+
+.tableFixHead thead th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: #EFF2F6;
+}
+
+thead {
+    border-radius: 8px 8px 0 0;
+    height: 50px;
+}
+
+tbody tr {
+    height: 55px;
+    background: #FFFFFF;
+    border: 0.5px solid #C5D0DE;
+    color: #000000;
+}
+
+.col1 {
+    width: 5%;
+}
