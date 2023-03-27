@@ -3,6 +3,7 @@ package com.example.jobs.controller;
 import com.example.jobs.entity.Employer;
 import com.example.jobs.service.EmployerService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +15,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
+@Slf4j
 public class RegisterEmployerController {
 
     final EmployerService employerService;
@@ -26,7 +28,7 @@ public class RegisterEmployerController {
 
     @PostMapping("/register-employer/submit")
     public String submitRegisterEmployer(@ModelAttribute("employer") Employer employer) {
-
+        log.info("Try to register employer: " + employer.getEmail());
         List<Employer> employerByUniqueCode = employerService.getEmployerByUniqueCode(employer.getUniqueCode());
         if (employerByUniqueCode != null && !employerByUniqueCode.isEmpty()) {
             return "redirect:/register-employer?error=true";

@@ -69,6 +69,7 @@ public class AnnouncementService {
 
     public void saveNewAnnouncement(AnnouncementModel announcementModel, Employer employer) {
         Announcement announcement = toAnnouncement(announcementModel, employer);
+        announcement.setId(announcementModel.getId());
         announcementRepository.save(announcement);
 
     }

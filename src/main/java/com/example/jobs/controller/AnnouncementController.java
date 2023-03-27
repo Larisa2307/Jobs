@@ -4,12 +4,14 @@ import com.example.jobs.entity.Page;
 import com.example.jobs.model.AnnouncementModel;
 import com.example.jobs.service.*;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @Controller
+@Slf4j
 public class AnnouncementController {
     final NavbarService navbarService;
     final EmployerService employerService;
@@ -21,6 +23,7 @@ public class AnnouncementController {
     @GetMapping("/announcement/{id}")
     String getAnnouncementPage(Model model, @PathVariable String id, @RequestParam(required = false) final Boolean duplicate) {
         var employer = employerService.getbyId(id);
+        log.info("Announcement page: " + employer.getEmail());
         var announcements = announcementService.getAnnouncementModelList(employer);
         var industry = industryService.findAll();
         var skills = skillService.findAll();
@@ -39,6 +42,7 @@ public class AnnouncementController {
     public String addAnnouncement(@ModelAttribute("announcement") AnnouncementModel announcementModel,
                                   @PathVariable String id) {
         var employer = employerService.getbyId(id);
+        log.info("Try to add an announcement: " + employer.getEmail());
         if (Boolean.TRUE.equals(announcementService.isDuplicate(announcementModel.getJobName()))) {
             return "redirect:/announcement/" + id + "?duplicate=true";
         } else {
@@ -54,6 +58,7 @@ public class AnnouncementController {
     @PostMapping("/edit-announcement/{id}")
     public String editCategory(@ModelAttribute("announcement") AnnouncementModel announcementModel, @PathVariable("id") final String id) {
         var employer = announcementService.getAnnouncementById(id).getEmployer();
+        log.info("Try to edit an announcement: " + announcementModel.getJobName() + " employer: " + employer.getEmail());
 
         if (Boolean.TRUE.equals(announcementService.isDuplicateName(announcementModel.getJobName(), announcementModel.getId()))) {
             return "redirect:/announcement/" + employer.getId() + "?duplicate=true";
@@ -70,6 +75,7 @@ public class AnnouncementController {
     @PostMapping("/delete-announcement/{announcementId}")
     public String deleteCategory(@PathVariable String announcementId) {
         var employee = announcementService.getAnnouncementById(announcementId).getEmployer();
+        log.info("Try to delete an announcement");
         announcementSkillService.getSkillsByAnnouncement(announcementService.getAnnouncementById(announcementId))
                 .forEach(announcementSkillService::deleteAnnouncementSkills);
         announcementService.deleteAnnouncement(announcementId);

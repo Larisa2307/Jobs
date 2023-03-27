@@ -3,6 +3,7 @@ package com.example.jobs.controller;
 import com.example.jobs.service.EmployerService;
 import com.example.jobs.service.UserAppService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @RequiredArgsConstructor
 @Controller
+@Slf4j
 public class LoginController {
 
     final UserAppService userAppService;
@@ -28,6 +30,7 @@ public class LoginController {
 
     @PostMapping("/login/submit")
     String submitLogin(@RequestParam String email, @RequestParam String password) {
+        log.info("Try to login with email: " + email);
         var userApp = userAppService.getUserAppByCredentials(email, password);
         var employer = employerService.getEmployerByCredentials(email, password);
 

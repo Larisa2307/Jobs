@@ -3,6 +3,7 @@ package com.example.jobs.controller;
 import com.example.jobs.entity.UserApp;
 import com.example.jobs.service.UserAppService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +15,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
+@Slf4j
 public class RegisterController {
 
     final UserAppService userAppService;
@@ -29,7 +31,7 @@ public class RegisterController {
     @PostMapping("/register/submit")
     public String submitRegisterEmployee(@ModelAttribute("userApp") UserApp userApp,
                                          @ModelAttribute("confirmPassword") String confirmPassword) {
-
+        log.info("Try to register user: " + userApp.getEmail());
         if ("".equals(userApp.getPhone())) {
             userApp.setPhone(null);
         }
