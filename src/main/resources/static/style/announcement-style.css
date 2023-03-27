@@ -29,14 +29,13 @@ body {
 .announcement-table {
     overflow-y: scroll;
     overflow-x: scroll;
-    height: 60%;
-    width: 74%;
+    height: 100%;
+    width: 95%;
     display: inline-block;
-    position: absolute;
+    position: static;
     left: 22%;
     top: 25%;
     background: #EFF2F7;
-    border-radius: 8px 8px 8px 8px;
     margin: auto;
     color: #3183B1;
 }
@@ -47,7 +46,7 @@ body {
 
 .tableFixHead {
     overflow: auto;
-    height: 100px;
+    height: 450px;
 }
 
 .tableFixHead thead th {
