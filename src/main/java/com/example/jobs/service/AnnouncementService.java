@@ -49,14 +49,14 @@ public class AnnouncementService {
         announcement.setIndustries(industryService.findById(announcementModel.getIndustries()));
         announcement.setEmployer(employer);
 
-        if (announcementModel.getAnnouncementSkills() != null) {
-            announcementModel.getAnnouncementSkills().forEach(skillId -> {
-                var announcementSkill = new AnnouncementSkill();
-                announcementSkill.setAnnouncement(announcement);
-                announcementSkill.setSkill(skillService.findSkillById(skillId));
-                announcementSkillService.saveAnnouncementSkills(announcementSkill);
-            });
-        }
+//        if (announcementModel.getAnnouncementSkills() != null) {
+//            announcementModel.getAnnouncementSkills().forEach(skillId -> {
+//                var announcementSkill = new AnnouncementSkill();
+//                announcementSkill.setAnnouncement(announcement);
+//                announcementSkill.setSkill(skillService.findSkillById(skillId));
+//                announcementSkillService.saveAnnouncementSkills(announcementSkill);
+//            });
+//        }
         return announcement;
     }
 

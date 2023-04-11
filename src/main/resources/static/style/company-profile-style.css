@@ -14,18 +14,18 @@ background: #e7e7e7
     box-sizing: border-box;
     position: relative;
     width: 70%;
-    height: 530px;
+    height: 600px;
     background: #ffffff;
     border: 1px solid #090010;
     border-radius: 5px;
     font-size: 100%;
     margin-left: 10.5%;
     margin-bottom: 20%;
-    margin-top: 6%;
+    margin-top: 5%;
 }
 
 #myForm {
-    padding: 50px 0 0 70px;
+    padding: 50px 0 0 55px;
 }
 
 #content {
@@ -34,10 +34,21 @@ background: #e7e7e7
     flex-direction: column;
 }
 
-#companyName, #email, #street, #city, #country, .fields {
+.fields, #companyName, #email, #city, #country, #phone  {
     box-sizing: border-box;
 
-    width: 250px;
+    width: 90%;
+    height: 36px;
+    background: #FFFFFF;
+    border: 0.5px solid #E0E0E0;
+    border-radius: 8px;
+    padding-left: 8px;
+}
+
+#street, .field {
+    box-sizing: border-box;
+
+    width: 95%;
     height: 36px;
     background: #FFFFFF;
     border: 0.5px solid #E0E0E0;
@@ -48,7 +59,7 @@ background: #e7e7e7
 .textarea_component {
     box-sizing: border-box;
 
-    width: 88%;
+    width: 95%;
     height: 100px;
     resize: none;
 

@@ -26,6 +26,7 @@ public class Employer {
     String city;
     String username;
     String email;
+    String phoneNumber;
     String password;
     String description;
 }

@@ -127,28 +127,6 @@
                             <br>
                             <div class="row">
                                 <div class="col-12">
-                                    <label class="form-label" for="announcementSkills">Skills<span
-                                            class="error">*</span></label>
-                                    <select id="announcementSkills"
-                                            class="form-control form-control-lg selectpicker active" multiple
-                                            name="announcementSkills"
-                                            required>
-                                        <option style="display: none" value="">Select a skills</option>
-                                        {{#skill}}
-                                        <option class="autocomplete-item" value="{{id}}">{{name}}</option>
-                                        {{/skill}}
-                                    </select>
-
-                                    <div class="form-notch">
-                                        <div class="form-notch-leading" style="width: 9px;"></div>
-                                        <div class="form-notch-middle" style="width: 87.2px;"></div>
-                                        <div class="form-notch-trailing"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <br>
-                            <div class="row">
-                                <div class="col-12">
                                     <label class="form-label" for="description">Description<span
                                             class="error">*</span></label>
                                     <textarea id="description" rows="4"
@@ -205,7 +183,6 @@
                     <th class="col2">Job level</th>
                     <th class="col2">Industry</th>
                     <th class="col3 remove-description">Description</th>
-                    <th class="col2">Skills</th>
                     <th class="col3">Responsability</th>
                     <th class="col3">Requirement</th>
                     <th class="col3">Benefit</th>
@@ -222,10 +199,6 @@
                     <td class="col2">{{jobLevel}}</td>
                     <td class="col2">{{industries}}</td>
                     <td class="remove-description">{{description}}</td>
-                    <td class="col2">{{#announcementSkills}}
-                        <li>{{.}}</li>
-                        {{/announcementSkills}}
-                    </td>
                     <td class="col3">{{responsability}}</td>
                     <td class="col3">{{requirement}}</td>
                     <td class="col3">{{benefit}}</td>
@@ -374,37 +347,6 @@
                                                         </div>
                                                         <br>
                                                         <div class="row">
-                                                            <div class="col12">
-                                                                <label class="form-label"
-                                                                       for="announcementSkills{{index}}">Skills<span
-                                                                        class="error">*</span></label>
-                                                                <select id="announcementSkills{{index}}"
-                                                                        class="form-control form-control-lg selectpicker active"
-                                                                        multiple name="announcementSkills"
-                                                                        required>
-                                                                    {{#announcementSkills}}
-                                                                    <option class="autocomplete-item" selected>
-                                                                        {{.}}
-                                                                    </option>
-                                                                    {{/announcementSkills}}
-                                                                    {{#skill}}
-                                                                    <option class="autocomplete-item"
-                                                                            value="{{id}}">
-                                                                        {{name}}
-                                                                    </option>
-                                                                    {{/skill}}
-                                                                </select>
-                                                                <div class="form-notch">
-                                                                    <div class="form-notch-leading"
-                                                                         style="width: 9px;"></div>
-                                                                    <div class="form-notch-middle"
-                                                                         style="width: 87.2px;"></div>
-                                                                    <div class="form-notch-trailing"></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <br>
-                                                        <div class="row">
                                                             <div class="col-12">
                                                                 <label class="form-label"
                                                                        for="description{{index}}">Description</label>
@@ -520,9 +462,5 @@
 <script>
     $('#lang').selectpicker();
 </script>
-<script>
-    model['announcementSkills'][model['announcementSkills'].length - 1].last = true;
-</script>
-
 </body>
 </html>
