@@ -9,6 +9,11 @@
     height: calc(100% - 73px);
 }
 
+.image {
+    width: 800px;
+    height: 400px;
+}
+
 .error {
     color: #b60f1d;
 }

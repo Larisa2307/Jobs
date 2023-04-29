@@ -30,7 +30,7 @@ public class LoginSecurityConfig {
             http
                     .csrf().disable()
                     .formLogin(form -> form
-                            .loginPage("/")
+                            .loginPage("/login")
                             .permitAll())
                     .authorizeHttpRequests()
                     .requestMatchers("/login/**").permitAll()
@@ -48,7 +48,7 @@ public class LoginSecurityConfig {
                     .and()
                     .logout()
                     .invalidateHttpSession(true)
-                    .logoutSuccessUrl("/login").permitAll();
+                    .logoutSuccessUrl("/main-page").permitAll();
 
         } catch (Exception e) {
             log.error("Security configuration failed", e);

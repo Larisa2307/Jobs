@@ -18,10 +18,7 @@ public class LoginController {
     final UserAppService userAppService;
     final EmployerService employerService;
 
-    @GetMapping("/")
-    String getStartPage() {
-        return "redirect:/login";
-    }
+
     @GetMapping("/login")
     String getLoginPage(@RequestParam(required = false) final boolean error, Model model) {
         model.addAttribute("error", error);

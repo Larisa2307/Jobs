@@ -1,0 +1,23 @@
+
+.title {
+    padding-top: 50px;
+    text-align:center;
+    color: #090010;
+}
+
+.image {
+    margin-left: 300px;
+    position: center;
+    width: 900px;
+    height: 500px;
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    text-align: center;
+}
+
+.card a:hover {
+    opacity: 0.7;
+}
