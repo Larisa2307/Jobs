@@ -1,7 +1,7 @@
 package com.example.jobs.controller;
 
 import com.example.jobs.service.AnnouncementService;
-import com.example.jobs.service.EmployerService;
+import com.example.jobs.service.CompanyService;
 import com.example.jobs.service.NavbarService;
 import com.example.jobs.service.UserAppAnnouncementService;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class MainPageController {
 
     final NavbarService navbarService;
-    final EmployerService employerService;
+    final CompanyService companyService;
     final AnnouncementService announcementService;
     final UserAppAnnouncementService employerUserAppService;
 

@@ -19,7 +19,7 @@
           <div class="card-body p-4 p-md-5">
             <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Register</h3>
 
-            <form action="/register-employer/submit" method="post" name="employer">
+            <form action="/register-company/submit" method="post" name="company">
 
               <div class="row">
                 <div class="col-md-6 mb-4">
@@ -39,8 +39,8 @@
               <div class="row">
                 <div class="col-md-12 mb-4 pb-2">
                   <div class="form-outline">
-                    <input type="text" id="street" name="street" class="form-control form-control-lg" required />
-                    <label class="form-label" for="street">Company address<span class="error">*</span></label>
+                    <input type="text" id="address" name="address" class="form-control form-control-lg" required />
+                    <label class="form-label" for="address">Company address<span class="error">*</span></label>
                   </div>
                 </div>
               </div>
@@ -68,28 +68,11 @@
                 </div>
                 <div class="col-md-6 mb-4 pb-2">
                   <div class="form-outline">
-                    <input type="email" id="phoneNumber" name="phoneNumber" pattern="[0-9]{10}" class="form-control form-control-lg" />
+                    <input type="tel" id="phoneNumber" name="phoneNumber" pattern="[0-9]{10}" class="form-control form-control-lg" />
                     <label class="form-label" for="phoneNumber">Phone number<span class="error">*</span></label>
                   </div>
                 </div>
               </div>
-              <div class="row">
-                <div class="col-md-12 mb-4 pb-2">
-                  <div class="form-outline">
-                    <input type="text" id="username" name="username" class="form-control form-control-lg" />
-                    <label class="form-label" for="username">Username<span class="error">*</span></label>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12 mb-4 pb-2">
-                  <div class="form-outline">
-                    <input type="password" id="password" name="password" class="form-control form-control-lg" required />
-                    <label class="form-label" for="password">Password<span class="error">*</span></label>
-                  </div>
-                </div>
-              </div>
-
               <div class="error">
                 {{#error}}Unique code invalid!{{/error}}
               </div>

@@ -1,7 +1,7 @@
 package com.example.jobs.repository;
 
 import com.example.jobs.entity.Announcement;
-import com.example.jobs.entity.Employer;
+import com.example.jobs.entity.Company;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -13,7 +13,7 @@ import java.util.Optional;
 public interface AnnouncementRepository extends JpaRepository<Announcement, String> {
 
 
-    List<Announcement> findAnnouncementByEmployer(Employer employer);
+    List<Announcement> findAnnouncementByCompany(Company company);
 
     @Query("select a from Announcement a where lower(a.jobName) = lower(?1) ")
     Optional<Announcement> existsByJobName(String jobName);
@@ -22,4 +22,5 @@ public interface AnnouncementRepository extends JpaRepository<Announcement, Stri
     Optional<Announcement> existsByName(String name, String id);
 
 
+    List<Announcement> findByCompany(Company company);
 }

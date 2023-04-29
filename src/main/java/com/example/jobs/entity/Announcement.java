@@ -22,6 +22,9 @@ public class Announcement {
     String jobName;
     String jobType;
     String jobLevel;
+    @ManyToOne
+    @JoinColumn(name = "job_id")
+    Job job;
     @CreationTimestamp
     LocalDate datePosted;
     String description;
@@ -29,11 +32,8 @@ public class Announcement {
     String requirement;
     String benefit;
     @ManyToOne
-    @JoinColumn(name = "industry_id")
-    Industry industries;
-    @ManyToOne
-    @JoinColumn(name = "employer_id")
-    Employer employer;
+    @JoinColumn(name = "company_id")
+    Company company;
 
 
 }

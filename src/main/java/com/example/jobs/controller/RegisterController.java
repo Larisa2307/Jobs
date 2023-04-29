@@ -20,15 +20,15 @@ public class RegisterController {
 
     final UserAppService userAppService;
 
-    @GetMapping("/register")
+    @GetMapping("/register-candidate")
     public String getRegisterEmployeePage(@RequestParam(required = false) final boolean errorEmail,
                                           @RequestParam(required = false) final boolean errorPassword, Model model) {
         model.addAttribute("errorEmail", errorEmail);
         model.addAttribute("errorPassword", errorPassword);
-        return "register";
+        return "register-candidate";
     }
 
-    @PostMapping("/register/submit")
+    @PostMapping("/register-candidate/submit")
     public String submitRegisterEmployee(@ModelAttribute("userApp") UserApp userApp,
                                          @ModelAttribute("confirmPassword") String confirmPassword) {
         log.info("Try to register user: " + userApp.getEmail());
@@ -36,15 +36,11 @@ public class RegisterController {
             userApp.setPhone(null);
         }
 
-        if ("".equals(userApp.getCity())) {
-            userApp.setCity(null);
-        }
-
         List<UserApp> usersByEmail = userAppService.getUsersByEmail(userApp.getEmail());
         if (usersByEmail != null && !usersByEmail.isEmpty()) {
-            return "redirect:/register?errorEmail=true";
+            return "redirect:/register-candidate?errorEmail=true";
         } else if (!confirmPassword.equals(userApp.getPassword())) {
-            return "redirect:/register?errorPassword=true";
+            return "redirect:/register-candidate?errorPassword=true";
         } else {
             userAppService.saveAdmin(userApp);
             return "redirect:/login";

@@ -16,15 +16,14 @@ import java.time.LocalDate;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserApp {
-
+public class Education {
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID",strategy = "org.hibernate.id.UUIDGenerator")
     String id;
-    String firstName;
-    String lastName;
-    String email;
-    String phone;
-    String password;
+    String university;
+    String degree;
+    String speciality;
+    LocalDate startDate;
+    LocalDate endDate;
 }

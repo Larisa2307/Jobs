@@ -26,7 +26,7 @@
     <div class="container pt-4">
         <div class="formm">
             <form class="form-container" method="post" enctype="multipart/form-data">
-                {{#employer}}
+                {{#company}}
                 <div id="myForm">
                     <div class="row">
                         <div class="col-6">
@@ -64,8 +64,8 @@
 
                     <div class="row">
                         <div class="col-12">
-                            <label for="street"><b>Address</b></label><br>
-                            <input type="text" value="{{street}}" id="street" name="street" disabled>
+                            <label for="address"><b>Address</b></label><br>
+                            <input type="text" value="{{address}}" id="address" name="address" disabled>
                             <br><br>
                         </div>
                     </div>
@@ -101,7 +101,7 @@
              aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                    <form action="/edit/{{id}}" method="POST" name="employer">
+                    <form action="/edit/{{id}}" method="POST" name="company">
                         <div class="modal-header">
                             <h5 class="modal-title" id="editCompany{{id}}">Edit profile</h5>
                             <button type="button" class="btn-close" data-mdb-dismiss="modal"
@@ -139,9 +139,9 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-12">
-                                            <label for="street{{id}}">Street<span class="error">*</span></label><br>
-                                            <input type="text" value="{{street}}" class="field" id="street{{id}}"
-                                                   name="street"
+                                            <label for="address{{id}}">Address<span class="error">*</span></label><br>
+                                            <input type="text" value="{{address}}" class="field" id="address{{id}}"
+                                                   name="address"
                                                    required>
                                             <br><br>
                                         </div>
@@ -191,7 +191,7 @@
     </div>
 </main>
 
-{{/employer}}
+{{/company}}
 <!--Main layout-->
 
 

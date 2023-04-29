@@ -4,26 +4,22 @@ import com.example.jobs.entity.Announcement;
 import com.example.jobs.model.AnnouncementModel;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 import static lombok.AccessLevel.PRIVATE;
 
 @NoArgsConstructor(access = PRIVATE)
 public class AnnouncementMapper {
 
-    public static AnnouncementModel toModel(final Announcement announcement, final List<String> skills, final int numberOfCandidates, final int index) {
+    public static AnnouncementModel toModel(final Announcement announcement, final int numberOfCandidates, final int index) {
         return AnnouncementModel.builder()
                 .id(announcement.getId())
                 .jobName(announcement.getJobName())
                 .jobType(announcement.getJobType())
                 .jobLevel(announcement.getJobLevel())
                 .description(announcement.getDescription())
-                .industries(announcement.getIndustries().getName())
                 .benefit(announcement.getBenefit())
                 .requirement(announcement.getRequirement())
                 .responsability(announcement.getResponsability())
                 .index(index)
-                .announcementSkills(skills)
                 .numberOfCandidates(numberOfCandidates)
                 .build();
     }

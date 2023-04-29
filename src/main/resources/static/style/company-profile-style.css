@@ -45,7 +45,7 @@ background: #e7e7e7
     padding-left: 8px;
 }
 
-#street, .field {
+#address, .field {
     box-sizing: border-box;
 
     width: 95%;

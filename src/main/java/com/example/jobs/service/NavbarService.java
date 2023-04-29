@@ -13,7 +13,7 @@ public class NavbarService {
         inactivateAllNavbarTabs(model);
         switch (tabName) {
             case DASHBOARD -> model.addAttribute("dashboardActive", true);
-            case DASHBOARD_EMPLOYER -> model.addAttribute("dashboard-employerActive", true);
+            case DASHBOARD_COMPANY -> model.addAttribute("dashboard-companyActive", true);
             case ANNOUNCEMENT -> model.addAttribute("announcementActive", true);
         }
     }

@@ -2,9 +2,9 @@ package com.example.jobs.controller;
 
 import com.example.jobs.entity.Page;
 import com.example.jobs.service.AnnouncementService;
-import com.example.jobs.service.EmployerService;
-import com.example.jobs.service.UserAppAnnouncementService;
+import com.example.jobs.service.CompanyService;
 import com.example.jobs.service.NavbarService;
+import com.example.jobs.service.UserAppAnnouncementService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class DashboardController {
 
     final NavbarService navbarService;
-    final EmployerService employerService;
+    final CompanyService companyService;
     final AnnouncementService announcementService;
     final UserAppAnnouncementService employerUserAppService;
 
@@ -30,15 +30,15 @@ public class DashboardController {
     }
 
 
-    @GetMapping("/dashboard-employer/{id}")
+    @GetMapping("/dashboard-company/{id}")
     String getDashboardEmployerPage(Model model, @PathVariable String id) {
-        var employer = employerService.getbyId(id);
-        log.info("Dashboard employer: " + employer.getEmail());
-        var announcements = announcementService.getAnnouncementModelList(employer);
-        model.addAttribute("employer", employer);
+        var company = companyService.getById(id);
+        log.info("Dashboard company: " + company.getEmail());
+        var announcements = announcementService.getAnnouncementModelList(company);
+        model.addAttribute("company", company);
         model.addAttribute("announcements", announcements);
-        navbarService.activateNavbarTab(Page.DASHBOARD_EMPLOYER, model);
-        return "dashboard-employer";
+        navbarService.activateNavbarTab(Page.DASHBOARD_COMPANY, model);
+        return "dashboard-company";
     }
 
 }

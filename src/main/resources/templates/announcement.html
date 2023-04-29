@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Jobs - Announcement</title>
@@ -45,7 +45,7 @@
              aria-labelledby="addAnnouncementTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                    <form action="/add-announcement/{{employer.id}}" method="POST" name="announcement">
+                    <form action="/add-announcement/{{company.id}}" method="POST" name="announcement">
                         <div class="modal-header">
                             <h5 class="modal-title" id="addAnnouncementTitle">Add announcement</h5>
                             <button type="button" class="btn-close" data-mdb-dismiss="modal"
@@ -106,22 +106,14 @@
                                     </div>
 
                                 </div>
-                                <div class="col-6">
-                                    <label class="form-label" for="industries">Industry<span
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-12">
+                                    <label class="form-label" for="skills">Skills<span
                                             class="error">*</span></label>
-                                    <select aria-autocomplete="none" id="industries"
-                                            class="form-control form-control-lg active" name="industries"
-                                            required>
-                                        <option style="display: none" value="">Select a industry</option>
-                                        {{#industry}}
-                                        <option class="autocomplete-item" value="{{id}}">{{name}}</option>
-                                        {{/industry}}
-                                    </select>
-                                    <div class="form-notch">
-                                        <div class="form-notch-leading" style="width: 9px;"></div>
-                                        <div class="form-notch-middle" style="width: 87.2px;"></div>
-                                        <div class="form-notch-trailing"></div>
-                                    </div>
+                                    <textarea id="skills" rows="4"
+                                              name="skills" class="form-control form-control-lg"></textarea>
                                 </div>
                             </div>
                             <br>
@@ -172,7 +164,7 @@
             </div>
         </div>
         <br>
-        {{#employer}}
+        {{#company}}
         <div class="tableFixHead">
             <table class="table table-bordered table-sm announcement-table">
                 <thead>
@@ -181,7 +173,7 @@
                     <th class="col2">Job name</th>
                     <th class="col2">Job type</th>
                     <th class="col2">Job level</th>
-                    <th class="col2">Industry</th>
+                    <th class="col3">Skills</th>
                     <th class="col3 remove-description">Description</th>
                     <th class="col3">Responsability</th>
                     <th class="col3">Requirement</th>
@@ -197,7 +189,7 @@
                     <td class="col2">{{jobName}}</td>
                     <td class="col2">{{jobType}}</td>
                     <td class="col2">{{jobLevel}}</td>
-                    <td class="col2">{{industries}}</td>
+                    <td class="col3">{{skills}}</td>
                     <td class="remove-description">{{description}}</td>
                     <td class="col3">{{responsability}}</td>
                     <td class="col3">{{requirement}}</td>
@@ -319,29 +311,14 @@
                                                                 </div>
                                                             </div>
 
-                                                            <div class="col-6">
-                                                                <label class="form-label" for="industries{{index}}">Industry<span
-                                                                        class="error">*</span></label>
-                                                                <select aria-autocomplete="none"
-                                                                        id="industries{{index}}"
-                                                                        class="form-control form-control-lg active"
-                                                                        name="industries" required>
-                                                                    <option style="display: none" value="">
-                                                                        {{industries}}
-                                                                    </option>
-                                                                    {{#industry}}
-                                                                    <option class="autocomplete-item"
-                                                                            value="{{id}}">
-                                                                        {{name}}
-                                                                    </option>
-                                                                    {{/industry}}
-                                                                </select>
-                                                                <div class="form-notch">
-                                                                    <div class="form-notch-leading"
-                                                                         style="width: 9px;"></div>
-                                                                    <div class="form-notch-middle"
-                                                                         style="width: 87.2px;"></div>
-                                                                    <div class="form-notch-trailing"></div>
+                                                            <br>
+                                                            <div class="row">
+                                                                <div class="col-12">
+                                                                    <label class="form-label"
+                                                                           for="skills{{index}}">Skills</label>
+                                                                    <textarea id="skills{{index}}" rows="4"
+                                                                              name="skills"
+                                                                              class="form-control form-control-lg">{{skills}}</textarea>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -447,7 +424,7 @@
     {{#duplicate}}
     <script>alert("Announcement name already exists!")</script>
     {{/duplicate}}
-    {{/employer}}
+    {{/company}}
 
 </main>
 

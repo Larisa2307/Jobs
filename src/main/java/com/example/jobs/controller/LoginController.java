@@ -1,7 +1,8 @@
 package com.example.jobs.controller;
 
-import com.example.jobs.service.EmployerService;
+import com.example.jobs.service.CompanyService;
 import com.example.jobs.service.UserAppService;
+import com.example.jobs.service.UserCompanyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -16,7 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class LoginController {
 
     final UserAppService userAppService;
-    final EmployerService employerService;
+    final UserCompanyService userCompanyService;
+    final CompanyService companyService;
 
 
     @GetMapping("/login")
@@ -29,12 +31,12 @@ public class LoginController {
     String submitLogin(@RequestParam String email, @RequestParam String password) {
         log.info("Try to login with email: " + email);
         var userApp = userAppService.getUserAppByCredentials(email, password);
-        var employer = employerService.getEmployerByCredentials(email, password);
+        var userCompany = userCompanyService.getUserCompanyByCredentials(email, password);
 
         if (userApp.isPresent()) {
             return "redirect:/dashboard";
         } else
-            return employer.map(value -> "redirect:/dashboard-employer/" + value.getId())
+            return userCompany.map(value -> "redirect:/dashboard-company/" + value.getCompany().getId())
                     .orElse("redirect:/login?error=true");
     }
 
