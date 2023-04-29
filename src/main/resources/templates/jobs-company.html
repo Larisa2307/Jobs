@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jobs - Jobs company</title>
+
+    {{>fragments/links}}
+    <link rel="stylesheet" href="../static/style/navigation-style.css">
+    <link rel="stylesheet" href="../static/style/job-company-style.css">
+    <!-- Page style -->
+
+</head>
+<body>
+
+<!--Main Navigation-->
+<header>
+
+    {{>fragments/sidebar}}
+    {{>fragments/navbar}}
+
+</header>
+<!--Main Navigation-->
+
+<!--Main layout-->
+
+<main id="myContainer">
+    <p id="page-title"><b>Jobs company</b></p>
+    <div class="container-fluid pt-4 table-responsive-lg">
+        <div class="tableFixHead">
+            <table class="table table-bordered table-sm dashboard-table">
+                <thead>
+                <tr>
+                    <th class="th-sm">Nr.</th>
+                    <th class="th-sm">Job name</th>
+                    <th class="th-sm">Job type</th>
+                    <th class="th-sm">Job level</th>
+                    <th class="th-sm">Salary</th>
+                    <th class="th-lg">Number of vacant spots</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {{#jobs}}
+                <tr>
+                    <td class="col1">{{index}}</td>
+                    <td class="col-3">{{jobName}}</td>
+                    <td class="col-2">{{jobType}}</td>
+                    <td class="col-2">{{jobLevel}}</td>
+                    <td class="col-2">{{salary}}</td>
+                    <td class="col-4">{{numberOfVacantSpots}}</td>
+                </tr>
+                {{/jobs}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+
+<!--Main layout-->
+</body>
+</html>
