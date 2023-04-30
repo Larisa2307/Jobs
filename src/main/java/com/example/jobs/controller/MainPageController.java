@@ -24,6 +24,7 @@ public class MainPageController {
     String getStartPage() {
         return "redirect:/main-page";
     }
+
     @GetMapping("/main-page")
     String getMainPage(Model model) {
 

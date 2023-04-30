@@ -1,8 +1,6 @@
 package com.example.jobs.mapper;
 
-import com.example.jobs.entity.Announcement;
 import com.example.jobs.entity.Job;
-import com.example.jobs.model.AnnouncementModel;
 import com.example.jobs.model.JobModel;
 import lombok.NoArgsConstructor;
 

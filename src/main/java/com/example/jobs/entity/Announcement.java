@@ -14,26 +14,18 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Announcement {
-
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     String id;
-    String jobName;
-    String jobType;
-    String jobLevel;
     @ManyToOne
     @JoinColumn(name = "job_id")
     Job job;
     @CreationTimestamp
     LocalDate datePosted;
+    String skills;
     String description;
     String responsability;
     String requirement;
     String benefit;
-    @ManyToOne
-    @JoinColumn(name = "company_id")
-    Company company;
-
-
 }

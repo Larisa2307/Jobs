@@ -1,6 +1,5 @@
 package com.example.jobs.service;
 
-import com.example.jobs.entity.UserApp;
 import com.example.jobs.entity.UserCompany;
 import com.example.jobs.repository.UserCompanyRepository;
 import lombok.AllArgsConstructor;
@@ -17,16 +16,12 @@ public class UserCompanyService {
 
     final UserCompanyRepository userCompanyRepository;
 
-    public void saveAdmin(UserCompany userApp) {
+    public void saveUserCompany(UserCompany userApp) {
         userCompanyRepository.saveAndFlush(userApp);
     }
 
     public Optional<UserCompany> getUserCompanyByCredentials(String email, String password) {
         return userCompanyRepository.findByEmailAndPassword(email, password);
-    }
-
-    public UserCompany getAdminById(String adminId) {
-        return userCompanyRepository.getById(adminId);
     }
 
     public List<UserCompany> getUsersByEmail(String email) {

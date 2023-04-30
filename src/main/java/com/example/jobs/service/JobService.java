@@ -1,11 +1,8 @@
 package com.example.jobs.service;
 
-import com.example.jobs.entity.Announcement;
 import com.example.jobs.entity.Company;
 import com.example.jobs.entity.Job;
-import com.example.jobs.mapper.AnnouncementMapper;
 import com.example.jobs.mapper.JobMapper;
-import com.example.jobs.model.AnnouncementModel;
 import com.example.jobs.model.JobModel;
 import com.example.jobs.repository.JobRepository;
 import lombok.AllArgsConstructor;
@@ -26,16 +23,8 @@ public class JobService {
         jobsRepository.save(job);
     }
 
-    public List<String> getJobNameByCompany(Company company) {
-        return jobsRepository.findJobNamesByCompany(company);
-    }
-
-    public List<String> getJobTypeByCompany(Company company) {
-        return jobsRepository.findJobTypesByCompany(company);
-    }
-
-    public List<String> getJobLevelsByCompany(Company company) {
-        return jobsRepository.findJobLevelsByCompany(company);
+    public Job getById(String id) {
+        return jobsRepository.findById(id).get();
     }
 
     public List<Job> getJobsByCompany(Company company) {

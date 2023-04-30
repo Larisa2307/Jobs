@@ -9,18 +9,15 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
-import java.time.LocalDate;
-
 @Getter
 @Setter
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserApp {
-
     @Id
     @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID",strategy = "org.hibernate.id.UUIDGenerator")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     String id;
     String firstName;
     String lastName;

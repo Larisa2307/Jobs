@@ -19,7 +19,7 @@ import java.time.LocalDate;
 public class Education {
     @Id
     @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID",strategy = "org.hibernate.id.UUIDGenerator")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     String id;
     String university;
     String degree;

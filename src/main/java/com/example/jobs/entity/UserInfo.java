@@ -16,7 +16,7 @@ import org.hibernate.annotations.GenericGenerator;
 public class UserInfo {
     @Id
     @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID",strategy = "org.hibernate.id.UUIDGenerator")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     String id;
     String mainAreas;
     String skills;

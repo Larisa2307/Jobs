@@ -11,11 +11,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.session.HttpSessionEventPublisher;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.security.Principal;
 
 @Configuration
 @EnableWebSecurity
@@ -43,6 +38,7 @@ public class LoginSecurityConfig {
                     .requestMatchers("/profile/**").permitAll()
                     .requestMatchers("/edit/**").permitAll()
                     .requestMatchers("/announcement/**").permitAll()
+                    .requestMatchers("/jobs-company/**").permitAll()
                     .requestMatchers("/add-announcement/**").permitAll()
                     .requestMatchers("/favicon.ico").permitAll()
                     .requestMatchers("/static/**").permitAll()

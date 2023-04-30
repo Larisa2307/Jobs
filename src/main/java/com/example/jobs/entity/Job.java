@@ -13,7 +13,7 @@ import org.hibernate.annotations.GenericGenerator;
 public class Job {
     @Id
     @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID",strategy = "org.hibernate.id.UUIDGenerator")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     String id;
     String name;
     String type;

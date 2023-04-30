@@ -24,10 +24,6 @@ public class UserAppService {
         return userAppRepository.findByEmailAndPassword(email, password);
     }
 
-    public UserApp getAdminById(String adminId) {
-        return userAppRepository.getById(adminId);
-    }
-
     public List<UserApp> getUsersByEmail(String email) {
         return userAppRepository.getByEmail(email);
     }

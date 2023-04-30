@@ -73,7 +73,7 @@ tbody tr {
     width: 5%;
 }
 
-.col2  {
+.col2 {
     min-width: 120px;
 }
 
@@ -85,7 +85,7 @@ tbody tr {
     min-width: 200px;
 }
 
-.deleteButton, .editButton{
+.deleteButton, .editButton {
     padding-right: 10px;
 }
 

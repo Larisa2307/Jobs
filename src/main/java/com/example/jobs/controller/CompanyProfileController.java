@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 @Slf4j
 public class CompanyProfileController {
+
     final CompanyService companyService;
 
     @GetMapping("/profile/{id}")

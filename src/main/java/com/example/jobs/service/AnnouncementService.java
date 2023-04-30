@@ -2,6 +2,7 @@ package com.example.jobs.service;
 
 import com.example.jobs.entity.Announcement;
 import com.example.jobs.entity.Company;
+import com.example.jobs.entity.Job;
 import com.example.jobs.mapper.AnnouncementMapper;
 import com.example.jobs.model.AnnouncementModel;
 import com.example.jobs.repository.AnnouncementRepository;
@@ -19,6 +20,7 @@ public class AnnouncementService {
 
     final AnnouncementRepository announcementRepository;
     final UserAppAnnouncementService userAppAnnouncementService;
+    final JobService jobService;
 
     public Announcement getAnnouncementById(String announcementId) {
         return announcementRepository.findById(announcementId).get();
@@ -28,39 +30,34 @@ public class AnnouncementService {
         announcementRepository.deleteById(announcementId);
     }
 
-    public Boolean isDuplicate(String jobName) {
-        return announcementRepository.existsByJobName(jobName).isPresent();
+    public Boolean isDuplicate(Job job) {
+        return announcementRepository.existsByJob(job).isPresent();
     }
 
-    public Boolean isDuplicateName(String name, String id) {
-        return announcementRepository.existsByName(name, id).isPresent();
-    }
-
-    private Announcement toAnnouncement(AnnouncementModel announcementModel, Company company) {
+    private Announcement toAnnouncement(AnnouncementModel announcementModel, Job job) {
         Announcement announcement = AnnouncementMapper.toEntry(announcementModel);
-        announcement.setCompany(company);
-
+        announcement.setJob(job);
         return announcement;
     }
 
-    private AnnouncementModel toAnnouncementModel(Announcement announcement, int index) {
+    private AnnouncementModel toAnnouncementModel(Announcement announcement, Job job, int index) {
         var numberOfCandidates = userAppAnnouncementService.getUserAppByAnnouncement(announcement).size();
-        return AnnouncementMapper.toModel(announcement, numberOfCandidates, index);
+        return AnnouncementMapper.toModel(announcement, job, numberOfCandidates, index);
     }
 
-    public void saveNewAnnouncement(AnnouncementModel announcementModel, Company company) {
-        Announcement announcement = toAnnouncement(announcementModel, company);
+    public void saveNewAnnouncement(AnnouncementModel announcementModel, Job job) {
+        Announcement announcement = toAnnouncement(announcementModel, job);
         announcement.setId(announcementModel.getId());
-        announcementRepository.save(announcement);
 
+        announcementRepository.save(announcement);
     }
 
     public List<AnnouncementModel> getAnnouncementModelList(Company company) {
-        var announcements = announcementRepository.findAnnouncementByCompany(company);
+        var announcements = announcementRepository.findByCompany(company);
 
         var index = new AtomicInteger(1);
         return announcements.stream()
-                .map(announcement -> toAnnouncementModel(announcement, index.getAndIncrement()))
+                .map(announcement -> toAnnouncementModel(announcement, announcement.getJob(), index.getAndIncrement()))
                 .toList();
     }
 }

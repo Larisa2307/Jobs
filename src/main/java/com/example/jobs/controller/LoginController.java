@@ -17,9 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class LoginController {
 
     final UserAppService userAppService;
-    final UserCompanyService userCompanyService;
     final CompanyService companyService;
-
+    final UserCompanyService userCompanyService;
 
     @GetMapping("/login")
     String getLoginPage(@RequestParam(required = false) final boolean error, Model model) {

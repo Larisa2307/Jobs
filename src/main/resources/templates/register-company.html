@@ -12,88 +12,99 @@
 <body>
 
 <section class="vh-100 gradient-custom">
-  <div class="container py-5 h-100">
-    <div class="row justify-content-center align-items-center h-100">
-      <div class="col-12 col-lg-9 col-xl-7">
-        <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
-          <div class="card-body p-4 p-md-5">
-            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Register</h3>
+    <div class="container py-5 h-100">
+        <div class="row justify-content-center align-items-center h-100">
+            <div class="col-12 col-lg-9 col-xl-7">
+                <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+                    <div class="card-body p-4 p-md-5">
+                        <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Register</h3>
 
-            <form action="/register-company/submit" method="post" name="company">
+                        <form action="/register-company/submit" method="post" name="company">
 
-              <div class="row">
-                <div class="col-md-6 mb-4">
-                  <div class="form-outline">
-                    <input type="text" id="companyName" name="companyName" class="form-control form-control-lg" required />
-                    <label class="form-label" for="companyName">Company name<span class="error">*</span></label>
-                  </div>
-                </div>
-                <div class="col-md-6 mb-4">
-                  <div class="form-outline">
-                    <input type="text" id="uniqueCode" name="uniqueCode" class="form-control form-control-lg" required />
-                    <label class="form-label" for="uniqueCode">Unique code of company<span class="error">*</span></label>
-                  </div>
-                </div>
-              </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <div class="form-outline">
+                                        <input type="text" id="companyName" name="companyName"
+                                               class="form-control form-control-lg" required/>
+                                        <label class="form-label" for="companyName">Company name<span
+                                                class="error">*</span></label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="form-outline">
+                                        <input type="text" id="uniqueCode" name="uniqueCode"
+                                               class="form-control form-control-lg" required/>
+                                        <label class="form-label" for="uniqueCode">Unique code of company<span
+                                                class="error">*</span></label>
+                                    </div>
+                                </div>
+                            </div>
 
-              <div class="row">
-                <div class="col-md-12 mb-4 pb-2">
-                  <div class="form-outline">
-                    <input type="text" id="address" name="address" class="form-control form-control-lg" required />
-                    <label class="form-label" for="address">Company address<span class="error">*</span></label>
-                  </div>
-                </div>
-              </div>
+                            <div class="row">
+                                <div class="col-md-12 mb-4 pb-2">
+                                    <div class="form-outline">
+                                        <input type="text" id="address" name="address"
+                                               class="form-control form-control-lg" required/>
+                                        <label class="form-label" for="address">Company address<span
+                                                class="error">*</span></label>
+                                    </div>
+                                </div>
+                            </div>
 
-              <div class="row">
-                <div class="col-md-6 mb-4 pb-2">
-                  <div class="form-outline">
-                    <input type="text" id="city" name="city" class="form-control form-control-lg" />
-                    <label class="form-label" for="city">City<span class="error">*</span></label>
-                  </div>
-                </div>
-                <div class="col-md-6 mb-4 pb-2">
-                  <div class="form-outline">
-                    <input type="text" id="country" name="country" class="form-control form-control-lg" />
-                    <label class="form-label" for="country">Country<span class="error">*</span></label>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6 mb-4 pb-2">
-                  <div class="form-outline">
-                    <input type="email" id="email" name="email" class="form-control form-control-lg" />
-                    <label class="form-label" for="email">Email<span class="error">*</span></label>
-                  </div>
-                </div>
-                <div class="col-md-6 mb-4 pb-2">
-                  <div class="form-outline">
-                    <input type="tel" id="phoneNumber" name="phoneNumber" pattern="[0-9]{10}" class="form-control form-control-lg" />
-                    <label class="form-label" for="phoneNumber">Phone number<span class="error">*</span></label>
-                  </div>
-                </div>
-              </div>
-              <div class="error">
-                {{#error}}Unique code invalid!{{/error}}
-              </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-4 pb-2">
+                                    <div class="form-outline">
+                                        <input type="text" id="city" name="city" class="form-control form-control-lg"/>
+                                        <label class="form-label" for="city">City<span class="error">*</span></label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4 pb-2">
+                                    <div class="form-outline">
+                                        <input type="text" id="country" name="country"
+                                               class="form-control form-control-lg"/>
+                                        <label class="form-label" for="country">Country<span
+                                                class="error">*</span></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-4 pb-2">
+                                    <div class="form-outline">
+                                        <input type="email" id="email" name="email"
+                                               class="form-control form-control-lg"/>
+                                        <label class="form-label" for="email">Email<span class="error">*</span></label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4 pb-2">
+                                    <div class="form-outline">
+                                        <input type="tel" id="phoneNumber" name="phoneNumber" pattern="[0-9]{10}"
+                                               class="form-control form-control-lg"/>
+                                        <label class="form-label" for="phoneNumber">Phone number<span
+                                                class="error">*</span></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="error">
+                                {{#error}}Unique code invalid!{{/error}}
+                            </div>
 
-              <div class="mt-4 pt-2">
-                <input class="btn btn-primary btn-lg" type="submit" value="Submit" />
-              </div>
+                            <div class="mt-4 pt-2">
+                                <input class="btn btn-primary btn-lg" type="submit" value="Submit"/>
+                            </div>
 
-            </form>
+                        </form>
 
-          </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </section>
 
 <script>
-  document.querySelectorAll('.form-outline').forEach((formOutline) => {
-    new mdb.Input(formOutline).init();
-  });
+    document.querySelectorAll('.form-outline').forEach((formOutline) => {
+        new mdb.Input(formOutline).init();
+    });
 </script>
 
 </body>

@@ -2,8 +2,9 @@
     font-family: 'Trispace';
     src: url('../fonts/Trispace.ttf');
 }
-#content{
-background: #e7e7e7
+
+#content {
+    background: #e7e7e7
 }
 
 #page-title {
@@ -34,7 +35,7 @@ background: #e7e7e7
     flex-direction: column;
 }
 
-.fields, #companyName, #email, #city, #country, #phone  {
+.fields, #companyName, #email, #city, #country, #phone {
     box-sizing: border-box;
 
     width: 90%;

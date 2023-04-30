@@ -48,7 +48,7 @@ public class RegisterEmployerController {
             var company = companyService.getById(id);
             userCompany.setCompany(company);
             userCompany.setRole("ADMIN");
-            userCompanyService.saveAdmin(userCompany);
+            userCompanyService.saveUserCompany(userCompany);
             return "redirect:/login";
         }
     }
