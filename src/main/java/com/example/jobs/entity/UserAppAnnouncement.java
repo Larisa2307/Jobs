@@ -23,4 +23,5 @@ public class UserAppAnnouncement {
     @ManyToOne
     @JoinColumn(name = "user_app_id")
     UserApp userApp;
+    String accepted;
 }

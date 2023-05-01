@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jobs - Settings</title>
+
+    {{>fragments/links}}
+    <link rel="stylesheet" href="../static/style/navigation-style.css">
+    <link rel="stylesheet" href="../static/style/company-profile-style.css">
+    <!-- Page style -->
+
+</head>
+<body>
+
+<!--Main Navigation-->
+<header>
+
+    {{>fragments/sidebar}}
+    {{>fragments/navbar}}
+
+</header>
+<!--Main Navigation-->
+
+
+<!--Main layout-->
+<main id="content">
+    <div class="container pt-4">
+        <div class="formm">
+            <form class="form-container" method="post" enctype="multipart/form-data">
+                {{#user}}
+                <div id="myForm">
+                    <div class="row">
+                        <div class="col-6">
+                            <p id="page-title"><b>Settings</b></p>
+                        </div>
+                        <div class="col-6">
+                            <div class="editButton">
+                                <button type="button" class="btn btn-primary icon-spacing" data-mdb-toggle="modal"
+                                        data-mdb-target="#edit{{id}}">
+                                    <i class="fa-regular fa-pen-to-square"></i>
+                                    <span class="remove-action-name">Edit</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="firstName"><b>First name</b></label><br>
+                            <input id="firstName" name="name" disabled value="{{firstName}}">
+                            <br><br>
+                        </div>
+                        <div class="col-6">
+                            <label for="lastName"><b>Last name</b></label><br>
+                            <input value="{{lastName}}" id="lastName" name="lastName" disabled>
+                            <br><br>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="email"><b>Email</b></label><br>
+                            <input type="email" value="{{email}}" id="email" name="email" disabled>
+                            <br><br>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <label for="phone"><b>Phone number</b></label><br>
+                            <input type="tel" value="{{phone}}" id="phone" name="phone" disabled>
+                            <br><br>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="editButton">
+                                <button type="button" class="btn btn-primary icon-spacing" data-mdb-toggle="modal"
+                                        data-mdb-target="#changePassword{{id}}">
+                                    <i class="fa-regular fa-pen-to-square"></i>
+                                    <span class="remove-action-name">Change password</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+{{/user}}
+<!--Main layout-->
+
+
+</body>
+</html>

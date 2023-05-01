@@ -20,6 +20,10 @@ public class UserCompanyService {
         userCompanyRepository.saveAndFlush(userApp);
     }
 
+    public UserCompany getById(String id) {
+        return userCompanyRepository.findById(id).get();
+    }
+
     public Optional<UserCompany> getUserCompanyByCredentials(String email, String password) {
         return userCompanyRepository.findByEmailAndPassword(email, password);
     }

@@ -1,10 +1,8 @@
 package com.example.jobs.controller;
 
 import com.example.jobs.entity.Page;
-import com.example.jobs.service.AnnouncementService;
-import com.example.jobs.service.CompanyService;
-import com.example.jobs.service.NavbarService;
-import com.example.jobs.service.UserAppAnnouncementService;
+import com.example.jobs.entity.UserCompany;
+import com.example.jobs.service.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -19,8 +17,10 @@ public class DashboardController {
 
     final NavbarService navbarService;
     final CompanyService companyService;
+    final UserCompanyService userCompanyService;
     final AnnouncementService announcementService;
     final UserAppAnnouncementService employerUserAppService;
+    final UserAppAnnouncementService userAppAnnouncementService;
 
     @GetMapping("/dashboard")
     String getDashboardPage(Model model) {

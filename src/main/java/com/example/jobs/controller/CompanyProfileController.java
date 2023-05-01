@@ -2,15 +2,13 @@ package com.example.jobs.controller;
 
 import com.example.jobs.entity.Company;
 import com.example.jobs.service.CompanyService;
+import com.example.jobs.service.UserCompanyService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @Controller
@@ -18,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class CompanyProfileController {
 
     final CompanyService companyService;
+    final UserCompanyService userCompanyService;
 
     @GetMapping("/profile/{id}")
     String getProfileIdPage(Model model, @PathVariable String id) {
@@ -32,13 +31,6 @@ public class CompanyProfileController {
         return "profile";
     }
 
-    @GetMapping("/edit/{id}")
-    public String getUpdateCustomer(final Model model, @PathVariable("id") final String id) throws EntityNotFoundException {
-        var company = companyService.getById(id);
-        model.addAttribute("company", company);
-        return "redirect:/profile/" + id;
-    }
-
     @PostMapping("/edit/{id}")
     public String postUpdateCustomer(@ModelAttribute("company") Company company, @PathVariable("id") String id) {
         var newCompany = companyService.getById(id);
@@ -50,5 +42,16 @@ public class CompanyProfileController {
 
         return "redirect:/profile/" + id;
     }
+
+//
+//    @GetMapping("/settings/{id}")
+//    String getSettingsPage(Model model, @RequestParam(required = false) final boolean error,
+//                           @PathVariable("id") String id) {
+//        var userCompany = userCompanyService.getById(id);
+//
+//        model.addAttribute("user", userCompany);
+//
+//        return "settings";
+//    }
 
 }
