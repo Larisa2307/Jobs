@@ -32,13 +32,12 @@
 {{#company}}
 <main id="myContainer">
     <p id="page-title"><b>Announcement</b></p>
+    <a type="button" href="/jobs-company/{{id}}" class="btn btn-primary" data-mdb-target="#addAnnouncement">
+        <i class="fa-solid fa-plus fa-fw me-3"></i>Add
+    </a>
     <div class="container-fluid pt-4 table-responsive-lg">
 
         <!-- Button trigger modal -->
-        <a type="button" href="/jobs-company/{{id}}" class="btn btn-primary" data-mdb-target="#addAnnouncement">
-            <i class="fa-solid fa-plus fa-fw me-3"></i>Add
-        </a>
-        <br><br>
 
         <div class="tableFixHead">
             <table class="table table-bordered table-sm announcement-table">

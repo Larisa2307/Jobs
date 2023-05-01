@@ -10,23 +10,23 @@
 }
 
 #page-title {
-    font-size: 1.5rem;
+    font-size: 2rem;
 }
 
 body {
-    background: #F5F5F5;
+    background: #e7e7e7;
 }
 
 .dashboard-table {
     height: 100%;
-    width: 99.6%;
+    width: 100%;
     display: inline-block;
     position: static;
     left: 22%;
     top: 25%;
-    background: #EFF2F7;
+    background: #ffffff;
     margin: auto;
-    color: #3183B1;
+    color: #2a47bd;
 }
 
 #table-body {
@@ -35,8 +35,8 @@ body {
 
 .tableFixHead {
     overflow-y: scroll;
-    width: 75%;
-    height: 480px;
+    width: 64.7%;
+    height: 450px;
 }
 
 .tableFixHead thead th {
@@ -48,16 +48,30 @@ body {
 
 thead {
     border-radius: 8px 8px 0 0;
+    border: 0.2px #948787;
     height: 50px;
 }
 
 tbody tr {
-    height: 55px;
+    height: 60px;
     background: #FFFFFF;
-    border: 0.5px solid #C5D0DE;
+    border: 1px solid #948787;
     color: #000000;
 }
 
 .col1 {
+    padding-left: 25px;
     width: 5%;
+}
+
+.col2 {
+    min-width: 120px;
+}
+
+.col3 {
+    min-width: 250px;
+}
+
+.col4 {
+    min-width: 200px;
 }

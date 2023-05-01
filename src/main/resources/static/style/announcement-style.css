@@ -19,11 +19,11 @@
 }
 
 #page-title {
-    font-size: 1.5rem;
+    font-size: 2rem;
 }
 
 body {
-    background: #F5F5F5;
+    background: #e7e7e7;
 }
 
 .announcement-table {
@@ -35,9 +35,9 @@ body {
     position: static;
     left: 22%;
     top: 25%;
-    background: #EFF2F7;
+    background: #ffffff;
     margin: auto;
-    color: #3183B1;
+    color: #2a47bd;
 }
 
 #table-body {
@@ -58,13 +58,15 @@ body {
 
 thead {
     border-radius: 8px 8px 0 0;
+    border: 0.2px #948787;
+
     height: 50px;
 }
 
 tbody tr {
-    height: 75px;
+    height: 60px;
     background: #FFFFFF;
-    border: 0.5px solid #C5D0DE;
+    border: 1px solid #948787;
     color: #000000;
 }
 

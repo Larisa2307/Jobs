@@ -30,10 +30,10 @@
             <table class="table table-bordered table-sm dashboard-table">
                 <thead>
                 <tr>
-                    <th class="th-sm">Nr.</th>
-                    <th class="th-sm">Job name</th>
-                    <th class="th-sm">Number of candidates</th>
-                    <th class="th-sm">Actions</th>
+                    <th class="col-1">Nr.</th>
+                    <th class="col-5">Job name</th>
+                    <th class="col-4">Number of candidates</th>
+                    <th class="col2">Actions</th>
                 </tr>
                 </thead>
 
@@ -41,13 +41,13 @@
                 {{#announcements}}
                 <tr>
                     <td class="col1">{{index}}</td>
-                    <td class="col-3">{{jobName}}</td>
-                    <td class="col-2">{{numberOfCandidates}}</td>
-                    <td class="col-1">
+                    <td class="col-5">{{jobName}}</td>
+                    <td class="col-4">{{numberOfCandidates}}</td>
+                    <td class="col2">
 
                         <div class="row">
                             <div class="d-flex justify-content-end col-11">
-                                <button type="button" class="btn btn-primary">Show details
+                                <button type="button" class="btn btn-primary btn-sm">Show details
                                 </button>
                             </div>
                         </div>

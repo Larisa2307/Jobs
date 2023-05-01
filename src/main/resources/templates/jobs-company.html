@@ -31,13 +31,13 @@
             <table class="table table-bordered table-sm dashboard-table">
                 <thead>
                 <tr>
-                    <th class="th-sm">Nr.</th>
-                    <th class="th-sm">Job name</th>
-                    <th class="th-sm">Job type</th>
-                    <th class="th-sm">Job level</th>
-                    <th class="th-sm">Salary</th>
-                    <th class="th-lg">Number of vacant spots</th>
-                    <th class="th-sm">Actions</th>
+                    <th class="col1">Nr.</th>
+                    <th class="col2">Job name</th>
+                    <th class="col2">Job type</th>
+                    <th class="col2">Job level</th>
+                    <th class="col2">Salary</th>
+                    <th class="col2">Number of vacant spots</th>
+                    <th class="col2">Actions</th>
                 </tr>
                 </thead>
 
@@ -45,12 +45,12 @@
                 {{#jobs}}
                 <tr>
                     <td class="col1">{{index}}</td>
-                    <td class="col-3">{{jobName}}</td>
-                    <td class="col-2">{{jobType}}</td>
-                    <td class="col-2">{{jobLevel}}</td>
-                    <td class="col-1">{{salary}}</td>
-                    <td class="col-2">{{numberOfVacantSpots}}</td>
-                    <td class="col-2">
+                    <td class="col2">{{jobName}}</td>
+                    <td class="col2">{{jobType}}</td>
+                    <td class="col2">{{jobLevel}}</td>
+                    <td class="col2">{{salary}}</td>
+                    <td class="col2">{{numberOfVacantSpots}}</td>
+                    <td class="col2">
                         <button type="button" class="btn btn-primary btn-sm" data-mdb-toggle="modal"
                                 data-mdb-target="#addAnnouncement">
                             <i class="fa-solid fa-plus fa-fw me-3"></i>Add
