@@ -3,13 +3,22 @@
     src: url('../fonts/Trispace.ttf');
 }
 
-#myContainer {
-    margin-left: 3%;
-    margin-bottom: 5%;
-    margin-top: 4.5%;
+.formm {
+    box-sizing: border-box;
+    position: relative;
+    width: 80%;
+    height: 620px;
+    background: #ffffff;
+    border: 1px solid #090010;
+    border-radius: 5px;
+    font-size: 100%;
+    margin-left: 7%;
+    margin-top: 6%;
 }
 
 #page-title {
+    margin-left: 3%;
+    margin-top: 1.5%;
     font-size: 2rem;
 }
 
@@ -22,20 +31,24 @@ body {
     width: 100%;
     display: inline-block;
     position: static;
-    left: 22%;
-    top: 25%;
     background: #ffffff;
-    margin: auto;
     color: #2a47bd;
+}
+
+table {
+    border:1px solid #948787;
 }
 
 #table-body {
     color: #000000;
+
 }
 
 .tableFixHead {
     overflow-y: scroll;
-    width: 64.7%;
+    position: static;
+    margin-left: 5%;
+    width: 87.8%;
     height: 450px;
 }
 
@@ -48,7 +61,7 @@ body {
 
 thead {
     border-radius: 8px 8px 0 0;
-    border: 0.2px #948787;
+    border: 0.2px solid #948787;
     height: 50px;
 }
 

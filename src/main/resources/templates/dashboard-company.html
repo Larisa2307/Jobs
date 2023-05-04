@@ -23,39 +23,44 @@
 
 <!--Main layout-->
 
-<main id="myContainer">
-    <p id="page-title"><b>Dashboard</b></p>
-    <div class="container-fluid pt-4 table-responsive-lg">
-        <div class="tableFixHead">
-            <table class="table table-bordered table-sm dashboard-table">
-                <thead>
-                <tr>
-                    <th class="col-1">Nr.</th>
-                    <th class="col-5">Job name</th>
-                    <th class="col-4">Number of candidates</th>
-                    <th class="col2">Actions</th>
-                </tr>
-                </thead>
+<main>
+    <div class="formm">
+        <p id="page-title"><b>Dashboard</b></p>
+        <div class="container-fluid pt-4 table-responsive-lg">
+            <div class="tableFixHead">
+                <table class="table table-bordered table-sm dashboard-table">
+                    <thead>
+                    <tr>
+                        <th class="col-1">Nr.</th>
+                        <th class="col-5">Job name</th>
+                        <th class="col-4">Number of candidates</th>
+                        <th class="col2">Actions</th>
+                    </tr>
+                    </thead>
 
-                <tbody>
-                {{#announcements}}
-                <tr>
-                    <td class="col1">{{index}}</td>
-                    <td class="col-5">{{jobName}}</td>
-                    <td class="col-4">{{numberOfCandidates}}</td>
-                    <td class="col2">
+                    <tbody>
+                    {{#announcements}}
+                    <tr>
+                        <td class="col1">{{index}}</td>
+                        <td class="col-5">{{jobName}}</td>
+                        <td class="col-4">{{numberOfCandidates}}</td>
+                        <td class="col2">
 
-                        <div class="row">
-                            <div class="d-flex justify-content-end col-11">
-                                <a type="button" href="/candidate-announcement/{{userCompany.id}}/{{id}}" class="btn btn-primary btn-sm">Show details
-                                </a>
+                            <div class="row">
+                                <div class="d-flex justify-content-end col-11">
+                                    <a type="button" href="/candidate-announcement/{{userCompany.id}}/{{id}}"
+                                       class="btn btn-primary btn-sm">
+                                        <i class="fas fa-poll-h"></i>&nbsp;
+                                        Show details
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                    </td>
-                </tr>
-                {{/announcements}}
-                </tbody>
-            </table>
+                        </td>
+                    </tr>
+                    {{/announcements}}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </main>

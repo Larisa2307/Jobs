@@ -20,35 +20,37 @@
 
 </header>
 
-<main id="myContainer">
-    <p id="page-title"><b>Candidates</b></p>
-    <div class="container-fluid pt-4 table-responsive-lg">
-        <div class="tableFixHead">
-            <table class="table table-bordered table-sm dashboard-table">
-                <thead>
-                <tr>
-                    <th class="col1">Nr.</th>
-                    <th class="col2">First Name</th>
-                    <th class="col2">Last Name</th>
-                    <th class="col3">Email</th>
-                    <th class="col2">Phone number</th>
-                    <th class="col1">Accepted</th>
-                </tr>
-                </thead>
+<main>
+    <div class="formm">
+        <p id="page-title"><b>Candidates</b></p>
+        <div class="container-fluid pt-4 table-responsive-lg">
+            <div class="tableFixHead">
+                <table class="table table-bordered table-sm dashboard-table">
+                    <thead>
+                    <tr>
+                        <th class="col1">Nr.</th>
+                        <th class="col2">First Name</th>
+                        <th class="col2">Last Name</th>
+                        <th class="col3">Email</th>
+                        <th class="col2">Phone number</th>
+                        <th class="col1">Accepted</th>
+                    </tr>
+                    </thead>
 
-                <tbody>
-                {{#candidates}}
-                <tr>
-                    <td class="col1">{{index}}</td>
-                    <td class="col2">{{firstName}}</td>
-                    <td class="col2">{{lastName}}</td>
-                    <td class="col3">{{email}}</td>
-                    <td class="col2">{{phoneNumber}}</td>
-                    <td class="col2">{{accepted}}</td>
-                </tr>
-                {{/candidates}}
-                </tbody>
-            </table>
+                    <tbody>
+                    {{#candidates}}
+                    <tr>
+                        <td class="col1">{{index}}</td>
+                        <td class="col2">{{firstName}}</td>
+                        <td class="col2">{{lastName}}</td>
+                        <td class="col3">{{email}}</td>
+                        <td class="col2">{{phoneNumber}}</td>
+                        <td class="col2">{{accepted}}</td>
+                    </tr>
+                    {{/candidates}}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </main>

@@ -3,8 +3,8 @@
     src: url('../fonts/Trispace.ttf');
 }
 
-#content {
-    background: #e7e7e7
+body {
+    background: #e7e7e7;
 }
 
 #page-title {
@@ -15,14 +15,13 @@
     box-sizing: border-box;
     position: relative;
     width: 70%;
-    height: 600px;
+    height: 620px;
     background: #ffffff;
     border: 1px solid #090010;
     border-radius: 5px;
     font-size: 100%;
     margin-left: 10.5%;
-    margin-bottom: 20%;
-    margin-top: 5%;
+    margin-top: 4.5%;
 }
 
 #myForm {
