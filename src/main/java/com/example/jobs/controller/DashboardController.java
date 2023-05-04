@@ -32,10 +32,11 @@ public class DashboardController {
 
     @GetMapping("/dashboard-company/{id}")
     String getDashboardEmployerPage(Model model, @PathVariable String id) {
-        var company = companyService.getById(id);
+        var userCompany = userCompanyService.getById(id);
+        var company = userCompany.getCompany();
         log.info("Dashboard company: " + company.getEmail());
         var announcements = announcementService.getAnnouncementModelList(company);
-        model.addAttribute("company", company);
+        model.addAttribute("userCompany", userCompany);
         model.addAttribute("announcements", announcements);
         navbarService.activateNavbarTab(Page.DASHBOARD_COMPANY, model);
         return "dashboard-company";

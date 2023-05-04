@@ -35,7 +35,7 @@ public class LoginController {
         if (userApp.isPresent()) {
             return "redirect:/dashboard";
         } else
-            return userCompany.map(value -> "redirect:/dashboard-company/" + value.getCompany().getId())
+            return userCompany.map(value -> "redirect:/dashboard-company/" + value.getId())
                     .orElse("redirect:/login?error=true");
     }
 

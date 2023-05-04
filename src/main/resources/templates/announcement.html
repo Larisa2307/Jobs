@@ -29,7 +29,7 @@
 <!--Main Navigation-->
 
 <!--Main layout-->
-{{#company}}
+{{#userCompany}}
 <main id="myContainer">
     <p id="page-title"><b>Announcement</b></p>
     <a type="button" href="/jobs-company/{{id}}" class="btn btn-primary" data-mdb-target="#addAnnouncement">
@@ -84,7 +84,7 @@
                                          aria-labelledby="editAnnouncementTitle{{index}}" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                             <div class="modal-content">
-                                                <form action="/edit-announcement/{{id}}" method="POST"
+                                                <form action="/edit-announcement/{{userCompany.id}}/{{id}}" method="POST"
                                                       name="announcement">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title" id="editAnnouncementTitle{{index}}">Edit
@@ -207,7 +207,7 @@
                                      aria-labelledby="deleteAnnouncementTitle{{index}}" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
-                                            <form action="/delete-announcement/{{id}}" method="POST">
+                                            <form action="/delete-announcement/{{userCompany.id}}/{{id}}" method="POST">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title" id="deleteAnnouncementTitle{{index}}">
                                                         Delete
@@ -238,10 +238,7 @@
             </table>
         </div>
     </div>
-    {{#duplicate}}
-    <script>alert("Announcement name already exists!")</script>
-    {{/duplicate}}
-    {{/company}}
+    {{/userCompany}}
 
 </main>
 

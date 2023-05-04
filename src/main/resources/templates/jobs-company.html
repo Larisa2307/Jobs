@@ -53,13 +53,13 @@
                     <td class="col2">
                         <button type="button" class="btn btn-primary btn-sm" data-mdb-toggle="modal"
                                 data-mdb-target="#addAnnouncement">
-                            <i class="fa-solid fa-plus fa-fw me-3"></i>Add
+                            <i class="fa-solid fa-plus fa-fw me-3"></i>Add announcement
                         </button>
                         <div class="modal modal-lg fade" id="addAnnouncement" tabindex="-1" role="dialog"
                              aria-labelledby="addAnnouncementTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
-                                    <form action="/add-announcement/{{id}}" method="POST" name="announcement">
+                                    <form action="/add-announcement/{{userCompany.id}}/{{id}}" method="POST" name="announcement">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="addAnnouncementTitle">Add announcement</h5>
                                             <button type="button" class="btn-close" data-mdb-dismiss="modal"

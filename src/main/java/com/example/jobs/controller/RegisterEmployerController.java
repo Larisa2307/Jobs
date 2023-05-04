@@ -54,8 +54,11 @@ public class RegisterEmployerController {
     }
 
     @GetMapping("/register-company")
-    public String getRegisterEmployerPage(@RequestParam(required = false) final boolean error, Model model) {
+    public String getRegisterEmployerPage(@RequestParam(required = false) final boolean error,
+                                          @RequestParam(required = false) final boolean errorEmail,
+                                          Model model) {
         model.addAttribute("error", error);
+        model.addAttribute("errorEmail", errorEmail);
         return "register-company";
     }
 
@@ -63,7 +66,11 @@ public class RegisterEmployerController {
     public String submitRegisterEmployer(@ModelAttribute("company") Company company) {
         log.info("Try to register employer: " + company.getEmail());
         List<Company> companyByUniqueCode = companyService.getEmployerByUniqueCode(company.getUniqueCode());
-        if (companyByUniqueCode != null && !companyByUniqueCode.isEmpty()) {
+
+        List<Company> companies = companyService.getCompanyByEmail(company.getEmail());
+        if (companies != null && !companies.isEmpty()) {
+            return "redirect:/register-company?errorEmail=true";
+        } else if (companyByUniqueCode != null && !companyByUniqueCode.isEmpty()) {
             return "redirect:/register-company?error=true";
         } else {
             companyService.saveAdmin(company);

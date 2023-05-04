@@ -16,4 +16,6 @@ public interface UserCompanyRepository extends JpaRepository<UserCompany, String
     @Query("select c from UserCompany c where c.email = ?1")
     List<UserCompany> getByEmail(String email);
 
+    @Query("select u from UserCompany u where u.email = ?1 and u.id <> ?2")
+    Optional<UserCompany> getByEmailAndDifferentId(String email, String id);
 }

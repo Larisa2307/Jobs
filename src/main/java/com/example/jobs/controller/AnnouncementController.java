@@ -3,10 +3,7 @@ package com.example.jobs.controller;
 import com.example.jobs.entity.Job;
 import com.example.jobs.entity.Page;
 import com.example.jobs.model.AnnouncementModel;
-import com.example.jobs.service.AnnouncementService;
-import com.example.jobs.service.CompanyService;
-import com.example.jobs.service.JobService;
-import com.example.jobs.service.NavbarService;
+import com.example.jobs.service.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -21,28 +18,30 @@ public class AnnouncementController {
     final JobService jobService;
     final NavbarService navbarService;
     final CompanyService companyService;
+    final UserCompanyService userCompanyService;
     final AnnouncementService announcementService;
 
     @GetMapping("/announcement/{id}")
     String getAnnouncementPage(Model model, @PathVariable String id, @RequestParam(required = false) final Boolean duplicate) {
-        var company = companyService.getById(id);
-        log.info("Announcement page: " + company.getEmail());
+        var userCompany = userCompanyService.getById(id);
+        var company = userCompany.getCompany();
+        log.info("Announcement page: " + userCompany.getEmail());
         var announcements = announcementService.getAnnouncementModelList(company);
 
-        model.addAttribute("company", company);
+        model.addAttribute("userCompany", userCompany);
         model.addAttribute("announcements", announcements);
-        model.addAttribute("duplicate", duplicate);
 
         navbarService.activateNavbarTab(Page.ANNOUNCEMENT, model);
 
         return "announcement";
     }
 
-    @PostMapping("/edit-announcement/{id}")
-    public String editCategory(@ModelAttribute("announcement") AnnouncementModel announcement, @PathVariable("id") final String id) {
+    @PostMapping("/edit-announcement/{user_id}/{id}")
+    public String editCategory(@ModelAttribute("announcement") AnnouncementModel announcement, @PathVariable("id") final String id,
+                               @PathVariable("user_id") final String userId) {
         Job job = announcementService.getAnnouncementById(id).getJob();
         var company = job.getCompany();
-        log.info("Try to edit an announcement: " + announcement.getJobName() + " company: " + company.getEmail());
+        log.info("Try to edit an announcement: " + announcement.getJobName() + " company: " + company.getCompanyName());
 
         if (announcement.getBenefit() == null) {
             announcement.setBenefit("");
@@ -50,15 +49,14 @@ public class AnnouncementController {
 
         announcementService.saveNewAnnouncement(announcement, job);
 
-        return "redirect:/announcement/" + company.getId();
+        return "redirect:/announcement/" + userId;
     }
 
-    @PostMapping("/delete-announcement/{announcementId}")
-    public String deleteCategory(@PathVariable String announcementId) {
-        var company = announcementService.getAnnouncementById(announcementId).getJob().getCompany();
+    @PostMapping("/delete-announcement/{user_id}/{announcementId}")
+    public String deleteCategory(@PathVariable String announcementId, @PathVariable("user_id") final String userId) {
         log.info("Try to delete an announcement");
         announcementService.deleteAnnouncement(announcementId);
 
-        return "redirect:/announcement/" + company.getId();
+        return "redirect:/announcement/" + userId;
     }
 }

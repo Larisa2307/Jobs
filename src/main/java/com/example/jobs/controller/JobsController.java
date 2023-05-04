@@ -17,32 +17,38 @@ public class JobsController {
     final JobService jobService;
     final NavbarService navbarService;
     final CompanyService companyService;
+    final UserCompanyService userCompanyService;
     final AnnouncementService announcementService;
-    final UserAppAnnouncementService employerUserAppService;
+    final UserAppAnnouncementService userAppAnnouncementService;
+
 
     @GetMapping("/jobs-company/{id}")
     String getDashboardEmployerPage(Model model, @PathVariable String id, @RequestParam(required = false) final Boolean duplicate) {
-        var company = companyService.getById(id);
-        log.info("Jobs company: " + company.getEmail());
+        var userCompany = userCompanyService.getById(id);
+        var company = userCompany.getCompany();
+        log.info("Jobs company: " + company.getCompanyName());
         var jobs = jobService.getJobModelList(company);
 
-        model.addAttribute("company", company);
+        model.addAttribute("userCompany", userCompany);
         model.addAttribute("jobs", jobs);
         model.addAttribute("duplicate", duplicate);
+
 
         navbarService.activateNavbarTab(Page.JOBS_COMPANY, model);
         return "jobs-company";
     }
 
-    @PostMapping("/add-announcement/{id}")
+    @PostMapping("/add-announcement/{user_id}/{id}")
     public String addAnnouncement(@ModelAttribute("announcement") AnnouncementModel announcement,
-                                  @PathVariable String id) {
+                                  @PathVariable("user_id") final String userId,
+                                  @PathVariable("id") String id) {
+
         var job = jobService.getById(id);
         var company = job.getCompany();
         log.info("Try to add an announcement: " + company.getEmail());
 
         if (Boolean.TRUE.equals(announcementService.isDuplicate(job))) {
-            return "redirect:/jobs-company/" + company.getId() + "?duplicate=true";
+            return "redirect:/jobs-company/" + userId + "?duplicate=true";
 
         } else {
             if (announcement.getBenefit() == null) {
@@ -51,6 +57,6 @@ public class JobsController {
             announcementService.saveNewAnnouncement(announcement, job);
         }
 
-        return "redirect:/announcement/" + company.getId();
+        return "redirect:/announcement/" + userId;
     }
 }

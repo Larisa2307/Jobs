@@ -32,4 +32,10 @@ public class UserCompanyService {
         return userCompanyRepository.getByEmail(email);
     }
 
+    public boolean existsByEmailAndDifferentId(String email, String id) {
+        return userCompanyRepository.getByEmailAndDifferentId(email, id).isPresent();
+    }
+
+
+
 }

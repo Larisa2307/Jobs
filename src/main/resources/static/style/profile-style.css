@@ -35,7 +35,7 @@
     flex-direction: column;
 }
 
-.fields, #companyName, #email, #city, #country, #phone {
+.fields, #companyName, #email, #city, #country, #phone, #firstName, #lastName {
     box-sizing: border-box;
 
     width: 90%;

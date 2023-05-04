@@ -60,6 +60,8 @@
                                 <div class="col-md-6 mb-4 pb-2">
                                     <div class="form-outline">
                                         <input type="password" id="password" name="password"
+                                               pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                                               title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
                                                class="form-control form-control-lg" required/>
                                         <label class="form-label" for="password">Password<span
                                                 class="error">*</span></label>

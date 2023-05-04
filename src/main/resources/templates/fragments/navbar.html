@@ -1,11 +1,14 @@
-<link rel="stylesheet" href="../static/style/main-navbar-style.css">
+<link rel="stylesheet" href="../../../static/style/main-navbar-style.css">
 
+{{#userCompany}}
 <!-- Navbar -->
 <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
     <!-- Container wrapper -->
     <div class="container-fluid">
-        <img src="../static/images/logo.jpeg"
+        <a href="/dashboard-company/{{id}}">
+        <img src="../../../static/images/logo.jpeg"
              class="image">
+        </a>
         &nbsp;&nbsp;&nbsp;
 
         <!-- Search form -->
@@ -37,7 +40,6 @@
                 </ul>
             </li>
             &nbsp;&nbsp;&nbsp;
-            {{#company}}
             <!-- Avatar -->
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle hidden-arrow d-flex align-items-center" href="/profile"
@@ -47,17 +49,17 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
                     <li>
-                        <a class="dropdown-item" href="/profile/{{id}}">My profile</a>
+                        <a class="dropdown-item" href="/user-profile/{{id}}">My profile</a>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="#">Settings</a>
+                        <a class="dropdown-item" href="/profile/{{id}}">Company profile</a>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="/login">Logout</a>
+                        <a class="dropdown-item" href="/main-page">Logout</a>
                     </li>
                 </ul>
             </li>
-            {{/company}}
+            {{/userCompany}}
         </ul>
     </div>
     <!-- Container wrapper -->

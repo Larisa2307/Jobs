@@ -101,6 +101,10 @@
     </div>
 </section>
 
+<div class="errorEmail">
+    {{#errorEmail}}Email already exists!{{/errorEmail}}
+</div>
+
 <script>
     document.querySelectorAll('.form-outline').forEach((formOutline) => {
         new mdb.Input(formOutline).init();

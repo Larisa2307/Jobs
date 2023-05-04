@@ -6,7 +6,7 @@
 
     {{>fragments/links}}
     <link rel="stylesheet" href="../static/style/navigation-style.css">
-    <link rel="stylesheet" href="../static/style/company-profile-style.css">
+    <link rel="stylesheet" href="../static/style/profile-style.css">
     <!-- Page style -->
 
 </head>
@@ -101,7 +101,7 @@
              aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                    <form action="/edit/{{id}}" method="POST" name="company">
+                    <form action="/edit/{{userCompany.id}}/{{id}}" method="POST" name="company">
                         <div class="modal-header">
                             <h5 class="modal-title" id="editCompany{{id}}">Edit profile</h5>
                             <button type="button" class="btn-close" data-mdb-dismiss="modal"
@@ -187,7 +187,11 @@
                 </div>
             </div>
         </div>
-
+    </div>
+    <div class="errorEmail">
+        {{#errorEmail}}
+        <script>alert("Email already exists!")</script>
+        {{/errorEmail}}
     </div>
 </main>
 
