@@ -23,6 +23,7 @@ public class Announcement {
     Job job;
     @CreationTimestamp
     LocalDate datePosted;
+    LocalDate dateEnded;
     String skills;
     String description;
     String responsability;

@@ -27,6 +27,94 @@
 <main>
     <div class="formm">
         <p id="page-title"><b>Jobs company</b></p>
+        <button type="button" class="btn btn-primary" data-mdb-toggle="modal" id="addJobs"
+                data-mdb-target="#addJob">
+            <i class="fa-solid fa-plus"></i>&nbsp;&nbsp;Add
+        </button>
+        <div class="modal modal-lg fade" id="addJob" tabindex="-1" role="dialog"
+             aria-labelledby="addJobTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <form action="/add-job/{{userCompany.id}}" method="POST"
+                          name="job">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="addJobTitle">Add job</h5>
+                            <button type="button" class="btn-close" data-mdb-dismiss="modal"
+                                    aria-label="Close"></button>
+                        </div>
+
+                        <div class="mymodal">
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label class="form-label" for="name">Job name<span
+                                            class="error">*</span></label>
+                                    <input type="text"
+                                           id="name"
+                                           name="name"
+                                           class="form-control form-control-lg"
+                                           required/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 mb-3">
+                                    <label class="form-label" for="typeJ">Job type<span
+                                            class="error">*</span></label>
+                                    <select aria-autocomplete="none" id="typeJ"
+                                            class="form-control form-control-lg active" name="type"
+                                            required>
+                                        <option style="display: none" value="">Select a type</option>
+                                        {{#jobTypes}}
+                                        <option class="autocomplete-item" value="{{.}}"> {{.}}
+                                        </option>
+                                        {{/jobTypes}}
+                                    </select>
+                                </div>
+                                <div class="col-6 mb-3">
+                                    <label class="form-label" for="levelJ">Job level<span
+                                            class="error">*</span></label>
+                                    <select aria-autocomplete="none" id="levelJ"
+                                            class="form-control form-control-lg active" name="level"
+                                            required>
+                                        <option style="display: none" value="">Select a level</option>
+                                        {{#jobLevels}}
+                                        <option class="autocomplete-item" value="{{.}}"> {{.}}
+                                        </option>
+                                        {{/jobLevels}}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 mb-3">
+                                    <label class="form-label" for="salary">Salary<span
+                                            class="error">*</span></label>
+                                    <input type="text"
+                                           id="salary"
+                                           name="salary"
+                                           class="form-control form-control-lg"
+                                           required/>
+                                </div>
+                                <div class="col-6 mb-3">
+                                    <label class="form-label" for="numberOfVacantSpots">Number of vacant spots<span
+                                            class="error">*</span></label>
+                                    <input type="number"
+                                           id="numberOfVacantSpots"
+                                           name="numberOfVacantSpots"
+                                           class="form-control form-control-lg"
+                                           required/>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary"
+                                        data-mdb-dismiss="modal">
+                                    Close
+                                </button>
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
         <div class="container-fluid pt-4 table-responsive-lg">
             <div class="tableFixHead">
                 <table class="table table-bordered table-sm dashboard-table">
@@ -50,11 +138,24 @@
                                    role="button" data-mdb-toggle="dropdown">
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end">
-
-                                    <button type="button" class="btn btn-sm" data-mdb-toggle="modal"
-                                            data-mdb-target="#addAnnouncement">
-                                        <i class="fa-solid fa-plus"></i>&nbsp; Add announcement
-                                    </button>
+                                    <li>
+                                        <button type="button" class="btn btn-sm" data-mdb-toggle="modal"
+                                                data-mdb-target="#addAnnouncement{{id}}">
+                                            <i class="fa-solid fa-plus"></i>&nbsp; Add announcement
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button type="button" class="btn btn-sm" data-mdb-toggle="modal"
+                                                data-mdb-target="#editJob{{id}}">
+                                            <i class="fa-regular fa-pen-to-square"></i>&nbsp;Edit
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button type="button" class="btn btn-sm" data-mdb-toggle="modal"
+                                                data-mdb-target="#deleteJob{{id}}">
+                                            <i class="fa-regular fa-trash-can"></i>&nbsp;Delete
+                                        </button>
+                                    </li>
                                 </ul>
                             </div>
                         </td>
@@ -63,14 +164,14 @@
                         <td class="col4">{{level}}</td>
                         <td class="col2">{{salary}}</td>
                         <td class="col2">{{numberOfVacantSpots}}</td>
-                        <div class="modal modal-lg fade" id="addAnnouncement" tabindex="-1" role="dialog"
-                             aria-labelledby="addAnnouncementTitle" aria-hidden="true">
+                        <div class="modal modal-lg fade" id="addAnnouncement{{id}}" tabindex="-1" role="dialog"
+                             aria-labelledby="addAnnouncementTitle{{id}}" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                     <form action="/add-announcement/{{userCompany.id}}/{{id}}" method="POST"
                                           name="announcement">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="addAnnouncementTitle">Add announcement</h5>
+                                            <h5 class="modal-title" id="addAnnouncementTitle{{id}}">Add announcement</h5>
                                             <button type="button" class="btn-close" data-mdb-dismiss="modal"
                                                     aria-label="Close"></button>
                                         </div>
@@ -79,9 +180,9 @@
                                             <div class="row">
                                                 <div class="col-6">
                                                     <div class="mb-3">
-                                                        <label class="form-label" for="name">Job name</label>
+                                                        <label class="form-label" for="jobName{{id}}">Job name</label>
                                                         <input type="text" value="{{name}}"
-                                                               id="name"
+                                                               id="jobName{{id}}"
                                                                name="name"
                                                                class="form-control form-control-lg"
                                                                disabled/>
@@ -89,9 +190,9 @@
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="mb-3">
-                                                        <label class="form-label" for="type">Job type</label>
+                                                        <label class="form-label" for="jobType{{id}}">Job type</label>
                                                         <input type="text" value="{{type}}"
-                                                               id="type"
+                                                               id="jobType{{id}}"
                                                                name="type"
                                                                class="form-control form-control-lg"
                                                                disabled/>
@@ -102,12 +203,19 @@
                                             <div class="row">
                                                 <div class="col-6">
                                                     <div class="mb-3">
-                                                        <label class="form-label" for="level">Job level</label>
+                                                        <label class="form-label" for="jobLevel{{id}}">Job level</label>
                                                         <input type="text" value="{{level}}"
-                                                               id="level"
+                                                               id="jobLevel{{id}}"
                                                                name="level"
                                                                class="form-control form-control-lg"
                                                                disabled/>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="dateEnded">End date</label>
+                                                        <input type="date" id="dateEnded" name="dateEnded"
+                                                               class="form-control form-control-lg" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -180,6 +288,117 @@
                             </div>
                         </div>
                     </tr>
+                    <div class="modal modal-lg fade" id="editJob{{id}}" tabindex="-1" role="dialog"
+                         aria-labelledby="editJobTitle{{id}}" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <form action="/edit-job/{{userCompany.id}}/{{id}}" method="POST"
+                                      name="job">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="editJobTitle{{id}}">Edit job {{name}}</h5>
+                                        <button type="button" class="btn-close" data-mdb-dismiss="modal"
+                                                aria-label="Close"></button>
+                                    </div>
+
+                                    <div class="mymodal">
+                                        <div class="row">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="name{{id}}">Job name<span
+                                                        class="error">*</span></label>
+                                                <input type="text" value="{{name}}"
+                                                       id="name{{id}}"
+                                                       name="name"
+                                                       class="form-control form-control-lg"
+                                                       required/>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-6 mb-3">
+                                                <label class="form-label" for="type{{id}}">Job type<span
+                                                        class="error">*</span></label>
+                                                <select aria-autocomplete="none" id="type{{id}}"
+                                                        class="form-control form-control-lg active" name="type"
+                                                        required>
+                                                    <option style="display: none" value="{{type}}">{{type}}</option>
+                                                    {{#jobTypes}}
+                                                    <option class="autocomplete-item" value="{{.}}"> {{.}}
+                                                    </option>
+                                                    {{/jobTypes}}
+                                                </select>
+                                            </div>
+                                            <div class="col-6 mb-3">
+                                                <label class="form-label" for="level{{id}}">Job level<span
+                                                        class="error">*</span></label>
+                                                <select aria-autocomplete="none" id="level{{id}}"
+                                                        class="form-control form-control-lg active" name="level"
+                                                        required>
+                                                    <option style="display: none" value="{{level}}">{{level}}</option>
+                                                    {{#jobLevels}}
+                                                    <option class="autocomplete-item" value="{{.}}"> {{.}}
+                                                    </option>
+                                                    {{/jobLevels}}
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-6 mb-3">
+                                                <label class="form-label" for="salary{{id}}">Salary<span
+                                                        class="error">*</span></label>
+                                                <input type="text" value="{{salary}}"
+                                                       id="salary{{id}}"
+                                                       name="salary"
+                                                       class="form-control form-control-lg"
+                                                       required/>
+                                            </div>
+                                            <div class="col-6 mb-3">
+                                                <label class="form-label" for="numberOfVacantSpots{{id}}">Number of vacant spots<span
+                                                        class="error">*</span></label>
+                                                <input type="number" value="{{numberOfVacantSpots}}"
+                                                       id="numberOfVacantSpots{{id}}"
+                                                       name="numberOfVacantSpots"
+                                                       class="form-control form-control-lg"
+                                                       required/>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                    data-mdb-dismiss="modal">
+                                                Close
+                                            </button>
+                                            <button type="submit" class="btn btn-primary">Save</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="deleteJob{{id}}" tabindex="-1" role="dialog"
+                         aria-labelledby="deleteJobTitle{{id}}" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <form action="/delete-job/{{userCompany.id}}/{{id}}"
+                                      method="POST">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="deleteJobTitle{{id}}">
+                                            Delete
+                                            job {{name}}</h5>
+                                        <button type="button" class="btn-close" data-mdb-dismiss="modal"
+                                                aria-label="Close"></button>
+                                    </div>
+                                    <div class="mymodal">
+                                        <span class="error">If you delete this job, the linked announcement will also be deleted!</span>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                                data-mdb-dismiss="modal">Close
+                                        </button>
+                                        <button type="submit" class="btn btn-primary">Delete</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                     {{/jobs}}
                     </tbody>
                 </table>
@@ -192,5 +411,14 @@
 </main>
 
 <!--Main layout-->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/js/bootstrap-select.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/js/i18n/defaults-*.min.js"></script>
+<script>
+    $('#lang').selectpicker();
+</script>
 </body>
 </html>

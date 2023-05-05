@@ -35,6 +35,11 @@ body {
     background: #e7e7e7;
 }
 
+#addJobs {
+    margin-left: 3%;
+}
+
+
 .dashboard-table {
     height: 100%;
     width: 100%;

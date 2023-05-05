@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Jobs - Dashboard</title>
+    <title>Jobs - Users</title>
 
     {{>fragments/links}}
     <link rel="stylesheet" href="../static/style/navigation-style.css">
-    <link rel="stylesheet" href="../static/style/dashboard-company-style.css">
+    <link rel="stylesheet" href="../static/style/users-company-style.css">
     <!-- Page style -->
 
 </head>
@@ -25,21 +25,23 @@
 
 <main>
     <div class="formm">
-        <p id="page-title"><b>Dashboard</b></p>
+        <p id="page-title"><b>Users company</b></p>
         <div class="container-fluid pt-4 table-responsive-lg">
             <div class="tableFixHead">
                 <table class="table table-bordered table-sm dashboard-table">
                     <thead>
                     <tr>
                         <th class="col1"></th>
-                        <th class="col-5">Job name</th>
-                        <th class="col-4">Number of candidates</th>
-                        <th class="col-3">Available</th>
+                        <th class="col4">First name</th>
+                        <th class="col4">Last name</th>
+                        <th class="col-5">Email</th>
+                        <th class="col2">Role</th>
+
                     </tr>
                     </thead>
 
                     <tbody>
-                    {{#announcements}}
+                    {{#usersCompany}}
                     <tr>
                         <td class="col1">
                             <div>
@@ -47,43 +49,38 @@
                                    role="button" data-mdb-toggle="dropdown">
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li>
-                                    <a type="button" href="/candidate-announcement-dashboard/{{userCompany.id}}/{{id}}"
-                                       class="btn btn-sm">
-                                        <i class="fas fa-poll-h"></i>&nbsp;
-                                        Show details
-                                    </a>
-                                    </li>
+
                                     <li>
                                         <button type="button" class="btn btn-sm"
                                                 data-mdb-toggle="modal"
-                                                data-mdb-target="#delete{{index}}">
+                                                data-mdb-target="#delete{{id}}">
                                             <i class="fa-regular fa-trash-can"></i>&nbsp;Delete
                                         </button>
                                     </li>
                                 </ul>
                             </div>
                         </td>
-                        <td class="col-5">{{jobName}}</td>
-                        <td class="col-4">{{numberOfCandidates}}</td>
-                        <td class="col-3">{{available}}</td>
+                        <td class="col4">{{firstName}}</td>
+                        <td class="col4">{{lastName}}</td>
+                        <td class="col-5">{{email}}</td>
+                        <td class="col2">{{role}}</td>
                     </tr>
                     <!-- Modal Delete -->
-                    <div class="modal fade" id="delete{{index}}" tabindex="-1" role="dialog"
-                         aria-labelledby="deleteAnnouncementTitle{{index}}" aria-hidden="true">
+                    <div class="modal fade" id="delete{{id}}" tabindex="-1" role="dialog"
+                         aria-labelledby="deleteUserTitle{{id}}" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
-                                <form action="/delete-announcement-dashboard/{{userCompany.id}}/{{id}}"
+                                <form action="/delete-user/{{userCompany.id}}/{{id}}"
                                       method="POST">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="deleteAnnouncementTitle{{index}}">
+                                        <h5 class="modal-title" id="deleteAnnouncementTitle{{id}}">
                                             Delete
-                                            announcement {{jobName}}</h5>
+                                            announcement {{firstName}} {{lastName}}</h5>
                                         <button type="button" class="btn-close" data-mdb-dismiss="modal"
                                                 aria-label="Close"></button>
                                     </div>
                                     <div class="mymodal">
-                                        Are you sure you want to permanently delete this announcement?
+                                        Are you sure you want to permanently delete this user?
                                     </div>
 
                                     <div class="modal-footer">
@@ -96,7 +93,7 @@
                             </div>
                         </div>
                     </div>
-                    {{/announcements}}
+                    {{/usersCompany}}
                     </tbody>
                 </table>
             </div>

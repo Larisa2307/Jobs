@@ -38,9 +38,6 @@
             <i class="fa-solid fa-plus"></i>&nbsp;&nbsp;Add
         </a>
         <div class="container-fluid pt-4 table-responsive-lg">
-
-            <!-- Button trigger modal -->
-
             <div class="tableFixHead">
                 <table class="table table-bordered table-sm announcement-table">
                     <thead>
@@ -49,6 +46,7 @@
                         <th class="col4">Job name</th>
                         <th class="col4">Job type</th>
                         <th class="col4">Job level</th>
+                        <th class="col3">End date</th>
                         <th class="col3">Skills</th>
                         <th class="col3 remove-description">Description</th>
                         <th class="col3">Responsability</th>
@@ -86,6 +84,7 @@
                         <td class="col4">{{jobName}}</td>
                         <td class="col4">{{jobType}}</td>
                         <td class="col4">{{jobLevel}}</td>
+                        <td class="col4">{{dateEnded}}</td>
                         <td class="col3">{{skills}}</td>
                         <td class="remove-description">{{description}}</td>
                         <td class="col3">{{responsability}}</td>
@@ -138,6 +137,14 @@
                                                            name="jobLevel"
                                                            class="form-control form-control-lg"
                                                            disabled/>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="dateEnded{{index}}">End date<span
+                                                                class="error">*</span></label>
+                                                        <input type="date" id="dateEnded{{index}}" name="dateEnded" value="{{dateEnded}}"
+                                                               class="form-control form-control-lg" required>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <br>
@@ -224,7 +231,7 @@
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="deleteAnnouncementTitle{{index}}">
                                                 Delete
-                                                category {{jobName}}</h5>
+                                                announcement {{jobName}}</h5>
                                             <button type="button" class="btn-close" data-mdb-dismiss="modal"
                                                     aria-label="Close"></button>
                                         </div>

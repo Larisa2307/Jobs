@@ -19,5 +19,5 @@ public interface AnnouncementRepository extends JpaRepository<Announcement, Stri
     @Query("select a from Announcement a join Job j on a.job = j where j.company = ?1")
     List<Announcement> findByCompany(Company company);
 
-
+    Announcement findByJob(Job job);
 }

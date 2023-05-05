@@ -45,7 +45,7 @@ body {
 
 .announcement-table {
     height: 100%;
-    width: 222%;
+    width: 258%;
     display: inline-block;
     position: static;
     left: 22%;
@@ -62,7 +62,7 @@ body {
     overflow: auto;
     position: static;
     margin-left: 5%;
-    width: 87.6%;
+    width: 86%;
     height: 450px;
 }
 

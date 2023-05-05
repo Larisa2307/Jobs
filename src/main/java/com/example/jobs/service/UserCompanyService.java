@@ -1,5 +1,6 @@
 package com.example.jobs.service;
 
+import com.example.jobs.entity.Company;
 import com.example.jobs.entity.UserCompany;
 import com.example.jobs.repository.UserCompanyRepository;
 import lombok.AllArgsConstructor;
@@ -36,6 +37,8 @@ public class UserCompanyService {
         return userCompanyRepository.getByEmailAndDifferentId(email, id).isPresent();
     }
 
-
+    public List<UserCompany> getUserByCompany(Company company) {
+        return userCompanyRepository.findByCompany(company);
+    }
 
 }

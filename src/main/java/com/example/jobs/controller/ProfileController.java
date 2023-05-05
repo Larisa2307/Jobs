@@ -81,6 +81,7 @@ public class ProfileController {
             return "redirect:/user-profile/" + id + "?errorEmail=true";
         } else {
             user.setId(id);
+            user.setRole(userCompany.getRole());
             user.setPassword(userCompany.getPassword());
             user.setCompany(userCompany.getCompany());
             userCompanyService.saveUserCompany(user);

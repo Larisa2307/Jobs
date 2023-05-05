@@ -13,11 +13,12 @@ public class AnnouncementModel {
     String jobName;
     String jobType;
     String jobLevel;
-    LocalDate datePosted;
+    LocalDate dateEnded;
     String description;
     String responsability;
     String requirement;
     String benefit;
     String skills;
     Integer numberOfCandidates;
+    String available;
 }

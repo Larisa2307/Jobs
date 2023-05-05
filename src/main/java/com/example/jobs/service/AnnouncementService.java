@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -40,9 +41,9 @@ public class AnnouncementService {
         return announcement;
     }
 
-    private AnnouncementModel toAnnouncementModel(Announcement announcement, Job job, int index) {
+    private AnnouncementModel toAnnouncementModel(Announcement announcement, Job job, String available, int index) {
         var numberOfCandidates = userAppAnnouncementService.getUserAppByAnnouncement(announcement).size();
-        return AnnouncementMapper.toModel(announcement, job, numberOfCandidates, index);
+        return AnnouncementMapper.toModel(announcement, job, available, numberOfCandidates, index);
     }
 
     public void saveNewAnnouncement(AnnouncementModel announcementModel, Job job) {
@@ -57,7 +58,14 @@ public class AnnouncementService {
 
         var index = new AtomicInteger(1);
         return announcements.stream()
-                .map(announcement -> toAnnouncementModel(announcement, announcement.getJob(), index.getAndIncrement()))
+                .map(announcement -> {
+                    var available = announcement.getDateEnded().isAfter(LocalDate.now()) ? "Yes" : "No";
+                    return toAnnouncementModel(announcement, announcement.getJob(), available, index.getAndIncrement());
+                })
                 .toList();
+    }
+
+    public Announcement getAnnouncementByJob(Job job) {
+        return announcementRepository.findByJob(job);
     }
 }

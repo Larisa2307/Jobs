@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @RequiredArgsConstructor
 @Controller
@@ -36,10 +37,20 @@ public class DashboardController {
         var company = userCompany.getCompany();
         log.info("Dashboard company: " + company.getEmail());
         var announcements = announcementService.getAnnouncementModelList(company);
+
         model.addAttribute("userCompany", userCompany);
         model.addAttribute("announcements", announcements);
+
         navbarService.activateNavbarTab(Page.DASHBOARD_COMPANY, model);
         return "dashboard-company";
+    }
+
+    @PostMapping("/delete-announcement-dashboard/{user_id}/{announcementId}")
+    public String deleteCategory(@PathVariable String announcementId, @PathVariable("user_id") final String userId) {
+        log.info("Try to delete an announcement");
+        announcementService.deleteAnnouncement(announcementId);
+
+        return "redirect:/dashboard-company/" + userId;
     }
 
 }

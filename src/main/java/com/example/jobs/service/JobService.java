@@ -20,6 +20,10 @@ public class JobService {
         jobsRepository.save(job);
     }
 
+    public void delete(Job job) {
+        jobsRepository.delete(job);
+    }
+
     public Job getById(String id) {
         return jobsRepository.findById(id).get();
     }
