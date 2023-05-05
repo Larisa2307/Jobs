@@ -27,7 +27,7 @@ public class JobsController {
         var userCompany = userCompanyService.getById(id);
         var company = userCompany.getCompany();
         log.info("Jobs company: " + company.getCompanyName());
-        var jobs = jobService.getJobModelList(company);
+        var jobs = jobService.getJobsByCompany(company);
 
         model.addAttribute("userCompany", userCompany);
         model.addAttribute("jobs", jobs);

@@ -26,7 +26,7 @@ public class CandidateAnnouncementController {
         log.info("Candidates for announcement " + announcement.getJob().getName() +
                 " for company: " + announcement.getJob().getCompany().getCompanyName());
 
-        var candidates = userAppAnnouncementService.getCandidateModelList(announcement);
+        var candidates = userAppAnnouncementService.getUserAppByAnnouncement(announcement);
 
         model.addAttribute("candidates", candidates);
         model.addAttribute("userCompany", userCompany);

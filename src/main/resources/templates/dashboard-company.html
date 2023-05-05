@@ -31,31 +31,32 @@
                 <table class="table table-bordered table-sm dashboard-table">
                     <thead>
                     <tr>
-                        <th class="col-1">Nr.</th>
-                        <th class="col-5">Job name</th>
-                        <th class="col-4">Number of candidates</th>
-                        <th class="col2">Actions</th>
+                        <th class="col1"></th>
+                        <th class="col3">Job name</th>
+                        <th class="col3">Number of candidates</th>
                     </tr>
                     </thead>
 
                     <tbody>
                     {{#announcements}}
                     <tr>
-                        <td class="col1">{{index}}</td>
-                        <td class="col-5">{{jobName}}</td>
-                        <td class="col-4">{{numberOfCandidates}}</td>
-                        <td class="col2">
-
-                            <div class="row">
-                                <div class="d-flex justify-content-end col-11">
+                        <td class="col1">
+                            <div>
+                                <a class="hidden-arrow fa fa-ellipsis-v"
+                                   role="button" data-mdb-toggle="dropdown">
+                                </a>
+                                <ul class="dropdown-menu">
                                     <a type="button" href="/candidate-announcement/{{userCompany.id}}/{{id}}"
-                                       class="btn btn-primary btn-sm">
+                                       class="btn btn-sm">
                                         <i class="fas fa-poll-h"></i>&nbsp;
                                         Show details
                                     </a>
-                                </div>
+
+                                </ul>
                             </div>
                         </td>
+                        <td class="col-5">{{jobName}}</td>
+                        <td class="col-4">{{numberOfCandidates}}</td>
                     </tr>
                     {{/announcements}}
                     </tbody>

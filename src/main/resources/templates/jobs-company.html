@@ -32,147 +32,153 @@
                 <table class="table table-bordered table-sm dashboard-table">
                     <thead>
                     <tr>
-                        <th class="col1">Nr.</th>
-                        <th class="col2">Job name</th>
+                        <th class="col1"></th>
+                        <th class="col4">Job name</th>
                         <th class="col2">Job type</th>
-                        <th class="col2">Job level</th>
+                        <th class="col4">Job level</th>
                         <th class="col2">Salary</th>
                         <th class="col2">Number of vacant spots</th>
-                        <th class="col2">Actions</th>
                     </tr>
                     </thead>
 
                     <tbody>
                     {{#jobs}}
                     <tr>
-                        <td class="col1">{{index}}</td>
-                        <td class="col2">{{jobName}}</td>
-                        <td class="col2">{{jobType}}</td>
-                        <td class="col2">{{jobLevel}}</td>
-                        <td class="col2">{{salary}}</td>
-                        <td class="col2">{{numberOfVacantSpots}}</td>
-                        <td class="col2">
-                            <button type="button" class="btn btn-primary btn-sm" data-mdb-toggle="modal"
-                                    data-mdb-target="#addAnnouncement">
-                                <i class="fa-solid fa-plus fa-fw me-3"></i>Add announcement
-                            </button>
-                            <div class="modal modal-lg fade" id="addAnnouncement" tabindex="-1" role="dialog"
-                                 aria-labelledby="addAnnouncementTitle" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content">
-                                        <form action="/add-announcement/{{userCompany.id}}/{{id}}" method="POST"
-                                              name="announcement">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="addAnnouncementTitle">Add announcement</h5>
-                                                <button type="button" class="btn-close" data-mdb-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                            </div>
+                        <td class="col1">
+                            <div>
+                                <a class="dropdown-toggle hidden-arrow fa fa-ellipsis-v"
+                                   role="button" data-mdb-toggle="dropdown">
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end">
 
-                                            <div class="mymodal">
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <div class="mb-3">
-                                                            <label class="form-label" for="jobName">Job name</label>
-                                                            <input type="text" value="{{jobName}}"
-                                                                   id="jobName"
-                                                                   name="jobName"
-                                                                   class="form-control form-control-lg"
-                                                                   disabled/>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <div class="mb-3">
-                                                            <label class="form-label" for="jobType">Job type</label>
-                                                            <input type="text" value="{{jobType}}"
-                                                                   id="jobType"
-                                                                   name="jobType"
-                                                                   class="form-control form-control-lg"
-                                                                   disabled/>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <div class="mb-3">
-                                                            <label class="form-label" for="jobLevel">Job level</label>
-                                                            <input type="text" value="{{jobLevel}}"
-                                                                   id="jobLevel"
-                                                                   name="jobLevel"
-                                                                   class="form-control form-control-lg"
-                                                                   disabled/>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <br>
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <label class="form-label" for="skills">Skills<span
-                                                                class="error">*</span></label>
-                                                        <textarea id="skills" rows="4"
-                                                                  name="skills"
-                                                                  class="form-control form-control-lg"
-                                                                  required></textarea>
-                                                    </div>
-                                                </div>
-                                                <br>
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <label class="form-label" for="description">Description<span
-                                                                class="error">*</span></label>
-                                                        <textarea id="description" rows="4"
-                                                                  name="description"
-                                                                  class="form-control form-control-lg"
-                                                                  required></textarea>
-                                                    </div>
-                                                </div>
-                                                <br>
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <label class="form-label"
-                                                               for="responsability">Responsability<span
-                                                                class="error">*</span></label>
-                                                        <textarea id="responsability" rows="4"
-                                                                  name="responsability"
-                                                                  class="form-control form-control-lg"
-                                                                  required></textarea>
-
-                                                    </div>
-                                                </div>
-                                                <br>
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <label class="form-label" for="requirement">Requirement<span
-                                                                class="error">*</span></label>
-                                                        <textarea id="requirement" rows="4"
-                                                                  name="requirement"
-                                                                  class="form-control form-control-lg"
-                                                                  required></textarea>
-                                                    </div>
-                                                </div>
-                                                <br>
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <label class="form-label" for="benefit">Benefits</label>
-                                                        <textarea id="benefit" rows="4"
-                                                                  name="benefit"
-                                                                  class="form-control form-control-lg"></textarea>
-                                                    </div>
-                                                </div>
-                                                <br>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                            data-mdb-dismiss="modal">
-                                                        Close
-                                                    </button>
-                                                    <button type="submit" class="btn btn-primary">Save</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
+                                    <button type="button" class="btn btn-sm" data-mdb-toggle="modal"
+                                            data-mdb-target="#addAnnouncement">
+                                        <i class="fa-solid fa-plus"></i>&nbsp; Add announcement
+                                    </button>
+                                </ul>
                             </div>
                         </td>
+                        <td class="col4">{{name}}</td>
+                        <td class="col2">{{type}}</td>
+                        <td class="col4">{{level}}</td>
+                        <td class="col2">{{salary}}</td>
+                        <td class="col2">{{numberOfVacantSpots}}</td>
+                        <div class="modal modal-lg fade" id="addAnnouncement" tabindex="-1" role="dialog"
+                             aria-labelledby="addAnnouncementTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <form action="/add-announcement/{{userCompany.id}}/{{id}}" method="POST"
+                                          name="announcement">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="addAnnouncementTitle">Add announcement</h5>
+                                            <button type="button" class="btn-close" data-mdb-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                        </div>
+
+                                        <div class="mymodal">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="name">Job name</label>
+                                                        <input type="text" value="{{name}}"
+                                                               id="name"
+                                                               name="name"
+                                                               class="form-control form-control-lg"
+                                                               disabled/>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="type">Job type</label>
+                                                        <input type="text" value="{{type}}"
+                                                               id="type"
+                                                               name="type"
+                                                               class="form-control form-control-lg"
+                                                               disabled/>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="level">Job level</label>
+                                                        <input type="text" value="{{level}}"
+                                                               id="level"
+                                                               name="level"
+                                                               class="form-control form-control-lg"
+                                                               disabled/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <label class="form-label" for="skills">Skills<span
+                                                            class="error">*</span></label>
+                                                    <textarea id="skills" rows="4"
+                                                              name="skills"
+                                                              class="form-control form-control-lg"
+                                                              required></textarea>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <label class="form-label" for="description">Description<span
+                                                            class="error">*</span></label>
+                                                    <textarea id="description" rows="4"
+                                                              name="description"
+                                                              class="form-control form-control-lg"
+                                                              required></textarea>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <label class="form-label"
+                                                           for="responsability">Responsability<span
+                                                            class="error">*</span></label>
+                                                    <textarea id="responsability" rows="4"
+                                                              name="responsability"
+                                                              class="form-control form-control-lg"
+                                                              required></textarea>
+
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <label class="form-label" for="requirement">Requirement<span
+                                                            class="error">*</span></label>
+                                                    <textarea id="requirement" rows="4"
+                                                              name="requirement"
+                                                              class="form-control form-control-lg"
+                                                              required></textarea>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <label class="form-label" for="benefit">Benefits</label>
+                                                    <textarea id="benefit" rows="4"
+                                                              name="benefit"
+                                                              class="form-control form-control-lg"></textarea>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                        data-mdb-dismiss="modal">
+                                                    Close
+                                                </button>
+                                                <button type="submit" class="btn btn-primary">Save</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </tr>
                     {{/jobs}}
                     </tbody>

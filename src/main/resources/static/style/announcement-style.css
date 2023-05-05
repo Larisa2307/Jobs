@@ -45,7 +45,7 @@ body {
 
 .announcement-table {
     height: 100%;
-    width: 230%;
+    width: 222%;
     display: inline-block;
     position: static;
     left: 22%;
@@ -62,7 +62,7 @@ body {
     overflow: auto;
     position: static;
     margin-left: 5%;
-    width: 87.8%;
+    width: 87.6%;
     height: 450px;
 }
 
@@ -76,20 +76,18 @@ body {
 thead {
     border-radius: 8px 8px 0 0;
     border: 0.2px #948787;
-
-    height: 50px;
+    height: 40px;
 }
 
 tbody tr {
-    height: 60px;
+    height: 40px;
     background: #FFFFFF;
     border: 1px solid #948787;
     color: #000000;
 }
 
 .col1 {
-    padding-left: 25px;
-    width: 5%;
+    width: 2.5%;
 }
 
 .colEdit {
@@ -121,6 +119,8 @@ tbody tr {
         display: none;
     }
 }
+
+
 
 
 

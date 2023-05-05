@@ -33,8 +33,9 @@
 <main>
     <div class="formm">
         <p id="page-title"><b>Announcement</b></p>
-        <a type="button" href="/jobs-company/{{id}}" class="btn btn-primary" id="addAnnouncement" data-mdb-target="#addAnnouncement">
-            <i class="fa-solid fa-plus fa-fw me-3"></i>Add
+        <a type="button" href="/jobs-company/{{id}}" class="btn btn-primary" id="addAnnouncement"
+           data-mdb-target="#addAnnouncement">
+            <i class="fa-solid fa-plus"></i>&nbsp;&nbsp;Add
         </a>
         <div class="container-fluid pt-4 table-responsive-lg">
 
@@ -44,204 +45,203 @@
                 <table class="table table-bordered table-sm announcement-table">
                     <thead>
                     <tr>
-                        <th class="col1" scope="col">Nr.</th>
-                        <th class="col2">Job name</th>
-                        <th class="col2">Job type</th>
-                        <th class="col2">Job level</th>
+                        <th class="col1"></th>
+                        <th class="col4">Job name</th>
+                        <th class="col4">Job type</th>
+                        <th class="col4">Job level</th>
                         <th class="col3">Skills</th>
                         <th class="col3 remove-description">Description</th>
                         <th class="col3">Responsability</th>
                         <th class="col3">Requirement</th>
                         <th class="col3">Benefit</th>
-                        <th class="col4">Actions</th>
                     </tr>
                     </thead>
 
                     <tbody>
                     {{#announcements}}
                     <tr>
-                        <td class="col1">{{index}}</td>
-                        <td class="col2">{{jobName}}</td>
-                        <td class="col2">{{jobType}}</td>
-                        <td class="col2">{{jobLevel}}</td>
+                        <td class="col1">
+                            <div>
+                                <a class="hidden-arrow fa fa-ellipsis-v"
+                                   role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+                                    <li>
+                                        <button type="button" class="btn btn-sm"
+                                                data-mdb-toggle="modal"
+                                                data-mdb-target="#edit{{index}}">
+                                            <i class="fa-regular fa-pen-to-square"></i>&nbsp;Edit
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button type="button" class="btn btn-sm"
+                                                data-mdb-toggle="modal"
+                                                data-mdb-target="#delete{{index}}">
+                                            <i class="fa-regular fa-trash-can"></i>&nbsp;Delete
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                        <td class="col4">{{jobName}}</td>
+                        <td class="col4">{{jobType}}</td>
+                        <td class="col4">{{jobLevel}}</td>
                         <td class="col3">{{skills}}</td>
                         <td class="remove-description">{{description}}</td>
                         <td class="col3">{{responsability}}</td>
                         <td class="col3">{{requirement}}</td>
                         <td class="col3">{{benefit}}</td>
-                        <td class="col1">
-                            <div class="row">
-                                <div class="colEdit">
-                                    <div id="editButton">
-                                        <button type="button" class="btn btn-primary btn-sm icon-spacing"
-                                                data-mdb-toggle="modal"
-                                                data-mdb-target="#edit{{index}}">
-                                            <i class="fa-regular fa-pen-to-square"></i>&nbsp;
-                                            <span>Edit</span>
-                                        </button>
-
-                                        <!-- Modal Edit -->
-                                        <div class="modal modal-lg fade" id="edit{{index}}" tabindex="-1" role="dialog"
-                                             aria-labelledby="editAnnouncementTitle{{index}}" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                                <div class="modal-content">
-                                                    <form action="/edit-announcement/{{userCompany.id}}/{{id}}"
-                                                          method="POST"
-                                                          name="announcement">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="editAnnouncementTitle{{index}}">
-                                                                Edit
-                                                                announcement {{jobName}}</h5>
-                                                            <button type="button" class="btn-close"
-                                                                    data-mdb-dismiss="modal"
-                                                                    aria-label="Close"></button>
-                                                        </div>
-                                                        <div class="mymodal">
-                                                            <div class="row">
-                                                                <div class="col-6">
-                                                                    <label class="form-label" for="jobName{{index}}">Job
-                                                                        name</label>
-                                                                    <input type="text" value="{{jobName}}"
-                                                                           id="jobName{{index}}"
-                                                                           name="jobName"
-                                                                           class="form-control form-control-lg"
-                                                                           disabled/>
-                                                                </div>
-                                                                <div class="col-6">
-                                                                    <label class="form-label" for="jobType{{index}}">Job
-                                                                        type</label>
-                                                                    <input type="text" value="{{jobType}}"
-                                                                           id="jobType{{index}}"
-                                                                           name="jobType"
-                                                                           class="form-control form-control-lg"
-                                                                           disabled/>
-                                                                </div>
-                                                            </div>
-                                                            <br>
-                                                            <div class="row">
-                                                                <div class="col-6">
-                                                                    <label class="form-label" for="jobLevel{{index}}">Job
-                                                                        level</label>
-                                                                    <input type="text" value="{{jobLevel}}"
-                                                                           id="jobLevel{{index}}"
-                                                                           name="jobLevel"
-                                                                           class="form-control form-control-lg"
-                                                                           disabled/>
-                                                                </div>
-                                                            </div>
-                                                            <br>
-                                                            <div class="row">
-                                                                <div class="col-12">
-                                                                    <label class="form-label"
-                                                                           for="skills{{index}}">Skills<span
-                                                                            class="error">*</span></label>
-                                                                    <textarea id="skills{{index}}" rows="4"
-                                                                              name="skills"
-                                                                              class="form-control form-control-lg"
-                                                                              required>{{skills}}</textarea>
-                                                                </div>
-                                                            </div>
-
-
-                                                            <br>
-                                                            <div class="row">
-                                                                <div class="col-12">
-                                                                    <label class="form-label"
-                                                                           for="description{{index}}">Description<span
-                                                                            class="error">*</span></label>
-                                                                    <textarea id="description{{index}}" rows="4"
-                                                                              name="description"
-                                                                              class="form-control form-control-lg"
-                                                                              required>{{description}}</textarea>
-                                                                </div>
-                                                            </div>
-                                                            <br>
-                                                            <div class="row">
-                                                                <div class="col-12">
-                                                                    <label class="form-label"
-                                                                           for="responsability{{index}}">Responsabilities<span
-                                                                            class="error">*</span></label>
-                                                                    <textarea id="responsability{{index}}" rows="4"
-                                                                              name="responsability"
-                                                                              class="form-control form-control-lg"
-                                                                              required>{{responsability}}</textarea>
-                                                                </div>
-                                                            </div>
-                                                            <br>
-                                                            <div class="row">
-                                                                <div class="col-12">
-                                                                    <label class="form-label"
-                                                                           for="requirement{{index}}">Requirements<span
-                                                                            class="error">*</span></label>
-                                                                    <textarea id="requirement{{index}}" rows="4"
-                                                                              name="requirement"
-                                                                              class="form-control form-control-lg"
-                                                                              required>{{requirement}}</textarea>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="row">
-                                                                <div class="col-12">
-                                                                    <label class="form-label"
-                                                                           for="benefit{{index}}">Benefits</label>
-                                                                    <textarea id="benefit{{index}}" rows="4"
-                                                                              name="benefit"
-                                                                              class="form-control form-control-lg">{{benefit}}</textarea>
-                                                                </div>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary"
-                                                                        data-mdb-dismiss="modal">Close
-                                                                </button>
-                                                                <button type="submit" class="btn btn-primary">Save
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                    </form>
+                        <!-- Modal Edit -->
+                        <div class="modal modal-lg fade" id="edit{{index}}" tabindex="-1" role="dialog"
+                             aria-labelledby="editAnnouncementTitle{{index}}" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <form action="/edit-announcement/{{userCompany.id}}/{{id}}"
+                                          method="POST"
+                                          name="announcement">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="editAnnouncementTitle{{index}}">
+                                                Edit
+                                                announcement {{jobName}}</h5>
+                                            <button type="button" class="btn-close"
+                                                    data-mdb-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                        </div>
+                                        <div class="mymodal">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <label class="form-label" for="jobName{{index}}">Job
+                                                        name</label>
+                                                    <input type="text" value="{{jobName}}"
+                                                           id="jobName{{index}}"
+                                                           name="jobName"
+                                                           class="form-control form-control-lg"
+                                                           disabled/>
+                                                </div>
+                                                <div class="col-6">
+                                                    <label class="form-label" for="jobType{{index}}">Job
+                                                        type</label>
+                                                    <input type="text" value="{{jobType}}"
+                                                           id="jobType{{index}}"
+                                                           name="jobType"
+                                                           class="form-control form-control-lg"
+                                                           disabled/>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="colDelete">
-                                    <div id="deleteButton">
-                                        <button type="button" class="btn btn-primary btn-sm icon-spacing"
-                                                data-mdb-toggle="modal"
-                                                data-mdb-target="#delete{{index}}">
-                                            <i class="fa-regular fa-trash-can"></i>&nbsp;Delete
-                                        </button>
-                                    </div>
-                                    <!-- Modal Delete -->
-                                    <div class="modal fade" id="delete{{index}}" tabindex="-1" role="dialog"
-                                         aria-labelledby="deleteAnnouncementTitle{{index}}" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                            <div class="modal-content">
-                                                <form action="/delete-announcement/{{userCompany.id}}/{{id}}"
-                                                      method="POST">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="deleteAnnouncementTitle{{index}}">
-                                                            Delete
-                                                            category {{jobName}}</h5>
-                                                        <button type="button" class="btn-close" data-mdb-dismiss="modal"
-                                                                aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="mymodal">
-                                                        Are you sure you want to permanently delete this announcement?
-                                                    </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <label class="form-label" for="jobLevel{{index}}">Job
+                                                        level</label>
+                                                    <input type="text" value="{{jobLevel}}"
+                                                           id="jobLevel{{index}}"
+                                                           name="jobLevel"
+                                                           class="form-control form-control-lg"
+                                                           disabled/>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <label class="form-label"
+                                                           for="skills{{index}}">Skills<span
+                                                            class="error">*</span></label>
+                                                    <textarea id="skills{{index}}" rows="4"
+                                                              name="skills"
+                                                              class="form-control form-control-lg"
+                                                              required>{{skills}}</textarea>
+                                                </div>
+                                            </div>
 
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                                data-mdb-dismiss="modal">Close
-                                                        </button>
-                                                        <button type="submit" class="btn btn-primary">Delete</button>
-                                                    </div>
-                                                </form>
+
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <label class="form-label"
+                                                           for="description{{index}}">Description<span
+                                                            class="error">*</span></label>
+                                                    <textarea id="description{{index}}" rows="4"
+                                                              name="description"
+                                                              class="form-control form-control-lg"
+                                                              required>{{description}}</textarea>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <label class="form-label"
+                                                           for="responsability{{index}}">Responsabilities<span
+                                                            class="error">*</span></label>
+                                                    <textarea id="responsability{{index}}" rows="4"
+                                                              name="responsability"
+                                                              class="form-control form-control-lg"
+                                                              required>{{responsability}}</textarea>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <label class="form-label"
+                                                           for="requirement{{index}}">Requirements<span
+                                                            class="error">*</span></label>
+                                                    <textarea id="requirement{{index}}" rows="4"
+                                                              name="requirement"
+                                                              class="form-control form-control-lg"
+                                                              required>{{requirement}}</textarea>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <label class="form-label"
+                                                           for="benefit{{index}}">Benefits</label>
+                                                    <textarea id="benefit{{index}}" rows="4"
+                                                              name="benefit"
+                                                              class="form-control form-control-lg">{{benefit}}</textarea>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                        data-mdb-dismiss="modal">Close
+                                                </button>
+                                                <button type="submit" class="btn btn-primary">Save
+                                                </button>
                                             </div>
                                         </div>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
-                        </td>
+                        </div>
+
+
+                        <!-- Modal Delete -->
+                        <div class="modal fade" id="delete{{index}}" tabindex="-1" role="dialog"
+                             aria-labelledby="deleteAnnouncementTitle{{index}}" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <form action="/delete-announcement/{{userCompany.id}}/{{id}}"
+                                          method="POST">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="deleteAnnouncementTitle{{index}}">
+                                                Delete
+                                                category {{jobName}}</h5>
+                                            <button type="button" class="btn-close" data-mdb-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                        </div>
+                                        <div class="mymodal">
+                                            Are you sure you want to permanently delete this announcement?
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                    data-mdb-dismiss="modal">Close
+                                            </button>
+                                            <button type="submit" class="btn btn-primary">Delete</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </tr>
                     {{/announcements}}
                     </tbody>
@@ -252,16 +252,5 @@
     </div>
 </main>
 
-<!--Main layout-->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
-        crossorigin="anonymous"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/js/bootstrap-select.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/js/i18n/defaults-*.min.js"></script>
-<script>
-    $('#lang').selectpicker();
-</script>
 </body>
 </html>
