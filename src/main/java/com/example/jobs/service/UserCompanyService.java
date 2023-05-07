@@ -17,8 +17,12 @@ public class UserCompanyService {
 
     final UserCompanyRepository userCompanyRepository;
 
-    public void saveUserCompany(UserCompany userApp) {
-        userCompanyRepository.saveAndFlush(userApp);
+    public void saveUserCompany(UserCompany userCompany) {
+        userCompanyRepository.saveAndFlush(userCompany);
+    }
+
+    public void deleteUserCompany(UserCompany userCompany) {
+        userCompanyRepository.delete(userCompany);
     }
 
     public UserCompany getById(String id) {

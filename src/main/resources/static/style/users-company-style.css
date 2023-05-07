@@ -2,11 +2,19 @@
     font-family: 'Trispace';
     src: url('../fonts/Trispace.ttf');
 }
+.error {
+    color: #d71313;
+}
 
 .mymodal {
     margin-left: 3%;
     margin-right: 3%;
 }
+
+#addUsers {
+    margin-left: 3%;
+}
+
 
 .formm {
     box-sizing: border-box;

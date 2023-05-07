@@ -26,6 +26,79 @@
 <main>
     <div class="formm">
         <p id="page-title"><b>Users company</b></p>
+        <button type="button" class="btn btn-primary" id="addUsers" data-mdb-toggle="modal"
+                data-mdb-target="#addUser">
+            <i class="fas fa-user-plus"></i>&nbsp;&nbsp;Add
+        </button>
+        <div class="modal modal-lg fade" id="addUser" tabindex="-1" role="dialog"
+             aria-labelledby="addUserTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <form action="/add-user/{{userCompany.id}}" method="POST"
+                          name="user">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="addUserTitle">Add user</h5>
+                            <button type="button" class="btn-close" data-mdb-dismiss="modal"
+                                    aria-label="Close"></button>
+                        </div>
+
+                        <div class="mymodal">
+                            <div class="row">
+                                <div class="col-6 mb-3">
+                                    <label class="form-label" for="firstName">First name<span
+                                            class="error">*</span></label>
+                                    <input type="text"
+                                           id="firstName"
+                                           name="firstName"
+                                           class="form-control form-control-lg"
+                                           required/>
+                                </div>
+                                <div class="col-6 mb-3">
+                                    <label class="form-label" for="lastName">Last name<span
+                                            class="error">*</span></label>
+                                    <input type="text"
+                                           id="lastName"
+                                           name="lastName"
+                                           class="form-control form-control-lg"
+                                           required/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 mb-3">
+                                    <label class="form-label" for="email">Email<span
+                                            class="error">*</span></label>
+                                    <input type="email"
+                                           id="email"
+                                           name="email"
+                                           class="form-control form-control-lg"
+                                           required/>
+                                </div>
+                                <div class="col-6 mb-3">
+                                    <label class="form-label" for="role">Role<span
+                                            class="error">*</span></label>
+                                    <select aria-autocomplete="none" id="role"
+                                            class="form-control form-control-lg active" name="role"
+                                            required>
+                                        <option style="display: none" value="">Select a role</option>
+                                        {{#roles}}
+                                        <option class="autocomplete-item" value="{{.}}"> {{.}}
+                                        </option>
+                                        {{/roles}}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary"
+                                        data-mdb-dismiss="modal">
+                                    Close
+                                </button>
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
         <div class="container-fluid pt-4 table-responsive-lg">
             <div class="tableFixHead">
                 <table class="table table-bordered table-sm dashboard-table">
@@ -49,12 +122,25 @@
                                    role="button" data-mdb-toggle="dropdown">
                                 </a>
                                 <ul class="dropdown-menu">
-
+                                    <li>
+                                        <button type="button" class="btn btn-sm"
+                                                data-mdb-toggle="modal"
+                                                data-mdb-target="#mail{{id}}">
+                                            <i class="far fa-comment-dots"></i>&nbsp;Send credentials
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button type="button" class="btn btn-sm"
+                                                data-mdb-toggle="modal"
+                                                data-mdb-target="#edit{{id}}">
+                                            <i class="fas fa-user-edit"></i>&nbsp;Edit
+                                        </button>
+                                    </li>
                                     <li>
                                         <button type="button" class="btn btn-sm"
                                                 data-mdb-toggle="modal"
                                                 data-mdb-target="#delete{{id}}">
-                                            <i class="fa-regular fa-trash-can"></i>&nbsp;Delete
+                                            <i class="fas fa-user-minus"></i>&nbsp;Delete
                                         </button>
                                     </li>
                                 </ul>
@@ -65,6 +151,75 @@
                         <td class="col-5">{{email}}</td>
                         <td class="col2">{{role}}</td>
                     </tr>
+                    <div class="modal modal-lg fade" id="edit{{id}}" tabindex="-1" role="dialog"
+                         aria-labelledby="editTitle{{id}}" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <form action="/edit-user/{{userCompany.id}}/{{id}}" method="POST"
+                                      name="user">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="editTitle{{id}}">Edit user {{firstName}} {{lastName}}</h5>
+                                        <button type="button" class="btn-close" data-mdb-dismiss="modal"
+                                                aria-label="Close"></button>
+                                    </div>
+
+                                    <div class="mymodal">
+                                        <div class="row">
+                                            <div class="col-6 mb-3">
+                                                <label class="form-label" for="firstName{{id}}">First name<span
+                                                        class="error">*</span></label>
+                                                <input type="text"
+                                                       id="firstName{{id}}" value="{{firstName}}"
+                                                       name="firstName"
+                                                       class="form-control form-control-lg"
+                                                       required/>
+                                            </div>
+                                            <div class="col-6 mb-3">
+                                                <label class="form-label" for="lastName{{id}}">Last name<span
+                                                        class="error">*</span></label>
+                                                <input type="text" value="{{lastName}}"
+                                                       id="lastName{{id}}"
+                                                       name="lastName"
+                                                       class="form-control form-control-lg"
+                                                       required/>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-6 mb-3">
+                                                <label class="form-label" for="email{{id}}">Email<span
+                                                        class="error">*</span></label>
+                                                <input type="email" value="{{email}}"
+                                                       id="email{{id}}"
+                                                       name="email"
+                                                       class="form-control form-control-lg"
+                                                       required/>
+                                            </div>
+                                            <div class="col-6 mb-3">
+                                                <label class="form-label" for="role{{id}}">Role<span
+                                                        class="error">*</span></label>
+                                                <select aria-autocomplete="none" id="role{{id}}"
+                                                        class="form-control form-control-lg active" name="role"
+                                                        required>
+                                                    <option style="display: none" value="{{role}}">{{role}}</option>
+                                                    {{#roles}}
+                                                    <option class="autocomplete-item" value="{{.}}"> {{.}}
+                                                    </option>
+                                                    {{/roles}}
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                    data-mdb-dismiss="modal">
+                                                Close
+                                            </button>
+                                            <button type="submit" class="btn btn-primary">Save</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                     <!-- Modal Delete -->
                     <div class="modal fade" id="delete{{id}}" tabindex="-1" role="dialog"
                          aria-labelledby="deleteUserTitle{{id}}" aria-hidden="true">
@@ -93,13 +248,43 @@
                             </div>
                         </div>
                     </div>
+                    <div class="modal fade" id="mail{{id}}" tabindex="-1" role="dialog"
+                         aria-labelledby="sendMailTitle{{id}}" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <form action="/send-credentials/{{userCompany.id}}/{{id}}"
+                                      method="POST">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="sendMailTitle{{id}}">
+                                            Send credentials for {{firstName}} {{lastName}}</h5>
+                                        <button type="button" class="btn-close" data-mdb-dismiss="modal"
+                                                aria-label="Close"></button>
+                                    </div>
+                                    <div class="mymodal">
+                                        Are you sure you want to email credentials to this user??
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                                data-mdb-dismiss="modal">Close
+                                        </button>
+                                        <button type="submit" class="btn btn-primary">Send</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                     {{/usersCompany}}
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-
+    <div class="errorEmail">
+        {{#errorEmail}}
+        <script>alert("Email already exists!")</script>
+        {{/errorEmail}}
+    </div>
 
 </main>
 
