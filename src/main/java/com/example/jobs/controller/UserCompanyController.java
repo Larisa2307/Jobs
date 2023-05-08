@@ -1,24 +1,30 @@
 package com.example.jobs.controller;
 
-import com.example.jobs.entity.Job;
 import com.example.jobs.entity.Page;
 import com.example.jobs.entity.UserCompany;
-import com.example.jobs.service.*;
+import com.example.jobs.service.CompanyService;
+import com.example.jobs.service.MailSenderService;
+import com.example.jobs.service.NavbarService;
+import com.example.jobs.service.UserCompanyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.nio.charset.StandardCharsets;
 import java.util.List;
-import java.util.Random;
 
 @RequiredArgsConstructor
 @Controller
 @Slf4j
 public class UserCompanyController {
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     final NavbarService navbarService;
     final CompanyService companyService;
     final MailSenderService mailSenderService;
@@ -53,21 +59,11 @@ public class UserCompanyController {
         } else {
             user.setCompany(company);
             String password = RandomStringUtils.random(6, true, false);
-            user.setPassword(password);
+            mailSenderService.sendMailResetPassword(user.getEmail(), password);
+            user.setPassword(passwordEncoder.encode(password));
             user.setPhone("");
             userCompanyService.saveUserCompany(user);
         }
-
-        return "redirect:/users-company/" + userId;
-    }
-
-    @PostMapping("send-credentials/{user_id}/{id}")
-    public String sendCredentials(@PathVariable("id") final String id,
-                                  @PathVariable("user_id") final String userId) {
-
-        var userEmail = userCompanyService.getById(id).getEmail();
-        var userPassword = userCompanyService.getById(id).getPassword();
-        mailSenderService.sendMailResetPassword(userEmail, userPassword);
 
         return "redirect:/users-company/" + userId;
     }

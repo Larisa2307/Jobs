@@ -125,13 +125,6 @@
                                     <li>
                                         <button type="button" class="btn btn-sm"
                                                 data-mdb-toggle="modal"
-                                                data-mdb-target="#mail{{id}}">
-                                            <i class="far fa-comment-dots"></i>&nbsp;Send credentials
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button type="button" class="btn btn-sm"
-                                                data-mdb-toggle="modal"
                                                 data-mdb-target="#edit{{id}}">
                                             <i class="fas fa-user-edit"></i>&nbsp;Edit
                                         </button>
@@ -243,32 +236,6 @@
                                                 data-mdb-dismiss="modal">Close
                                         </button>
                                         <button type="submit" class="btn btn-primary">Delete</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal fade" id="mail{{id}}" tabindex="-1" role="dialog"
-                         aria-labelledby="sendMailTitle{{id}}" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <form action="/send-credentials/{{userCompany.id}}/{{id}}"
-                                      method="POST">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="sendMailTitle{{id}}">
-                                            Send credentials for {{firstName}} {{lastName}}</h5>
-                                        <button type="button" class="btn-close" data-mdb-dismiss="modal"
-                                                aria-label="Close"></button>
-                                    </div>
-                                    <div class="mymodal">
-                                        Are you sure you want to email credentials to this user??
-                                    </div>
-
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                                data-mdb-dismiss="modal">Close
-                                        </button>
-                                        <button type="submit" class="btn btn-primary">Send</button>
                                     </div>
                                 </form>
                             </div>

@@ -4,19 +4,21 @@ import com.example.jobs.entity.Company;
 import com.example.jobs.entity.UserCompany;
 import com.example.jobs.service.CompanyService;
 import com.example.jobs.service.UserCompanyService;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
 @Slf4j
 public class ProfileController {
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     final CompanyService companyService;
     final UserCompanyService userCompanyService;
@@ -98,16 +100,16 @@ public class ProfileController {
         var userCompany = userCompanyService.getById(id);
         log.info("Try to change password of user: " + userCompany.getEmail());
 
-        if (!password.equals(userCompany.getPassword())) {
+        if (!passwordEncoder.matches(password, userCompany.getPassword())) {
             return "redirect:/user-profile/" + id + "?errorPassword=true";
         }
-        if (newPassword.equals(userCompany.getPassword())) {
+        if (passwordEncoder.matches(newPassword, userCompany.getPassword())) {
             return "redirect:/user-profile/" + id + "?errorSamePassword=true";
         }
         if (!confirmPassword.equals(newPassword)) {
             return "redirect:/user-profile/" + id + "?errorNewPassword=true";
         } else {
-            userCompany.setPassword(confirmPassword);
+            userCompany.setPassword(passwordEncoder.encode(confirmPassword));
             userCompanyService.saveUserCompany(userCompany);
         }
 

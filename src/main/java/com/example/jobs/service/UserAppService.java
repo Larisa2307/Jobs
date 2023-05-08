@@ -20,8 +20,8 @@ public class UserAppService {
         userAppRepository.saveAndFlush(userApp);
     }
 
-    public Optional<UserApp> getUserAppByCredentials(String email, String password) {
-        return userAppRepository.findByEmailAndPassword(email, password);
+    public Optional<UserApp> getUserAppByEmail(String email) {
+        return userAppRepository.getUserAppByEmail(email);
     }
 
     public List<UserApp> getUsersByEmail(String email) {

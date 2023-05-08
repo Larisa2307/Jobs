@@ -11,7 +11,7 @@ import java.util.Optional;
 @Repository
 public interface UserAppRepository extends JpaRepository<UserApp, String> {
 
-    Optional<UserApp> findByEmailAndPassword(String email, String password);
+    Optional<UserApp> getUserAppByEmail(String email);
 
     @Query("select c from UserApp c where c.email = ?1")
     List<UserApp> getByEmail(String email);

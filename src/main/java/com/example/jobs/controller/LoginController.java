@@ -5,6 +5,8 @@ import com.example.jobs.service.UserAppService;
 import com.example.jobs.service.UserCompanyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @Slf4j
 public class LoginController {
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     final UserAppService userAppService;
     final CompanyService companyService;
@@ -29,14 +34,17 @@ public class LoginController {
     @PostMapping("/login/submit")
     String submitLogin(@RequestParam String email, @RequestParam String password) {
         log.info("Try to login with email: " + email);
-        var userApp = userAppService.getUserAppByCredentials(email, password);
-        var userCompany = userCompanyService.getUserCompanyByCredentials(email, password);
 
-        if (userApp.isPresent()) {
+        var userApp = userAppService.getUserAppByEmail(email);
+        var userCompany = userCompanyService.getUserByEmail(email);
+
+        if (userApp.isPresent() && passwordEncoder.matches(password, userApp.get().getPassword())) {
             return "redirect:/dashboard";
-        } else
-            return userCompany.map(value -> "redirect:/dashboard-company/" + value.getId())
-                    .orElse("redirect:/login?error=true");
+        } else if (userCompany.isPresent() && passwordEncoder.matches(password, userCompany.get().getPassword())) {
+            return "redirect:/dashboard-company/" + userCompany.get().getId();
+        } else {
+            return "redirect:/login?error=true";
+        }
     }
 
 }

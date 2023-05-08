@@ -6,6 +6,8 @@ import com.example.jobs.service.CompanyService;
 import com.example.jobs.service.UserCompanyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +18,9 @@ import java.util.List;
 @Controller
 @Slf4j
 public class RegisterEmployerController {
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     final CompanyService companyService;
     final UserCompanyService userCompanyService;
@@ -48,6 +53,7 @@ public class RegisterEmployerController {
             var company = companyService.getById(id);
             userCompany.setCompany(company);
             userCompany.setRole("ADMIN");
+            userCompany.setPassword(passwordEncoder.encode(userCompany.getPassword()));
             userCompanyService.saveUserCompany(userCompany);
             return "redirect:/login";
         }

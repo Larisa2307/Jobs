@@ -4,6 +4,8 @@ import com.example.jobs.entity.UserApp;
 import com.example.jobs.service.UserAppService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +21,9 @@ import java.util.List;
 public class RegisterController {
 
     final UserAppService userAppService;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @GetMapping("/register-candidate")
     public String getRegisterEmployeePage(@RequestParam(required = false) final boolean errorEmail,
@@ -42,6 +47,7 @@ public class RegisterController {
         } else if (!confirmPassword.equals(userApp.getPassword())) {
             return "redirect:/register-candidate?errorPassword=true";
         } else {
+            userApp.setPassword(passwordEncoder.encode(userApp.getPassword()));
             userAppService.saveAdmin(userApp);
             return "redirect:/login";
         }
