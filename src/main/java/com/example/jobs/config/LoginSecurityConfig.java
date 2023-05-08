@@ -33,7 +33,6 @@ public class LoginSecurityConfig {
                     .requestMatchers("/register/**").permitAll()
                     .requestMatchers("/register-company/**").permitAll()
                     .requestMatchers("/register-candidate/**").permitAll()
-                    .requestMatchers("/api/mail/send").permitAll()
                     .requestMatchers("/dashboard/**").permitAll()
                     .requestMatchers("/dashboard-company/**").permitAll()
                     .requestMatchers("/profile/**").permitAll()

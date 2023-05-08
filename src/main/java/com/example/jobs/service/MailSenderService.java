@@ -24,10 +24,10 @@ public class MailSenderService {
 
     public void sendMailResetPassword(String email, String password) {
         var subject = "Your credentials";
-        var body = "This is your credentials:\n\n" +
-                "Email: " + email + "\n\n" +
+        var body = "These are your credentials for Jobs:\n\n" +
+                "Email: " + email + "\n" +
                 "Password: " + password + "\n\n" +
-                "Please reset your password after you log in to the following website:\n\n" +
+                "Please reset your password after you login to the following website:\n" +
                 "http://localhost:8080";
 
         sendMail(email, subject, body);
