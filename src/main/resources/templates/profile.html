@@ -22,82 +22,86 @@
 <!--Main Navigation-->
 
 <!--Main layout-->
-<main id="content">
-    <div class="container pt-4">
-        <div class="formm">
-            <form class="form-container" method="post" enctype="multipart/form-data">
-                {{#company}}
-                <div id="myForm">
-                    <div class="row">
-                        <div class="col-6">
-                            <p id="page-title"><b>Company profile</b></p>
-                        </div>
-                        <div class="col-6">
-                            <div class="editButton">
-                                <button type="button" class="btn btn-primary icon-spacing" data-mdb-toggle="modal"
-                                        data-mdb-target="#edit{{id}}">
-                                    <i class="fa-regular fa-pen-to-square"></i>
-                                    <span class="remove-action-name">Edit</span>
-                                </button>
-                            </div>
-                        </div>
+<main style="margin-top: 80px; margin-left: 50px">
+    <div class="card" style="width: 70rem; height: 41rem;">
+        <div class="container pt-4">
+            {{#company}}
+            <div id="myForm">
+                <div class="row">
+                    <div class="col-6">
+                        <p id="page-title"><b>Company profile</b></p>
                     </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <label for="companyName"><b>Company name</b></label><br>
-                            <input maxlength="100" id="companyName" name="name" disabled value="{{companyName}}">
-                            <br><br>
-                        </div>
-                        <div class="col-6">
-                            <label for="email"><b>Email</b></label><br>
-                            <input type="email" value="{{email}}" id="email" name="email" disabled>
-                            <br><br>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <label for="phone"><b>Phone number</b></label><br>
-                            <input type="text" value="{{phoneNumber}}" id="phone" name="phone" disabled>
-                            <br><br>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-12">
-                            <label for="address"><b>Address</b></label><br>
-                            <input type="text" value="{{address}}" id="address" name="address" disabled>
-                            <br><br>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <label for="country"><b>Country</b></label><br>
-                            <input type="text" value="{{country}}" id="country" name="country" disabled>
-                            <br><br>
-                        </div>
-                        <div class="col-6">
-                            <label for="city"><b>City</b></label><br>
-                            <input type="text" value="{{city}}" id="city" name="city" disabled>
-                            <br><br>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <label for="description"><b>Company description</b></label>
-                            <br>
-                            <textarea maxlength="250" class="textarea_component" id="description" name="description"
-                                      rows="4"
-                                      cols="25" disabled>{{description}}</textarea>
+                    <div class="col-5">
+                        <div class="editButton">
+                            <button type="button" class="btn btn-primary btn-sm icon-spacing"
+                                    data-mdb-toggle="modal"
+                                    data-mdb-target="#edit{{id}}">
+                                <i class="fa-regular fa-pen-to-square"></i>
+                                <span class="remove-action-name">Edit</span>
+                            </button>
                         </div>
                     </div>
                 </div>
+
+                <div class="row">
+                    <div class="col-5 mb-4">
+                        <label for="companyName"><b>Company name</b></label>
+                        <input maxlength="100" id="companyName" class="form-control"
+                               name="name" disabled value="{{companyName}}">
+                    </div>
+                    <div class="col-5 mb-4">
+                        <label for="email"><b>Email</b></label>
+                        <input type="email" value="{{email}}" id="email" class="form-control"
+                               name="email" disabled>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-5 mb-4">
+                        <label for="phone"><b>Phone number</b></label><br>
+                        <input type="text" value="{{phoneNumber}}" id="phone" class="form-control"
+                               name="phone" disabled>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-10 mb-4">
+                        <label for="address"><b>Address</b></label><br>
+                        <input type="text" value="{{address}}" class="form-control"
+                               id="address" name="address" disabled>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-5 mb-4">
+                        <label for="country"><b>Country</b></label><br>
+                        <input type="text" value="{{country}}" class="form-control"
+                               id="country" name="country" disabled>
+                    </div>
+                    <div class="col-5 mb-4">
+                        <label for="city"><b>City</b></label><br>
+                        <input type="text" value="{{city}}" class="form-control"
+                               id="city" name="city" disabled>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-10 mb-4">
+                        <label for="description"><b>Company description</b></label>
+                        <textarea maxlength="250" class="form-control" id="description"
+                                  name="description"
+                                  rows="4" cols="25" disabled>{{description}}</textarea>
+                    </div>
+                </div>
+            </div>
             </form>
         </div>
     </div>
 
     <div class="d-flex justify-content-end col-6">
         <!-- Modal Edit -->
-        <div class="modal modal-lg fade" id="edit{{id}}" tabindex="-1" role="dialog" aria-labelledby="editCompany{{id}}"
+        <div class="modal modal-lg fade" id="edit{{id}}" tabindex="-1" role="dialog"
+             aria-labelledby="editCompany{{id}}"
              aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -109,78 +113,73 @@
                         </div>
                         <div class="mymodal">
                             <div class="mb-3">
-                                <div class="form-outline">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <label for="companyName{{id}}">Company name<span
-                                                    class="error">*</span></label><br>
-                                            <input id="companyName{{id}}" class="fields" name="companyName"
-                                                   value="{{companyName}}"
-                                                   required>
-                                            <br><br>
-                                        </div>
-                                        <div class="col-6">
-                                            <label for="email{{id}}">Email<span class="error">*</span></label><br>
-                                            <input type="email" value="{{email}}" class="fields" id="email{{id}}"
-                                                   name="email"
-                                                   required>
-                                            <br><br>
-                                        </div>
+                                <div class="row">
+                                    <div class="col-5 mb-4">
+                                        <label for="companyName{{id}}">Company name<span
+                                                class="error">*</span></label><br>
+                                        <input id="companyName{{id}}" class="form-control" name="companyName"
+                                               value="{{companyName}}"
+                                               required>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <label for="phoneNumber{{id}}">Phone number<span
-                                                    class="error">*</span></label><br>
-                                            <input type="tel" value="{{phoneNumber}}" class="fields"
-                                                   id="phoneNumber{{id}}" name="phoneNumber"
-                                                   required>
-                                            <br><br>
-                                        </div>
+                                    <div class="col-5 mb-4">
+                                        <label for="email{{id}}">Email<span class="error">*</span></label><br>
+                                        <input type="email" value="{{email}}" class="form-control" id="email{{id}}"
+                                               name="email"
+                                               required>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <label for="address{{id}}">Address<span class="error">*</span></label><br>
-                                            <input type="text" value="{{address}}" class="field" id="address{{id}}"
-                                                   name="address"
-                                                   required>
-                                            <br><br>
-                                        </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-5 mb-4">
+                                        <label for="phoneNumber{{id}}">Phone number<span
+                                                class="error">*</span></label><br>
+                                        <input type="tel" value="{{phoneNumber}}" class="form-control"
+                                               id="phoneNumber{{id}}" name="phoneNumber"
+                                               required>
                                     </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-10 mb-4">
+                                        <label for="address{{id}}">Address<span
+                                                class="error">*</span></label><br>
+                                        <input type="text" value="{{address}}" class="form-control"
+                                               id="address{{id}}"
+                                               name="address"
+                                               required>
+                                    </div>
+                                </div>
 
+                                <div class="row">
+                                    <div class="col-5 mb-4">
+                                        <label for="country{{id}}">Country<span class="error">*</span></label><br>
+                                        <input type="text" value="{{country}}" class="form-control"
+                                               id="country{{id}}"
+                                               name="country"
+                                               required>
+                                    </div>
+                                    <div class="col-5 mb-4">
+                                        <label for="city{{id}}">City<span class="error">*</span></label><br>
+                                        <input type="text" value="{{city}}" class="form-control" id="city{{id}}"
+                                               name="city"
+                                               required>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <label for="country{{id}}">Country<span class="error">*</span></label><br>
-                                    <input type="text" value="{{country}}" class="fields" id="country{{id}}"
-                                           name="country"
-                                           required>
-                                    <br><br>
-                                </div>
-                                <div class="col-6">
-                                    <label for="city{{id}}">City<span class="error">*</span></label><br>
-                                    <input type="text" value="{{city}}" class="fields" id="city{{id}}" name="city"
-                                           required>
-                                    <br><br>
-                                </div>
-                            </div>
 
-                            <div class="row">
-                                <div class="col-12">
-                                    <label for="description{{id}}">Company description<span
-                                            class="error">*</span></label>
-                                    <br>
-                                    <textarea maxlength="250" class="textarea_component" id="description{{id}}"
-                                              name="description"
-                                              rows="4"
-                                              cols="25" required>{{description}}</textarea>
+                                <div class="row">
+                                    <div class="col-10 mb-4">
+                                        <label for="description{{id}}">Company description<span
+                                                class="error">*</span></label>
+                                        <br>
+                                        <textarea maxlength="250" class="form-control" id="description{{id}}"
+                                                  name="description"
+                                                  rows="4"
+                                                  cols="25" required>{{description}}</textarea>
+                                    </div>
                                 </div>
-                            </div>
-
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close
-                                </button>
-                                <button type="submit" class="btn btn-primary">Save</button>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close
+                                    </button>
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                </div>
                             </div>
                         </div>
                     </form>
@@ -192,6 +191,7 @@
         {{#errorEmail}}
         <script>alert("Email already exists!")</script>
         {{/errorEmail}}
+    </div>
     </div>
 </main>
 

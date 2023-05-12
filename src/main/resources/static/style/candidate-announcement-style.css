@@ -2,18 +2,10 @@
     font-family: 'Trispace';
     src: url('../fonts/Trispace.ttf');
 }
-.error {
-    color: #d71313;
-}
 
 .mymodal {
     margin-left: 3%;
     margin-right: 3%;
-}
-
-#addUsers {
-    margin-left: 3%;
-    width: 7%;
 }
 
 #page-title {
@@ -30,18 +22,12 @@ body {
     height: 100%;
     width: 100%;
     display: inline-block;
-    position: static;
     background: #ffffff;
     color: #2a47bd;
 }
 
 table {
     border:1px solid #948787;
-}
-
-#table-body {
-    color: #000000;
-
 }
 
 .tableFixHead {
@@ -87,8 +73,3 @@ tbody tr {
 .col4 {
     min-width: 200px;
 }
-
-#editButton {
-    width: 100%;
-}
-

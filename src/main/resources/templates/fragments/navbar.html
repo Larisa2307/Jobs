@@ -2,7 +2,7 @@
 
 {{#userCompany}}
 <!-- Navbar -->
-<nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+<nav id="main-navbar" class="navbar navbar-expand-lg  bg-white fixed-top">
     <!-- Container wrapper -->
     <div class="container-fluid">
         <a href="/dashboard-company/{{id}}">
@@ -42,22 +42,21 @@
             &nbsp;&nbsp;&nbsp;
             <!-- Avatar -->
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle hidden-arrow d-flex align-items-center" href="/profile"
-                   id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-                    <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img (31).webp" class="rounded-circle"
-                         height="22" alt="Avatar" loading="lazy"/>
+                <a class="nav-link dropdown-toggle d-flex align-items-center"
+                   id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" >
+                    {{firstName}} {{lastName}}
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
                     <li>
-                        <a class="dropdown-item" href="/user-profile/{{id}}">
+                        <a class="dropdown-item btn-outline-secondary" href="/user-profile/{{id}}">
                             <i class="far fa-user-circle"></i>&nbsp; My profile</a>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="/profile/{{id}}">
+                        <a class="dropdown-item btn-outline-secondary" href="/profile/{{id}}">
                             <i class="far fa-building"></i>&nbsp; Company profile</a>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="/main-page">
+                        <a class="dropdown-item btn-outline-secondary" href="/main-page">
                             <i class="fa fa-sign-out"></i>&nbsp;Logout </a>
                     </li>
                 </ul>

@@ -23,10 +23,10 @@
 
 <!--Main layout-->
 
-<main>
-    <div class="formm">
+<main style="margin-top: 80px; margin-left: 50px">
+    <div class="card" style="width: 70rem; height: 41rem;">
         <p id="page-title"><b>Users company</b></p>
-        <button type="button" class="btn btn-primary" id="addUsers" data-mdb-toggle="modal"
+        <button type="button" class="btn btn-primary btn-sm" id="addUsers" data-mdb-toggle="modal"
                 data-mdb-target="#addUser">
             <i class="fas fa-user-plus"></i>&nbsp;&nbsp;Add
         </button>
@@ -50,7 +50,7 @@
                                     <input type="text"
                                            id="firstName"
                                            name="firstName"
-                                           class="form-control form-control-lg"
+                                           class="form-control"
                                            required/>
                                 </div>
                                 <div class="col-6 mb-3">
@@ -59,7 +59,7 @@
                                     <input type="text"
                                            id="lastName"
                                            name="lastName"
-                                           class="form-control form-control-lg"
+                                           class="form-control"
                                            required/>
                                 </div>
                             </div>
@@ -70,14 +70,14 @@
                                     <input type="email"
                                            id="email"
                                            name="email"
-                                           class="form-control form-control-lg"
+                                           class="form-control"
                                            required/>
                                 </div>
                                 <div class="col-6 mb-3">
                                     <label class="form-label" for="role">Role<span
                                             class="error">*</span></label>
                                     <select aria-autocomplete="none" id="role"
-                                            class="form-control form-control-lg active" name="role"
+                                            class="form-control" name="role"
                                             required>
                                         <option style="display: none" value="">Select a role</option>
                                         {{#roles}}
@@ -121,16 +121,17 @@
                                 <a class="hidden-arrow fa fa-ellipsis-v"
                                    role="button" data-mdb-toggle="dropdown">
                                 </a>
-                                <ul class="dropdown-menu">
+                                <ul class="dropdown-menu" style="min-width: 1px;">
                                     <li>
-                                        <button type="button" class="btn btn-sm"
+                                        <button type="button" class="btn btn-sm btn-outline-secondary"
                                                 data-mdb-toggle="modal"
+                                                id="editButton"
                                                 data-mdb-target="#edit{{id}}">
                                             <i class="fas fa-user-edit"></i>&nbsp;Edit
                                         </button>
                                     </li>
                                     <li>
-                                        <button type="button" class="btn btn-sm"
+                                        <button type="button" class="btn btn-sm btn-outline-secondary"
                                                 data-mdb-toggle="modal"
                                                 data-mdb-target="#delete{{id}}">
                                             <i class="fas fa-user-minus"></i>&nbsp;Delete
@@ -164,7 +165,7 @@
                                                 <input type="text"
                                                        id="firstName{{id}}" value="{{firstName}}"
                                                        name="firstName"
-                                                       class="form-control form-control-lg"
+                                                       class="form-control"
                                                        required/>
                                             </div>
                                             <div class="col-6 mb-3">
@@ -173,7 +174,7 @@
                                                 <input type="text" value="{{lastName}}"
                                                        id="lastName{{id}}"
                                                        name="lastName"
-                                                       class="form-control form-control-lg"
+                                                       class="form-control"
                                                        required/>
                                             </div>
                                         </div>
@@ -184,7 +185,7 @@
                                                 <input type="email" value="{{email}}"
                                                        id="email{{id}}"
                                                        name="email"
-                                                       class="form-control form-control-lg"
+                                                       class="form-control"
                                                        required/>
                                             </div>
                                             <div class="col-6 mb-3">

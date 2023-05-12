@@ -35,7 +35,7 @@ public class DashboardController {
     String getDashboardEmployerPage(Model model, @PathVariable String id) {
         var userCompany = userCompanyService.getById(id);
         var company = userCompany.getCompany();
-        log.info("Dashboard company: " + company.getEmail());
+        log.info("Dashboard company: " + company.getCompanyName() + ", user: " +userCompany.getLastName());
         var announcements = announcementService.getAnnouncementModelList(company);
 
         model.addAttribute("userCompany", userCompany);

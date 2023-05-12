@@ -24,10 +24,10 @@
 
 <!--Main layout-->
 
-<main>
-    <div class="formm">
+<main style="margin-top: 80px; margin-left: 50px">
+    <div class="card" style="width: 70rem; height: 41rem;">
         <p id="page-title"><b>Jobs company</b></p>
-        <button type="button" class="btn btn-primary" id="addJobs"
+        <button type="button" class="btn btn-primary btn-sm" id="addJobs"
                 data-mdb-toggle="modal" data-mdb-target="#addJob">
             <i class="fa-solid fa-plus"></i>&nbsp;&nbsp;Add
         </button>
@@ -51,7 +51,7 @@
                                     <input type="text"
                                            id="name"
                                            name="name"
-                                           class="form-control form-control-lg"
+                                           class="form-control"
                                            required/>
                                 </div>
                             </div>
@@ -60,7 +60,7 @@
                                     <label class="form-label" for="typeJ">Job type<span
                                             class="error">*</span></label>
                                     <select aria-autocomplete="none" id="typeJ"
-                                            class="form-control form-control-lg active" name="type"
+                                            class="form-control" name="type"
                                             required>
                                         <option style="display: none" value="">Select a type</option>
                                         {{#jobTypes}}
@@ -72,8 +72,8 @@
                                 <div class="col-6 mb-3">
                                     <label class="form-label" for="levelJ">Job level<span
                                             class="error">*</span></label>
-                                    <select aria-autocomplete="none" id="levelJ"
-                                            class="form-control form-control-lg active" name="level"
+                                    <select  id="levelJ"
+                                            class="form-control" name="level"
                                             required>
                                         <option style="display: none" value="">Select a level</option>
                                         {{#jobLevels}}
@@ -85,12 +85,12 @@
                             </div>
                             <div class="row">
                                 <div class="col-6 mb-3">
-                                    <label class="form-label" for="salary">Salary<span
+                                    <label class="form-label" for="salary">Salary (RON)<span
                                             class="error">*</span></label>
                                     <input type="text"
                                            id="salary"
                                            name="salary"
-                                           class="form-control form-control-lg"
+                                           class="form-control"
                                            required/>
                                 </div>
                                 <div class="col-6 mb-3">
@@ -99,7 +99,7 @@
                                     <input type="number"
                                            id="numberOfVacantSpots"
                                            name="numberOfVacantSpots"
-                                           class="form-control form-control-lg"
+                                           class="form-control"
                                            required/>
                                 </div>
                             </div>
@@ -124,7 +124,7 @@
                         <th class="col4">Job name</th>
                         <th class="col2">Job type</th>
                         <th class="col4">Job level</th>
-                        <th class="col2">Salary</th>
+                        <th class="col2">Salary (RON)</th>
                         <th class="col2">Number of vacant spots</th>
                     </tr>
                     </thead>
@@ -137,21 +137,24 @@
                                 <a class="dropdown-toggle hidden-arrow fa fa-ellipsis-v"
                                    role="button" data-mdb-toggle="dropdown">
                                 </a>
-                                <ul class="dropdown-menu dropdown-menu-end">
+                                <ul class="dropdown-menu dropdown-menu-end" style="min-width: 1px;">
                                     <li>
-                                        <button type="button" class="btn btn-sm" data-mdb-toggle="modal"
+                                        <button type="button" class="btn btn-sm btn-outline-secondary" data-mdb-toggle="modal"
+                                                style="width: 100%;"
                                                 data-mdb-target="#addAnnouncement{{id}}">
                                             <i class="fa-solid fa-plus"></i>&nbsp; Add announcement
                                         </button>
                                     </li>
                                     <li>
-                                        <button type="button" class="btn btn-sm" data-mdb-toggle="modal"
+                                        <button type="button" class="btn btn-sm btn-outline-secondary" data-mdb-toggle="modal"
+                                                style="width: 100%;"
                                                 data-mdb-target="#editJob{{id}}">
                                             <i class="fa-regular fa-pen-to-square"></i>&nbsp;Edit
                                         </button>
                                     </li>
                                     <li>
-                                        <button type="button" class="btn btn-sm" data-mdb-toggle="modal"
+                                        <button type="button" class="btn btn-sm btn-outline-secondary" data-mdb-toggle="modal"
+                                                style="width: 100%; "
                                                 data-mdb-target="#deleteJob{{id}}">
                                             <i class="fa-regular fa-trash-can"></i>&nbsp;Delete
                                         </button>
@@ -184,7 +187,7 @@
                                                         <input type="text" value="{{name}}"
                                                                id="jobName{{id}}"
                                                                name="name"
-                                                               class="form-control form-control-lg"
+                                                               class="form-control"
                                                                disabled/>
                                                     </div>
                                                 </div>
@@ -194,7 +197,7 @@
                                                         <input type="text" value="{{type}}"
                                                                id="jobType{{id}}"
                                                                name="type"
-                                                               class="form-control form-control-lg"
+                                                               class="form-control"
                                                                disabled/>
                                                     </div>
                                                 </div>
@@ -207,15 +210,16 @@
                                                         <input type="text" value="{{level}}"
                                                                id="jobLevel{{id}}"
                                                                name="level"
-                                                               class="form-control form-control-lg"
+                                                               class="form-control"
                                                                disabled/>
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="mb-3">
-                                                        <label class="form-label" for="dateEnded">End date</label>
+                                                        <label class="form-label" for="dateEnded">End date<span
+                                                                class="error">*</span></label>
                                                         <input type="date" id="dateEnded" name="dateEnded"
-                                                               class="form-control form-control-lg" required>
+                                                               class="form-control" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -226,7 +230,7 @@
                                                             class="error">*</span></label>
                                                     <textarea id="skills" rows="4"
                                                               name="skills"
-                                                              class="form-control form-control-lg"
+                                                              class="form-control"
                                                               required></textarea>
                                                 </div>
                                             </div>
@@ -237,7 +241,7 @@
                                                             class="error">*</span></label>
                                                     <textarea id="description" rows="4"
                                                               name="description"
-                                                              class="form-control form-control-lg"
+                                                              class="form-control"
                                                               required></textarea>
                                                 </div>
                                             </div>
@@ -249,7 +253,7 @@
                                                             class="error">*</span></label>
                                                     <textarea id="responsability" rows="4"
                                                               name="responsability"
-                                                              class="form-control form-control-lg"
+                                                              class="form-control"
                                                               required></textarea>
 
                                                 </div>
@@ -261,7 +265,7 @@
                                                             class="error">*</span></label>
                                                     <textarea id="requirement" rows="4"
                                                               name="requirement"
-                                                              class="form-control form-control-lg"
+                                                              class="form-control"
                                                               required></textarea>
                                                 </div>
                                             </div>
@@ -271,7 +275,7 @@
                                                     <label class="form-label" for="benefit">Benefits</label>
                                                     <textarea id="benefit" rows="4"
                                                               name="benefit"
-                                                              class="form-control form-control-lg"></textarea>
+                                                              class="form-control"></textarea>
                                                 </div>
                                             </div>
                                             <br>
@@ -308,7 +312,7 @@
                                                 <input type="text" value="{{name}}"
                                                        id="name{{id}}"
                                                        name="name"
-                                                       class="form-control form-control-lg"
+                                                       class="form-control"
                                                        required/>
                                             </div>
                                         </div>
@@ -317,7 +321,7 @@
                                                 <label class="form-label" for="type{{id}}">Job type<span
                                                         class="error">*</span></label>
                                                 <select aria-autocomplete="none" id="type{{id}}"
-                                                        class="form-control form-control-lg active" name="type"
+                                                        class="form-control" name="type"
                                                         required>
                                                     <option style="display: none" value="{{type}}">{{type}}</option>
                                                     {{#jobTypes}}
@@ -330,7 +334,7 @@
                                                 <label class="form-label" for="level{{id}}">Job level<span
                                                         class="error">*</span></label>
                                                 <select aria-autocomplete="none" id="level{{id}}"
-                                                        class="form-control form-control-lg active" name="level"
+                                                        class="form-control" name="level"
                                                         required>
                                                     <option style="display: none" value="{{level}}">{{level}}</option>
                                                     {{#jobLevels}}
@@ -342,12 +346,12 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-6 mb-3">
-                                                <label class="form-label" for="salary{{id}}">Salary<span
+                                                <label class="form-label" for="salary{{id}}">Salary (RON)<span
                                                         class="error">*</span></label>
                                                 <input type="text" value="{{salary}}"
                                                        id="salary{{id}}"
                                                        name="salary"
-                                                       class="form-control form-control-lg"
+                                                       class="form-control"
                                                        required/>
                                             </div>
                                             <div class="col-6 mb-3">
@@ -356,7 +360,7 @@
                                                 <input type="number" value="{{numberOfVacantSpots}}"
                                                        id="numberOfVacantSpots{{id}}"
                                                        name="numberOfVacantSpots"
-                                                       class="form-control form-control-lg"
+                                                       class="form-control"
                                                        required/>
                                             </div>
                                         </div>
@@ -411,14 +415,5 @@
 </main>
 
 <!--Main layout-->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/js/bootstrap-select.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/js/i18n/defaults-*.min.js"></script>
-<script>
-    $('#lang').selectpicker();
-</script>
 </body>
 </html>

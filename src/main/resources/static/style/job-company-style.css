@@ -37,16 +37,14 @@ body {
 
 #addJobs {
     margin-left: 3%;
+    width: 7%;
 }
-
 
 .dashboard-table {
     height: 100%;
     width: 100%;
     display: inline-block;
     position: static;
-    left: 22%;
-    top: 25%;
     background: #ffffff;
     color: #2a47bd;
 }
@@ -63,7 +61,7 @@ table {
     overflow-y: scroll;
     position: static;
     margin-left: 5%;
-    width: 86%;
+    width: 82%;
     height: 450px;
 }
 
@@ -88,7 +86,7 @@ tbody tr {
 }
 
 .col1 {
-    width: 2.5%;
+    min-width: 2.5%;
 }
 
 .col2 {

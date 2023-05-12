@@ -16,19 +16,6 @@ table {
     border:1px solid #948787;
 }
 
-.formm {
-    box-sizing: border-box;
-    position: relative;
-    width: 80%;
-    height: 620px;
-    background: #ffffff;
-    border: 1px solid #090010;
-    border-radius: 5px;
-    font-size: 100%;
-    margin-left: 7%;
-    margin-top: 6%;
-}
-
 #page-title {
     margin-left: 3%;
     margin-top: 1.5%;
@@ -37,6 +24,7 @@ table {
 
 #addAnnouncement {
     margin-left: 3%;
+    width: 7%;
 }
 
 body {
@@ -47,22 +35,15 @@ body {
     height: 100%;
     width: 258%;
     display: inline-block;
-    position: static;
-    left: 22%;
-    top: 25%;
     background: #ffffff;
     color: #2a47bd;
-}
-
-#table-body {
-    color: #000000;
 }
 
 .tableFixHead {
     overflow: auto;
     position: static;
     margin-left: 5%;
-    width: 86%;
+    width: 82%;
     height: 450px;
 }
 
@@ -87,15 +68,7 @@ tbody tr {
 }
 
 .col1 {
-    width: 2.5%;
-}
-
-.colEdit {
-    width: 45%;
-}
-
-.colDelete {
-    width: 55%;
+    min-width: 2.5%;
 }
 
 .col2 {
@@ -110,14 +83,8 @@ tbody tr {
     min-width: 200px;
 }
 
-.deleteButton {
-   padding-left: 10px;
-}
-
-@media (max-width: 700px) {
-    .remove-description {
-        display: none;
-    }
+#editButton {
+    width: 100%;
 }
 
 

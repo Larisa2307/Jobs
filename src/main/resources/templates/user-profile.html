@@ -23,73 +23,75 @@
 
 
 <!--Main layout-->
-<main id="content">
-    <div class="container pt-4">
-        <div class="formm">
-            <form class="form-container" method="post" enctype="multipart/form-data">
-                {{#userCompany}}
-                <div id="myForm">
-                    <div class="row">
-                        <div class="col-6">
-                            <p id="page-title"><b>My profile</b></p>
-                        </div>
-                        <div class="col-6">
-                            <div class="editButton">
-                                <button type="button" class="btn btn-primary icon-spacing" data-mdb-toggle="modal"
-                                        data-mdb-target="#edit{{id}}">
-                                    <i class="fa-regular fas fa-user-edit"></i>
-                                    <span class="remove-action-name">&nbsp;Edit</span>
-                                </button>
-                            </div>
-                        </div>
+<main style="margin-top: 80px; margin-left: 50px">
+    <div class="card" style="width: 70rem; height: 41rem;">
+        <div class="container pt-4">
+            {{#userCompany}}
+            <div id="myForm">
+                <div class="row">
+                    <div class="col-6">
+                        <p id="page-title"><b>My profile</b></p>
                     </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <label for="firstName"><b>First name</b></label><br>
-                            <input id="firstName" name="name" disabled value="{{firstName}}">
-                            <br><br>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <label for="lastName"><b>Last name</b></label><br>
-                            <input value="{{lastName}}" id="lastName" name="lastName" disabled>
-                            <br><br>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <label for="email"><b>Email</b></label><br>
-                            <input type="email" value="{{email}}" id="email" name="email" disabled>
-                            <br><br>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-6">
-                            <label for="phone"><b>Phone number</b></label><br>
-                            <input type="tel" value="{{phone}}" id="phone" name="phone" disabled>
-                            <br><br>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-6">
-                            <button type="button" class="btn btn-primary icon-spacing" data-mdb-toggle="modal"
-                                    data-mdb-target="#changePassword{{id}}">
-                                <i class="fa-regular fa-pen-to-square"></i>
-                                <span class="remove-action-name">&nbsp;Change password</span>
+                    <div class="col-5">
+                        <div class="editButton">
+                            <button type="button" class="btn btn-primary btn-sm icon-spacing" data-mdb-toggle="modal"
+                                    data-mdb-target="#edit{{id}}">
+                                <i class="fa-regular fas fa-user-edit"></i>
+                                <span class="remove-action-name">&nbsp;Edit</span>
                             </button>
                         </div>
                     </div>
                 </div>
+
+                <div class="row">
+                    <div class="col-6 mb-4">
+                        <label for="firstName"><b>First name</b></label><br>
+                        <input id="firstName" name="name" class="form-control"
+                               disabled value="{{firstName}}">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6 mb-4">
+                        <label for="lastName"><b>Last name</b></label><br>
+                        <input value="{{lastName}}" id="lastName" class="form-control"
+                               name="lastName" disabled>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6 mb-4">
+                        <label for="email"><b>Email</b></label><br>
+                        <input type="email" value="{{email}}" class="form-control"
+                               id="email" name="email" disabled>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6 mb-4">
+                        <label for="phone"><b>Phone number</b></label><br>
+                        <input type="tel" value="{{phone}}" class="form-control"
+                               id="phone" name="phone" disabled>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6 mb-4">
+                        <button type="button" class="btn btn-primary icon-spacing" data-mdb-toggle="modal"
+                                data-mdb-target="#changePassword{{id}}">
+                            <i class="fa-regular fa-pen-to-square"></i>
+                            <span class="remove-action-name">&nbsp;Change password</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
             </form>
         </div>
     </div>
 
     <div class="d-flex justify-content-end col-6">
         <!-- Modal Edit -->
-        <div class="modal modal-lg fade" id="edit{{id}}" tabindex="-1" role="dialog" aria-labelledby="editProfile{{id}}"
+        <div class="modal fade" id="edit{{id}}" tabindex="-1" role="dialog" aria-labelledby="editProfile{{id}}"
              aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -100,55 +102,52 @@
                                     aria-label="Close"></button>
                         </div>
                         <div class="mymodal">
-                            <div class="mb-3">
-                                <div class="form-outline">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <label for="firstName{{id}}">First name<span
-                                                    class="error">*</span></label><br>
-                                            <input id="firstName{{id}}" class="fields" name="firstName"
-                                                   value="{{firstName}}"
-                                                   required>
-                                            <br><br>
-                                        </div>
+                            <div class="mb-2">
+                                <div class="row">
+                                    <div class="col-11 mb-4">
+                                        <label for="firstName{{id}}">First name<span
+                                                class="error">*</span></label><br>
+                                        <input id="firstName{{id}}" class="form-control"
+                                               name="firstName"
+                                               value="{{firstName}}"
+                                               required>
                                     </div>
-                                    <div>
-                                        <div class="col-6">
-                                            <label for="lastName{{id}}">Last name<span
-                                                    class="error">*</span></label><br>
-                                            <input value="{{lastName}}" class="fields" id="lastName{{id}}"
-                                                   name="lastName"
-                                                   required>
-                                            <br><br>
-                                        </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-11 mb-4">
+                                        <label for="lastName{{id}}">Last name<span
+                                                class="error">*</span></label><br>
+                                        <input id="lastName{{id}}" class="form-control"
+                                               name="lastName"
+                                               value="{{lastName}}"
+                                               required>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <label for="email{{id}}">Email<span
-                                                    class="error">*</span></label><br>
-                                            <input type="email" value="{{email}}" class="fields"
-                                                   id="email{{id}}" name="email"
-                                                   required>
-                                            <br><br>
-                                        </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-11 mb-4">
+                                        <label for="email{{id}}">Email<span
+                                                class="error">*</span></label><br>
+                                        <input type="email" value="{{email}}" class="form-control"
+                                               id="email{{id}}" name="email"
+                                               required>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <label for="phone{{id}}">Phone number<span
-                                                    class="error">*</span></label><br>
-                                            <input type="tel" value="{{phone}}" class="field" id="phone{{id}}"
-                                                   name="phone"
-                                                   required>
-                                            <br><br>
-                                        </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-11 mb-4">
+                                        <label for="phone{{id}}">Phone number<span
+                                                class="error">*</span></label><br>
+                                        <input type="tel" value="{{phone}}" class="form-control"
+                                               id="phone{{id}}"
+                                               name="phone"
+                                               required>
                                     </div>
                                 </div>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close
-                                </button>
-                                <button type="submit" class="btn btn-primary">Save</button>
-                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close
+                            </button>
+                            <button type="submit" class="btn btn-primary">Save</button>
                         </div>
                     </form>
                 </div>
@@ -156,7 +155,7 @@
         </div>
     </div>
     <div class="d-flex justify-content-end col-6">
-        <div class="modal modal-lg fade" id="changePassword{{id}}" tabindex="-1" role="dialog"
+        <div class="modal fade" id="changePassword{{id}}" tabindex="-1" role="dialog"
              aria-labelledby="changePassword{{id}}"
              aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -169,35 +168,29 @@
                         </div>
                         <div class="mymodal">
                             <div class="row">
-                                <div class="col-md-6 mb-4 pb-2">
-                                    <div class="form-outline">
-                                        <input type="password" id="password" name="password"
-                                               class="form-control form-control-lg" required/>
-                                        <label class="form-label" for="password">Your password<span
-                                                class="error">*</span></label>
-                                    </div>
+                                <div class="col-11 mb-4">
+                                    <label for="password">Your password<span
+                                            class="error">*</span></label>
+                                    <input type="password" id="password" name="password"
+                                           class="form-control" required/>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6 mb-4 pb-2">
-                                    <div class="form-outline">
-                                        <input type="password" id="newPassword" name="newPassword"
-                                               pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                                               title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-                                               class="form-control form-control-lg" required/>
-                                        <label class="form-label" for="newPassword">New password<span
-                                                class="error">*</span></label>
-                                    </div>
+                                <div class="col-11 mb-4">
+                                    <label for="newPassword">New password<span
+                                            class="error">*</span></label>
+                                    <input type="password" id="newPassword" name="newPassword"
+                                           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                                           title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+                                           class="form-control" required/>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6 mb-4 pb-2">
-                                    <div class="form-outline">
-                                        <input type="password" id="confirmPassword" name="confirmPassword"
-                                               class="form-control form-control-lg" required/>
-                                        <label class="form-label" for="confirmPassword">Confirm Password<span
-                                                class="error">*</span></label>
-                                    </div>
+                                <div class="col-11 mb-4">
+                                    <label for="confirmPassword">Confirm Password<span
+                                            class="error">*</span></label>
+                                    <input type="password" id="confirmPassword" name="confirmPassword"
+                                           class="form-control" required/>
                                 </div>
                             </div>
                             <div class="modal-footer">

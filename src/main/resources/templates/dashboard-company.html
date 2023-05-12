@@ -23,8 +23,8 @@
 
 <!--Main layout-->
 
-<main>
-    <div class="formm">
+<main style="margin-top: 80px; margin-left: 50px">
+    <div class="card" style="width: 70rem; height: 41rem;">
         <p id="page-title"><b>Dashboard</b></p>
         <div class="container-fluid pt-4 table-responsive-lg">
             <div class="tableFixHead">
@@ -33,8 +33,8 @@
                     <tr>
                         <th class="col1"></th>
                         <th class="col-5">Job name</th>
-                        <th class="col-4">Number of candidates</th>
-                        <th class="col-3">Available</th>
+                        <th class="col-5">Number of candidates</th>
+                        <th class="col-1">Available</th>
                     </tr>
                     </thead>
 
@@ -46,16 +46,17 @@
                                 <a class="hidden-arrow fa fa-ellipsis-v"
                                    role="button" data-mdb-toggle="dropdown">
                                 </a>
-                                <ul class="dropdown-menu">
+                                <ul class="dropdown-menu" style="min-width: 1px;">
                                     <li>
                                     <a type="button" href="/candidate-announcement/{{userCompany.id}}/{{id}}"
-                                       class="btn btn-sm">
+                                       class="btn btn-sm btn-outline-secondary">
                                         <i class="fas fa-poll-h"></i>&nbsp;
                                         Show details
                                     </a>
                                     </li>
                                     <li>
-                                        <button type="button" class="btn btn-sm"
+                                        <button type="button" class="btn btn-sm btn-outline-secondary"
+                                                style="width: 100%;"
                                                 data-mdb-toggle="modal"
                                                 data-mdb-target="#delete{{index}}">
                                             <i class="fa-regular fa-trash-can"></i>&nbsp;Delete
@@ -65,8 +66,8 @@
                             </div>
                         </td>
                         <td class="col-5">{{jobName}}</td>
-                        <td class="col-4">{{numberOfCandidates}}</td>
-                        <td class="col-3">{{available}}</td>
+                        <td class="col-5">{{numberOfCandidates}}</td>
+                        <td class="col-1">{{available}}</td>
                     </tr>
                     <!-- Modal Delete -->
                     <div class="modal fade" id="delete{{index}}" tabindex="-1" role="dialog"

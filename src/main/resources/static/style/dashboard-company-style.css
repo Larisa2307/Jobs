@@ -8,19 +8,6 @@
     margin-right: 3%;
 }
 
-.formm {
-    box-sizing: border-box;
-    position: relative;
-    width: 80%;
-    height: 620px;
-    background: #ffffff;
-    border: 1px solid #090010;
-    border-radius: 5px;
-    font-size: 100%;
-    margin-left: 7%;
-    margin-top: 6%;
-}
-
 #page-title {
     margin-left: 3%;
     margin-top: 1.5%;
@@ -53,7 +40,7 @@ table {
     overflow-y: scroll;
     position: static;
     margin-left: 5%;
-    width: 66%;
+    width: 82%;
     height: 450px;
 }
 
