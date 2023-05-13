@@ -1,31 +1,41 @@
 <!-- Sidebar -->
-{{#userCompany}}
+{{#userApp}}
 <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
     <div class="position-sticky">
         <div class="list-group list-group-flush mx-3 mt-4">
+            {{^isUserCompany}}
+            <a href="/dashboard/{{id}}" class="list-group-item list-group-item-action ripple
+        {{#dashboardActive}}active{{/dashboardActive}}" aria-current="true">
+                <i class="fas fa-chart-line fa-fw me-3"></i><span>Dashboard</span>
+            </a>
+            {{/isUserCompany}}
 
+            {{#isUserCompany}}
             <a href="/dashboard-company/{{id}}" class="list-group-item list-group-item-action ripple
-       {{#dashboard-companyActive}}active{{/dashboard-companyActive}}" aria-current="true">
+        {{#dashboardActive}}active{{/dashboardActive}}" aria-current="true">
                 <i class="fas fa-chart-line fa-fw me-3"></i><span>Dashboard</span>
             </a>
 
             <a href="/jobs-company/{{id}}" class="list-group-item list-group-item-action py-2 ripple
-       {{#jobs-companyActive}}active{{/jobs-companyActive}}" aria-current="true">
+        {{#jobs-companyActive}}active{{/jobs-companyActive}}" aria-current="true">
                 <i class="fas fa-briefcase fa-fw me-3"></i><span>Jobs company</span>
             </a>
-
+            {{^isDecider}}
             <a href="/announcement/{{id}}" class="list-group-item list-group-item-action py-2 ripple
         {{#announcementActive}}active{{/announcementActive}}">
                 <i class="fa-solid fa-list-ul fa-fw me-3"></i><span>Announcement</span>
             </a>
-
+            {{/isDecider}}
+            {{/isUserCompany}}
+            {{#isAdmin}}
             <a href="/users-company/{{id}}" class="list-group-item list-group-item-action py-2 ripple
         {{#users-companyActive}}active{{/users-companyActive}}">
                 <i class="fa fa-users fa-fw me-3"></i><span>Users company</span>
             </a>
+            {{/isAdmin}}
 
         </div>
     </div>
 </nav>
-{{/userCompany}}
+{{/userApp}}
 <!-- Sidebar -->

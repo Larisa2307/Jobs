@@ -4,6 +4,7 @@ import com.example.jobs.entity.Job;
 import com.example.jobs.entity.Page;
 import com.example.jobs.model.AnnouncementModel;
 import com.example.jobs.service.*;
+import com.example.jobs.util.Util;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -20,7 +21,7 @@ public class JobsController {
     final JobService jobService;
     final NavbarService navbarService;
     final CompanyService companyService;
-    final UserCompanyService userCompanyService;
+    final UserAppService userAppService;
     final AnnouncementService announcementService;
     final UserAppAnnouncementService userAppAnnouncementService;
 
@@ -31,24 +32,26 @@ public class JobsController {
 
     @GetMapping("/jobs-company/{id}")
     String getDashboardEmployerPage(Model model, @PathVariable String id, @RequestParam(required = false) final Boolean duplicate) {
-        var userCompany = userCompanyService.getById(id);
-        var company = userCompany.getCompany();
+        navbarService.activateNavbarTab(Page.JOBS_COMPANY, model);
+
+        var userApp = userAppService.getById(id);
+        Util.extractRole(model, userApp);
+        var company = userApp.getCompany();
         log.info("Jobs company: " + company.getCompanyName());
         var jobs = jobService.getJobsByCompany(company);
 
-        model.addAttribute("userCompany", userCompany);
+        model.addAttribute("userApp", userApp);
         model.addAttribute("jobs", jobs);
         model.addAttribute("duplicate", duplicate);
         model.addAttribute("jobTypes", jobTypes);
         model.addAttribute("jobLevels", jobLevels);
 
-        navbarService.activateNavbarTab(Page.JOBS_COMPANY, model);
         return "jobs-company";
     }
 
     @PostMapping("/add-job/{user_id}")
     public String addJob(@ModelAttribute("job") Job job, @PathVariable("user_id") final String userId) {
-        var user = userCompanyService.getById(userId);
+        var user = userAppService.getById(userId);
         var company = user.getCompany();
         log.info("Try to add an announcement: " + company.getEmail());
 
@@ -61,9 +64,10 @@ public class JobsController {
     @PostMapping("/edit-job/{user_id}/{id}")
     public String editCategory(@ModelAttribute("job") Job job, @PathVariable("id") final String id,
                                @PathVariable("user_id") final String userId) {
-        var user = userCompanyService.getById(userId);
+        var user = userAppService.getById(userId);
         var company = user.getCompany();
         log.info("Try to edit a job: " + job.getName() + " company: " + company.getCompanyName());
+
         job.setId(id);
         job.setCompany(company);
         jobService.save(job);
@@ -76,6 +80,7 @@ public class JobsController {
     public String deleteCategory(@PathVariable String id, @PathVariable("user_id") final String userId) {
         log.info("Try to delete a job");
         var job = jobService.getById(id);
+
         announcementService.deleteAnnouncement(announcementService.getAnnouncementByJob(job).getId());
         jobService.delete(job);
 

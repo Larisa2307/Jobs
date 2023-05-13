@@ -20,9 +20,74 @@
 
 </header>
 
-<main style="margin-top: 80px; margin-left: 50px">
+<main style="margin-top: 70px; margin-left: 50px">
+    <div class="card" style="width: 70rem; height: 28rem;">
+        <p class="page-title"><b>Announcement</b></p>
+        <div id="myForm">
+            {{#announcement}}
+            <div class="row">
+                <div class="col-3 mb-2">
+                    <label for="jobName"><b>Job name</b></label>
+                    <input id="jobName" class="form-control"
+                           name="name" disabled value="{{jobName}}">
+                </div>
+                <div class="col-3 mb-2">
+                    <label for="jobType"><b>Job type</b></label><br>
+                    <input value="{{jobType}}" id="jobType" class="form-control"
+                           name="jobType" disabled>
+                </div>
+                <div class="col-3 mb-2">
+                    <label for="jobLevel"><b>Job level</b></label>
+                    <input value="{{jobLevel}}" id="jobLevel" class="form-control"
+                           name="jobLevel" disabled>
+                </div>
+                <div class="col-3 mb-2">
+                    <label for="dateEnded"><b>End date</b></label>
+                    <input value="{{dateEnded}}" id="dateEnded" class="form-control"
+                           name="dateEnded" disabled>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-6">
+                    <label for="skills"><b>Skills</b></label><br>
+                    <textarea id="skills" rows="4"
+                              name="skills"
+                              class="form-control"
+                              disabled>{{skills}}</textarea>
+                </div>
+                <div class="col-6 mb-2">
+                    <label for="description"><b>Description</b></label><br>
+                    <textarea id="description" rows="4"
+                              name="description"
+                              class="form-control"
+                              disabled>{{skills}}</textarea>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-6">
+                    <label for="requirement"><b>Requirements</b></label><br>
+                    <textarea id="requirement" rows="4"
+                              name="requirement"
+                              class="form-control"
+                              disabled>{{requirement}}</textarea>
+                </div>
+                <div class="col-6">
+                    <label for="responsability"><b>Responsabilities</b></label><br>
+                    <textarea id="responsability" rows="4"
+                              name="responsability"
+                              class="form-control"
+                              disabled>{{responsability}}</textarea>
+                </div>
+            </div>
+        </div>
+        {{/announcement}}
+        </form>
+    </div>
+    <br>
     <div class="card" style="width: 70rem; height: 41rem;">
-        <p id="page-title"><b>Candidates</b></p>
+        <p class="page-title"><b>Candidates</b></p>
         <div class="container-fluid pt-4 table-responsive-lg">
             <div class="tableFixHead">
                 <table class="table table-bordered table-sm dashboard-table">

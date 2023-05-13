@@ -19,7 +19,7 @@
 </header>
 
 <!--Main layout-->
-{{#userCompany}}
+{{#userApp}}
 <main style="margin-top: 80px; margin-left: 50px">
     <div class="card" style="width: 70rem; height: 41rem;">
         <p id="page-title"><b>Announcement</b></p>
@@ -84,7 +84,7 @@
                              aria-labelledby="editAnnouncementTitle{{index}}" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
-                                    <form action="/edit-announcement/{{userCompany.id}}/{{id}}"
+                                    <form action="/edit-announcement/{{userApp.id}}/{{id}}"
                                           method="POST"
                                           class=" needs-validation"
                                           name="announcement">
@@ -104,7 +104,7 @@
                                                     <input type="text" value="{{jobName}}"
                                                            id="jobName{{index}}"
                                                            name="jobName"
-                                                           class="form-control form-control-lg"
+                                                           class="form-control"
                                                            disabled/>
                                                 </div>
                                                 <div class="col-6">
@@ -113,7 +113,7 @@
                                                     <input type="text" value="{{jobType}}"
                                                            id="jobType{{index}}"
                                                            name="jobType"
-                                                           class="form-control form-control-lg"
+                                                           class="form-control"
                                                            disabled/>
                                                 </div>
                                             </div>
@@ -125,7 +125,7 @@
                                                     <input type="text" value="{{jobLevel}}"
                                                            id="jobLevel{{index}}"
                                                            name="jobLevel"
-                                                           class="form-control form-control-lg"
+                                                           class="form-control"
                                                            disabled/>
                                                 </div>
                                                 <div class="col-6">
@@ -134,7 +134,7 @@
                                                                 class="error">*</span></label>
                                                         <input type="date" id="dateEnded{{index}}" name="dateEnded"
                                                                value="{{dateEnded}}"
-                                                               class="form-control form-control-lg" required>
+                                                               class="form-control" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -146,7 +146,7 @@
                                                             class="error">*</span></label>
                                                     <textarea id="skills{{index}}" rows="4"
                                                               name="skills"
-                                                              class="form-control form-control-lg"
+                                                              class="form-control"
                                                               required>{{skills}}</textarea>
                                                 </div>
                                             </div>
@@ -160,7 +160,7 @@
                                                             class="error">*</span></label>
                                                     <textarea id="description{{index}}" rows="4"
                                                               name="description"
-                                                              class="form-control form-control-lg"
+                                                              class="form-control"
                                                               required>{{description}}</textarea>
                                                 </div>
                                             </div>
@@ -172,7 +172,7 @@
                                                             class="error">*</span></label>
                                                     <textarea id="responsability{{index}}" rows="4"
                                                               name="responsability"
-                                                              class="form-control form-control-lg"
+                                                              class="form-control"
                                                               required>{{responsability}}</textarea>
                                                 </div>
                                             </div>
@@ -184,7 +184,7 @@
                                                             class="error">*</span></label>
                                                     <textarea id="requirement{{index}}" rows="4"
                                                               name="requirement"
-                                                              class="form-control form-control-lg"
+                                                              class="form-control"
                                                               required>{{requirement}}</textarea>
                                                 </div>
                                             </div>
@@ -195,7 +195,7 @@
                                                            for="benefit{{index}}">Benefits</label>
                                                     <textarea id="benefit{{index}}" rows="4"
                                                               name="benefit"
-                                                              class="form-control form-control-lg">{{benefit}}</textarea>
+                                                              class="form-control">{{benefit}}</textarea>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
@@ -217,7 +217,7 @@
                              aria-labelledby="deleteAnnouncementTitle{{index}}" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
-                                    <form action="/delete-announcement/{{userCompany.id}}/{{id}}"
+                                    <form action="/delete-announcement/{{userApp.id}}/{{id}}"
                                           method="POST">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="deleteAnnouncementTitle{{index}}">
@@ -246,7 +246,7 @@
                 </table>
             </div>
         </div>
-        {{/userCompany}}
+        {{/userApp}}
     </div>
 </main>
 

@@ -4,6 +4,7 @@ import com.example.jobs.entity.Job;
 import com.example.jobs.entity.Page;
 import com.example.jobs.model.AnnouncementModel;
 import com.example.jobs.service.*;
+import com.example.jobs.util.Util;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -18,26 +19,29 @@ public class AnnouncementController {
     final JobService jobService;
     final NavbarService navbarService;
     final CompanyService companyService;
-    final UserCompanyService userCompanyService;
+    final UserAppService userAppService;
     final AnnouncementService announcementService;
 
     @GetMapping("/announcement/{id}")
-    String getAnnouncementPage(Model model, @PathVariable String id, @RequestParam(required = false) final Boolean duplicate) {
-        var userCompany = userCompanyService.getById(id);
-        var company = userCompany.getCompany();
-        log.info("Announcement page: " + userCompany.getEmail());
+    String getAnnouncementPage(Model model, @PathVariable String id) {
+        navbarService.activateNavbarTab(Page.ANNOUNCEMENT, model);
+
+        var userApp = userAppService.getById(id);
+        log.info("Announcement page: " + userApp.getEmail());
+        Util.extractRole(model, userApp);
+
+        var company = userApp.getCompany();
         var announcements = announcementService.getAnnouncementModelList(company);
 
-        model.addAttribute("userCompany", userCompany);
+        model.addAttribute("userApp", userApp);
         model.addAttribute("announcements", announcements);
-
-        navbarService.activateNavbarTab(Page.ANNOUNCEMENT, model);
 
         return "announcement";
     }
 
     @PostMapping("/edit-announcement/{user_id}/{id}")
-    public String editCategory(@ModelAttribute("announcement") AnnouncementModel announcement, @PathVariable("id") final String id,
+    public String editCategory(@ModelAttribute("announcement") AnnouncementModel announcement,
+                               @PathVariable("id") final String id,
                                @PathVariable("user_id") final String userId) {
         Job job = announcementService.getAnnouncementById(id).getJob();
         var company = job.getCompany();
@@ -46,7 +50,6 @@ public class AnnouncementController {
         if (announcement.getBenefit() == null) {
             announcement.setBenefit("");
         }
-
         announcementService.saveNewAnnouncement(announcement, job);
 
         return "redirect:/announcement/" + userId;

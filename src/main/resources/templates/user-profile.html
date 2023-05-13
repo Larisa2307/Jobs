@@ -26,7 +26,7 @@
 <main style="margin-top: 80px; margin-left: 50px">
     <div class="card" style="width: 70rem; height: 41rem;">
         <div class="container pt-4">
-            {{#userCompany}}
+            {{#userApp}}
             <div id="myForm">
                 <div class="row">
                     <div class="col-6">
@@ -95,7 +95,7 @@
              aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                    <form action="/edit-profile/{{id}}" method="POST" name="userCompany">
+                    <form action="/edit-profile/{{id}}" method="POST" name="userApp">
                         <div class="modal-header">
                             <h5 class="modal-title" id="editProfile{{id}}">Edit profile</h5>
                             <button type="button" class="btn-close" data-mdb-dismiss="modal"
@@ -160,9 +160,9 @@
              aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                    <form action="/change-password/{{id}}" method="POST" name="userCompany">
+                    <form action="/change-password/{{id}}" method="POST" name="userApp">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="changePassword{{userCompany.id}">Change password</h5>
+                            <h5 class="modal-title" id="changePassword{{userApp.id}">Change password</h5>
                             <button type="button" class="btn-close" data-mdb-dismiss="modal"
                                     aria-label="Close"></button>
                         </div>
@@ -225,7 +225,7 @@
         {{/errorSamePassword}}
     </div>
 </main>
-{{/userCompany}}
+{{/userApp}}
 <!--Main layout-->
 <script>
     document.querySelectorAll('.form-outline').forEach((formOutline) => {

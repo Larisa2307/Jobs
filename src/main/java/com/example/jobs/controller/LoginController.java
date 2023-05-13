@@ -2,7 +2,6 @@ package com.example.jobs.controller;
 
 import com.example.jobs.service.CompanyService;
 import com.example.jobs.service.UserAppService;
-import com.example.jobs.service.UserCompanyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +22,6 @@ public class LoginController {
 
     final UserAppService userAppService;
     final CompanyService companyService;
-    final UserCompanyService userCompanyService;
 
     @GetMapping("/login")
     String getLoginPage(@RequestParam(required = false) final boolean error, Model model) {
@@ -36,12 +34,12 @@ public class LoginController {
         log.info("Try to login with email: " + email);
 
         var userApp = userAppService.getUserAppByEmail(email);
-        var userCompany = userCompanyService.getUserByEmail(email);
 
-        if (userApp.isPresent() && passwordEncoder.matches(password, userApp.get().getPassword())) {
-            return "redirect:/dashboard";
-        } else if (userCompany.isPresent() && passwordEncoder.matches(password, userCompany.get().getPassword())) {
-            return "redirect:/dashboard-company/" + userCompany.get().getId();
+        if (userApp.isPresent() && passwordEncoder.matches(password, userApp.get().getPassword())
+                && "User".equals(userApp.get().getRole())) {
+            return "redirect:/dashboard/" + userApp.get().getId();
+        } else if (userApp.isPresent() && passwordEncoder.matches(password, userApp.get().getPassword())) {
+            return "redirect:/dashboard-company/" + userApp.get().getId();
         } else {
             return "redirect:/login?error=true";
         }

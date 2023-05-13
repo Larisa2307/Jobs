@@ -21,6 +21,9 @@ public class UserInfo {
     String mainAreas;
     String skills;
     @ManyToOne
+    @JoinColumn(name = "user_app_id")
+    UserApp userApp;
+    @ManyToOne
     @JoinColumn(name = "work_experience_id")
     WorkExperience workExperience;
     @ManyToOne

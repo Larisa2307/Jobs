@@ -48,7 +48,7 @@
                                 </a>
                                 <ul class="dropdown-menu" style="min-width: 1px;">
                                     <li>
-                                    <a type="button" href="/candidate-announcement/{{userCompany.id}}/{{id}}"
+                                    <a type="button" href="/candidate-announcement/{{userApp.id}}/{{id}}"
                                        class="btn btn-sm btn-outline-secondary">
                                         <i class="fas fa-poll-h"></i>&nbsp;
                                         Show details
@@ -74,7 +74,7 @@
                          aria-labelledby="deleteAnnouncementTitle{{index}}" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
-                                <form action="/delete-announcement-dashboard/{{userCompany.id}}/{{id}}"
+                                <form action="/delete-announcement-dashboard/{{userApp.id}}/{{id}}"
                                       method="POST">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="deleteAnnouncementTitle{{index}}">

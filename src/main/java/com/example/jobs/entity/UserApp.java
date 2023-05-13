@@ -1,8 +1,6 @@
 package com.example.jobs.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -21,5 +19,9 @@ public class UserApp {
     String lastName;
     String email;
     String phone;
+    String role;
     String password;
+    @ManyToOne
+    @JoinColumn(name = "company_id")
+    Company company;
 }

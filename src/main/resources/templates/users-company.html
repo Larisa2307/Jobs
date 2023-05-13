@@ -34,7 +34,7 @@
              aria-labelledby="addUserTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                    <form action="/add-user/{{userCompany.id}}" method="POST"
+                    <form action="/add-user/{{userApp.id}}" method="POST"
                           name="user">
                         <div class="modal-header">
                             <h5 class="modal-title" id="addUserTitle">Add user</h5>
@@ -149,7 +149,7 @@
                          aria-labelledby="editTitle{{id}}" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
-                                <form action="/edit-user/{{userCompany.id}}/{{id}}" method="POST"
+                                <form action="/edit-user/{{userApp.id}}/{{id}}" method="POST"
                                       name="user">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="editTitle{{id}}">Edit user {{firstName}} {{lastName}}</h5>
@@ -192,7 +192,7 @@
                                                 <label class="form-label" for="role{{id}}">Role<span
                                                         class="error">*</span></label>
                                                 <select aria-autocomplete="none" id="role{{id}}"
-                                                        class="form-control form-control-lg active" name="role"
+                                                        class="form-control" name="role"
                                                         required>
                                                     <option style="display: none" value="{{role}}">{{role}}</option>
                                                     {{#roles}}
@@ -219,7 +219,7 @@
                          aria-labelledby="deleteUserTitle{{id}}" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
-                                <form action="/delete-user/{{userCompany.id}}/{{id}}"
+                                <form action="/delete-user/{{userApp.id}}/{{id}}"
                                       method="POST">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="deleteAnnouncementTitle{{id}}">

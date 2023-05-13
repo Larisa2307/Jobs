@@ -27,15 +27,17 @@
 <main style="margin-top: 80px; margin-left: 50px">
     <div class="card" style="width: 70rem; height: 41rem;">
         <p id="page-title"><b>Jobs company</b></p>
+        {{^isOperator}}
         <button type="button" class="btn btn-primary btn-sm" id="addJobs"
                 data-mdb-toggle="modal" data-mdb-target="#addJob">
             <i class="fa-solid fa-plus"></i>&nbsp;&nbsp;Add
         </button>
+        {{/isOperator}}
         <div class="modal modal-lg fade" id="addJob" tabindex="-1" role="dialog"
              aria-labelledby="addJobTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                    <form action="/add-job/{{userCompany.id}}" method="POST"
+                    <form action="/add-job/{{userApp.id}}" method="POST"
                           name="job">
                         <div class="modal-header">
                             <h5 class="modal-title" id="addJobTitle">Add job</h5>
@@ -145,6 +147,7 @@
                                             <i class="fa-solid fa-plus"></i>&nbsp; Add announcement
                                         </button>
                                     </li>
+                                    {{^isOperator}}
                                     <li>
                                         <button type="button" class="btn btn-sm btn-outline-secondary" data-mdb-toggle="modal"
                                                 style="width: 100%;"
@@ -159,6 +162,7 @@
                                             <i class="fa-regular fa-trash-can"></i>&nbsp;Delete
                                         </button>
                                     </li>
+                                    {{/isOperator}}
                                 </ul>
                             </div>
                         </td>
@@ -171,7 +175,7 @@
                              aria-labelledby="addAnnouncementTitle{{id}}" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
-                                    <form action="/add-announcement/{{userCompany.id}}/{{id}}" method="POST"
+                                    <form action="/add-announcement/{{userApp.id}}/{{id}}" method="POST"
                                           name="announcement">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="addAnnouncementTitle{{id}}">Add announcement</h5>
@@ -296,7 +300,7 @@
                          aria-labelledby="editJobTitle{{id}}" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
-                                <form action="/edit-job/{{userCompany.id}}/{{id}}" method="POST"
+                                <form action="/edit-job/{{userApp.id}}/{{id}}" method="POST"
                                       name="job">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="editJobTitle{{id}}">Edit job {{name}}</h5>
@@ -380,7 +384,7 @@
                          aria-labelledby="deleteJobTitle{{id}}" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
-                                <form action="/delete-job/{{userCompany.id}}/{{id}}"
+                                <form action="/delete-job/{{userApp.id}}/{{id}}"
                                       method="POST">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="deleteJobTitle{{id}}">

@@ -31,6 +31,7 @@
                     <div class="col-6">
                         <p id="page-title"><b>Company profile</b></p>
                     </div>
+                    {{^isDecider}}
                     <div class="col-5">
                         <div class="editButton">
                             <button type="button" class="btn btn-primary btn-sm icon-spacing"
@@ -41,6 +42,7 @@
                             </button>
                         </div>
                     </div>
+                    {{/isDecider}}
                 </div>
 
                 <div class="row">
@@ -105,7 +107,7 @@
              aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                    <form action="/edit/{{userCompany.id}}/{{id}}" method="POST" name="company">
+                    <form action="/edit/{{userApp.id}}/{{id}}" method="POST" name="company">
                         <div class="modal-header">
                             <h5 class="modal-title" id="editCompany{{id}}">Edit profile</h5>
                             <button type="button" class="btn-close" data-mdb-dismiss="modal"

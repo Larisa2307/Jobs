@@ -65,6 +65,12 @@ public class AnnouncementService {
                 .toList();
     }
 
+    public AnnouncementModel getAnnouncementModelById(String id) {
+        var announcement = announcementRepository.findById(id).get();
+        var available = announcement.getDateEnded().isAfter(LocalDate.now()) ? "Yes" : "No";
+        return toAnnouncementModel(announcement, announcement.getJob(), available, 1);
+    }
+
     public Announcement getAnnouncementByJob(Job job) {
         return announcementRepository.findByJob(job);
     }

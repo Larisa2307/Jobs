@@ -8,7 +8,7 @@
     margin-right: 3%;
 }
 
-#page-title {
+.page-title {
     margin-left: 3%;
     margin-top: 1.5%;
     font-size: 2rem;
@@ -16,6 +16,19 @@
 
 body {
     background: #e7e7e7;
+}
+#myForm {
+    padding: 0 0 0 30px;
+}
+
+
+#description, #requirement, #responsability, #skills {
+    width: 90%;
+    height: 50%;
+}
+
+#jobLevel, #jobName, #jobType, #dateEnded {
+    width: 80%;
 }
 
 .dashboard-table {

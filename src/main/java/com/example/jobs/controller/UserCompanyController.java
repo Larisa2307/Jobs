@@ -1,11 +1,12 @@
 package com.example.jobs.controller;
 
 import com.example.jobs.entity.Page;
-import com.example.jobs.entity.UserCompany;
+import com.example.jobs.entity.UserApp;
 import com.example.jobs.service.CompanyService;
 import com.example.jobs.service.MailSenderService;
 import com.example.jobs.service.NavbarService;
-import com.example.jobs.service.UserCompanyService;
+import com.example.jobs.service.UserAppService;
+import com.example.jobs.util.Util;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -28,18 +29,19 @@ public class UserCompanyController {
     final NavbarService navbarService;
     final CompanyService companyService;
     final MailSenderService mailSenderService;
-    final UserCompanyService userCompanyService;
+    final UserAppService userAppService;
 
     static final List<String> roles = List.of("Admin", "Operator", "Decider");
 
     @GetMapping("/users-company/{id}")
     String getUsersCompanyPage(Model model, @PathVariable String id, @RequestParam(required = false) final boolean errorEmail) {
-        var userCompany = userCompanyService.getById(id);
-        var company = userCompany.getCompany();
+        var userApp = userAppService.getById(id);
+        Util.extractRole(model, userApp);
+        var company = userApp.getCompany();
         log.info("Users company: " + company.getCompanyName());
-        var usersCompany = userCompanyService.getUserByCompany(company);
+        var usersCompany = userAppService.getUserByCompany(company);
 
-        model.addAttribute("userCompany", userCompany);
+        model.addAttribute("userApp", userApp);
         model.addAttribute("usersCompany", usersCompany);
         model.addAttribute("errorEmail", errorEmail);
         model.addAttribute("roles", roles);
@@ -49,12 +51,12 @@ public class UserCompanyController {
     }
 
     @PostMapping("/add-user/{user_id}")
-    public String addJob(@ModelAttribute("user") UserCompany user, @PathVariable("user_id") final String userId) {
-        var userCompany = userCompanyService.getById(userId);
+    public String addJob(@ModelAttribute("user") UserApp user, @PathVariable("user_id") final String userId) {
+        var userCompany = userAppService.getById(userId);
         var company = userCompany.getCompany();
         log.info("Try to add an user to: " + company.getEmail());
 
-        if (!userCompanyService.getUsersByEmail(user.getEmail()).isEmpty()) {
+        if (!userAppService.getUsersByEmail(user.getEmail()).isEmpty()) {
             return "redirect:/users-company/" + userId + "?errorEmail=true";
         } else {
             user.setCompany(company);
@@ -62,27 +64,27 @@ public class UserCompanyController {
             mailSenderService.sendMailResetPassword(user.getEmail(), password);
             user.setPassword(passwordEncoder.encode(password));
             user.setPhone("");
-            userCompanyService.saveUserCompany(user);
+            userAppService.saveUser(user);
         }
 
         return "redirect:/users-company/" + userId;
     }
 
     @PostMapping("/edit-user/{user_id}/{id}")
-    public String editCategory(@ModelAttribute("user") UserCompany user, @PathVariable("id") final String id,
+    public String editCategory(@ModelAttribute("user") UserApp user, @PathVariable("id") final String id,
                                @PathVariable("user_id") final String userId) {
-        var userCompany = userCompanyService.getById(id);
+        var userCompany = userAppService.getById(id);
         var company = userCompany.getCompany();
         log.info("Try to edit a job: " + userCompany.getFirstName() + " " + userCompany.getLastName()
                 + " company: " + company.getCompanyName());
-        if (userCompanyService.existsByEmailAndDifferentId(user.getEmail(), id)) {
+        if (userAppService.existsByEmailAndDifferentId(user.getEmail(), id)) {
             return "redirect:/users-company/" + userId + "?errorEmail=true";
         } else {
             user.setId(id);
             user.setCompany(company);
             user.setPhone(userCompany.getPhone());
             user.setPassword(userCompany.getPassword());
-            userCompanyService.saveUserCompany(user);
+            userAppService.saveUser(user);
         }
         return "redirect:/users-company/" + userId;
     }
@@ -90,7 +92,7 @@ public class UserCompanyController {
     @PostMapping("/delete-user/{user_id}/{id}")
     public String deleteCategory(@PathVariable String id, @PathVariable("user_id") final String userId) {
         log.info("Try to delete an announcement");
-        userCompanyService.deleteUserCompany(userCompanyService.getById(id));
+        userAppService.deleteUser(userAppService.getById(id));
 
         return "redirect:/users-company/" + userId;
     }

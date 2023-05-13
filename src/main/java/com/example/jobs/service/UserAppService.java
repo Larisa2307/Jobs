@@ -1,5 +1,6 @@
 package com.example.jobs.service;
 
+import com.example.jobs.entity.Company;
 import com.example.jobs.entity.UserApp;
 import com.example.jobs.repository.UserAppRepository;
 import lombok.AllArgsConstructor;
@@ -16,7 +17,7 @@ public class UserAppService {
 
     final UserAppRepository userAppRepository;
 
-    public void saveAdmin(UserApp userApp) {
+    public void saveUser(UserApp userApp) {
         userAppRepository.saveAndFlush(userApp);
     }
 
@@ -28,4 +29,27 @@ public class UserAppService {
         return userAppRepository.getByEmail(email);
     }
 
+    public void deleteUser(UserApp userApp) {
+        userAppRepository.delete(userApp);
+    }
+
+    public UserApp getById(String id) {
+        return userAppRepository.findById(id).get();
+    }
+
+    public Optional<UserApp> getUserCompanyByCredentials(String email, String password) {
+        return userAppRepository.findByEmailAndPassword(email, password);
+    }
+
+    public Optional<UserApp> getUserByEmail(String email) {
+        return userAppRepository.getUserByEmail(email);
+    }
+
+    public boolean existsByEmailAndDifferentId(String email, String id) {
+        return userAppRepository.getByEmailAndDifferentId(email, id).isPresent();
+    }
+
+    public List<UserApp> getUserByCompany(Company company) {
+        return userAppRepository.findByCompany(company);
+    }
 }

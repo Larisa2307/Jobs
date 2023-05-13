@@ -1,8 +1,9 @@
 package com.example.jobs.controller;
 
 import com.example.jobs.entity.Page;
-import com.example.jobs.entity.UserCompany;
+import com.example.jobs.entity.UserApp;
 import com.example.jobs.service.*;
+import com.example.jobs.util.Util;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -18,30 +19,36 @@ public class DashboardController {
 
     final NavbarService navbarService;
     final CompanyService companyService;
-    final UserCompanyService userCompanyService;
+    final UserAppService userAppService;
     final AnnouncementService announcementService;
     final UserAppAnnouncementService employerUserAppService;
     final UserAppAnnouncementService userAppAnnouncementService;
 
-    @GetMapping("/dashboard")
-    String getDashboardPage(Model model) {
+    @GetMapping("/dashboard/{id}")
+    String getDashboardPage(Model model, @PathVariable String id) {
         navbarService.activateNavbarTab(Page.DASHBOARD, model);
+        var userApp = userAppService.getById(id);
+        var isUserCompany = Util.isUserCompany(userApp);
+
+        model.addAttribute("isUserCompany", isUserCompany);
+        model.addAttribute("userApp", userApp);
 
         return "dashboard";
     }
 
-
     @GetMapping("/dashboard-company/{id}")
     String getDashboardEmployerPage(Model model, @PathVariable String id) {
-        var userCompany = userCompanyService.getById(id);
-        var company = userCompany.getCompany();
-        log.info("Dashboard company: " + company.getCompanyName() + ", user: " +userCompany.getLastName());
+        navbarService.activateNavbarTab(Page.DASHBOARD, model);
+
+        var userApp = userAppService.getById(id);
+        Util.extractRole(model, userApp);
+        var company = userApp.getCompany();
+        log.info("Dashboard company: " + company.getCompanyName() + ", user: " + userApp.getLastName());
         var announcements = announcementService.getAnnouncementModelList(company);
 
-        model.addAttribute("userCompany", userCompany);
+        model.addAttribute("userApp", userApp);
         model.addAttribute("announcements", announcements);
 
-        navbarService.activateNavbarTab(Page.DASHBOARD_COMPANY, model);
         return "dashboard-company";
     }
 
