@@ -16,6 +16,7 @@ public class NavbarService {
             case JOBS_COMPANY -> model.addAttribute("jobs-companyActive", true);
             case USERS_COMPANY -> model.addAttribute("users-companyActive", true);
             case ANNOUNCEMENT -> model.addAttribute("announcementActive", true);
+            case RESUME -> model.addAttribute("resumeActive", true);
         }
     }
 
@@ -24,6 +25,7 @@ public class NavbarService {
         model.addAttribute("jobs-companyActive", false);
         model.addAttribute("users-companyActive", false);
         model.addAttribute("announcementActive", false);
+        model.addAttribute("resumeActive", false);
 
     }
 }

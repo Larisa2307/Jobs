@@ -5,7 +5,9 @@ import org.springframework.ui.Model;
 
 public class Util {
     public static boolean isUserCompany(UserApp userApp) {
-        return "Admin".equals(userApp.getRole()) || "Operator".equals(userApp.getRole()) ||"Decider".equals(userApp.getRole());
+        return "Admin".equals(userApp.getRole()) ||
+                "Operator".equals(userApp.getRole()) ||
+                "Decider".equals(userApp.getRole());
     }
 
     public static boolean isAdmin(UserApp userApp) {
@@ -20,15 +22,21 @@ public class Util {
         return "Decider".equals(userApp.getRole());
     }
 
+    public static boolean isCandidate(UserApp userApp) {
+        return "User".equals(userApp.getRole());
+    }
+
     public static void extractRole(Model model, UserApp userApp) {
         var isUserCompany = isUserCompany(userApp);
         var isAdmin = isAdmin(userApp);
         var isOperator = isOperator(userApp);
         var isDecider = isDecider(userApp);
+        var isCandidate = isCandidate(userApp);
 
         model.addAttribute("isAdmin", isAdmin);
         model.addAttribute("isOperator", isOperator);
         model.addAttribute("isDecider", isDecider);
         model.addAttribute("isUserCompany", isUserCompany);
+        model.addAttribute("isCandidate", isCandidate);
     }
 }

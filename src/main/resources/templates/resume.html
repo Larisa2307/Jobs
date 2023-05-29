@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jobs - Resume</title>
+
+    {{>fragments/links}}
+    <link rel="stylesheet" href="../../static/style/navigation-style.css">
+    <link rel="stylesheet" href="../static/style/resume-style.css">
+
+    <!-- Page style -->
+
+</head>
+<body>
+
+<!--Main Navigation-->
+<header>
+
+    {{>fragments/sidebar}}
+    {{>fragments/navbar}}
+
+</header>
+<!--Main Navigation-->
+
+<!--Main layout-->
+<main style="margin-top: 80px; margin-left: 50px">
+    <div class="card" style="width: 70rem; height: 15rem;">
+        <p id="page-title"><b>Resume file</b></p>
+
+        <!--Main layout-->
+        <div class="container pt-4">
+            <div class="col-6">
+                <!-- Button to open the modal -->
+                <button type="button" class="btn btn-primary btn-sm" id="addFiles"
+                        data-mdb-toggle="modal" data-mdb-target="#addFile">
+                    <i class="fas fa-upload"></i>&nbsp;&nbsp;Upload resume
+                </button>
+            </div>
+            <br>
+            {{#isDocument}}
+            <table class="table table-bordered table-sm">
+                <tr>
+                    <td class="col-4">
+                        {{documentName}}
+                    </td>
+                    <td class="col-4">
+                        <button type="button" class="btn btn-primary btn-sm" id="downloadFile"
+                                onclick="downloadResume('{{documentName}}')">
+                            <i class="fas fa-download"></i>&nbsp;&nbsp;Download
+                        </button>
+                        &nbsp;
+                        <button type="button" class="btn btn-primary btn-sm" onclick="deleteResume('{{documentName}}')">
+                            <i class="fa-regular fa-trash-can"></i>&nbsp;&nbsp;Delete
+                        </button>
+
+                    </td>
+                </tr>
+            </table>
+            {{/isDocument}}
+        </div>
+
+
+        <div class="modal fade" id="addFile" tabindex="-1" role="dialog" aria-labelledby="addFileTitle"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <form method="POST" action="/upload/{{userApp.id}}" enctype="multipart/form-data" onsubmit="return validateFileExtension()">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="addFileTitle">Upload file</h5>
+                            <button type="button" class="btn-close" data-mdb-dismiss="modal"
+                                    aria-label="Close"></button>
+                        </div>
+                        <div class="mymodal">
+                            <div class="row">
+                                <label for="fileInput" id="fileInputLabel" class="fileLabel">Choose a file</label>
+                                <input type="file" name="file" id="fileInput" class="fileInput"/>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3 mt-3">
+                                    <span id="fileNameDisplay"></span>
+                                    <button type="button" class="btn btn-sm btn-danger" id="clearFileName">&times;
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Upload</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        {{#error}}
+        <script>alert("Error file!")</script>
+        {{/error}}
+    </div>
+</main>
+</body>
+<script>
+    document.getElementById("fileInput").addEventListener("change", function () {
+        var fileName = this.value.split("\\").pop();
+        var label = document.getElementById("fileInputLabel");
+        var fileNameDisplay = document.getElementById("fileNameDisplay");
+        var clearFileNameButton = document.getElementById("clearFileName");
+        if (fileName) {
+            label.textContent = "Choose a file";
+            fileNameDisplay.textContent = fileName;
+            clearFileNameButton.style.display = "inline-block";
+        } else {
+            label.textContent = "Choose a file";
+            fileNameDisplay.textContent = "";
+            clearFileNameButton.style.display = "none";
+        }
+    });
+
+    var modal = document.getElementById("addFile");
+    modal.addEventListener("show.bs.modal", function () {
+        var fileInput = document.getElementById("fileInput");
+        var label = document.getElementById("fileInputLabel");
+        var fileNameDisplay = document.getElementById("fileNameDisplay");
+        var clearFileNameButton = document.getElementById("clearFileName");
+        fileInput.value = "";
+        label.textContent = "Choose a file";
+        fileNameDisplay.textContent = "";
+        clearFileNameButton.style.display = "none";
+    });
+
+    function validateFileExtension() {
+        var fileInput = document.getElementById("fileInput");
+        var fileName = fileInput.value;
+        var allowedExtensions = /(\.pdf)$/i;
+
+        if (!allowedExtensions.test(fileName)) {
+            alert("Please select a PDF file.");
+            return false;
+        }
+
+        return true;
+    }
+
+    document.getElementById("clearFileName").addEventListener("click", function () {
+        var fileInput = document.getElementById("fileInput");
+        var label = document.getElementById("fileInputLabel");
+        var fileNameDisplay = document.getElementById("fileNameDisplay");
+        fileInput.value = "";
+        label.textContent = "Choose a file";
+        fileNameDisplay.textContent = "";
+        this.style.display = "none";
+    });
+
+    function downloadResume(documentName) {
+        var downloadUrl = "/download/" + encodeURIComponent(documentName);
+
+        fetch(downloadUrl)
+            .then(response => response.blob())
+            .then(blob => {
+                var a = document.createElement("a");
+                a.href = URL.createObjectURL(blob);
+                a.download = documentName;
+
+                a.click();
+            })
+            .catch(error => {
+                console.error("Error downloading file:", error);
+            });
+    }
+
+    function deleteResume(documentName) {
+        fetch("/resumes/" + documentName, {
+            method: "POST"
+        }).then(response => {
+                if (response.ok) {
+                    location.reload();
+                } else {
+                    alert("Failed to delete the resume. Please try again.");
+                }
+            })
+            .catch(error => {
+                console.error("Error deleting the resume:", error);
+            });
+    }
+
+</script>
+</html>

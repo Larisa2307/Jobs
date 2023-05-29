@@ -1,7 +1,6 @@
 package com.example.jobs.service;
 
 import com.example.jobs.entity.Company;
-import com.example.jobs.entity.UserCompany;
 import com.example.jobs.repository.CompanyRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

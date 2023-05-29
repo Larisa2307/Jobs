@@ -28,9 +28,8 @@ public class DashboardController {
     String getDashboardPage(Model model, @PathVariable String id) {
         navbarService.activateNavbarTab(Page.DASHBOARD, model);
         var userApp = userAppService.getById(id);
-        var isUserCompany = Util.isUserCompany(userApp);
+        Util.extractRole(model, userApp);
 
-        model.addAttribute("isUserCompany", isUserCompany);
         model.addAttribute("userApp", userApp);
 
         return "dashboard";
