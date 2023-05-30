@@ -1,7 +1,6 @@
 package com.example.jobs.controller;
 
-import com.example.jobs.entity.Document;
-import com.example.jobs.entity.Page;
+import com.example.jobs.entity.*;
 import com.example.jobs.service.*;
 import com.example.jobs.util.Util;
 import lombok.RequiredArgsConstructor;
@@ -14,31 +13,33 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.UUID;
 
 @RequiredArgsConstructor
 @Controller
 @Slf4j
 public class ResumeController {
 
-    final DocumentService documentService;
     final NavbarService navbarService;
     final CompanyService companyService;
     final UserAppService userAppService;
+    final DocumentService documentService;
+    final EducationService educationService;
     final AnnouncementService announcementService;
+    final PersonalInfoService personalInfoService;
+    final CertificationService certificationService;
+    final WorkExperienceService workExperienceService;
     final UserAppAnnouncementService employerUserAppService;
     final UserAppAnnouncementService userAppAnnouncementService;
 
     @GetMapping("/resume/{id}")
-    String getDashboardPage(Model model, @PathVariable String id) {
+    String getResumePage(Model model, @PathVariable String id) {
         navbarService.activateNavbarTab(Page.RESUME, model);
         var userApp = userAppService.getById(id);
         Util.extractRole(model, userApp);
-
 
         String docName;
         if (documentService.getDocumentByUserApp(userApp).isEmpty()) {
@@ -47,9 +48,32 @@ public class ResumeController {
             docName = documentService.getDocumentByUserApp(userApp).get().getName();
         }
 
+        PersonalInfo personalInfo;
+        if (personalInfoService.getUserInfoByUserApp(userApp).isEmpty()) {
+            personalInfo = new PersonalInfo();
+            personalInfo.setId(UUID.randomUUID().toString());
+            personalInfo.setLocation("");
+            personalInfo.setLanguage("");
+            personalInfo.setSkills("");
+            personalInfo.setMainAreas("");
+            personalInfo.setUserApp(userApp);
+        } else {
+            personalInfo = personalInfoService.getUserInfoByUserApp(userApp).get();
+        }
+
+        var workExperiences = workExperienceService.getAllByUserApp(userApp);
+
+        var certification = certificationService.getAllByUserApp(userApp);
+
+        var education = educationService.getAllByUserApp(userApp);
+
         model.addAttribute("userApp", userApp);
         model.addAttribute("documentName", docName);
         model.addAttribute("isDocument", documentService.getDocumentByUserApp(userApp).isPresent());
+        model.addAttribute("personalInfo", personalInfo);
+        model.addAttribute("workExperiences", workExperiences);
+        model.addAttribute("certification", certification);
+        model.addAttribute("education", education);
 
         return "resume";
     }
@@ -77,6 +101,7 @@ public class ResumeController {
         }
         return "redirect:/resume/" + userId + "?error=true";
     }
+
     @GetMapping("/download/{fileName:.+}")
     public ResponseEntity<Resource> downloadFile(@PathVariable String fileName) {
         try {
@@ -100,7 +125,7 @@ public class ResumeController {
         }
     }
 
-    @PostMapping("/resumes/{fileName}")
+    @PostMapping("/resume/{fileName}")
     public ResponseEntity<String> deleteDocument(@PathVariable String fileName) {
         try {
             documentService.deleteDocumentById(documentService.getDocumentByName(fileName).getId());
@@ -112,5 +137,114 @@ public class ResumeController {
         }
     }
 
+    @PostMapping("/edit-personal-info/{user_id}/{id}")
+    public String editPersonalInfo(@ModelAttribute("userInfo") PersonalInfo personalInfo, @PathVariable("id") final String id,
+                                   @PathVariable("user_id") final String userId) {
+        var user = userAppService.getById(userId);
 
+        personalInfo.setId(id);
+        personalInfo.setUserApp(user);
+        personalInfoService.save(personalInfo);
+
+        return "redirect:/resume/" + userId;
+    }
+
+    @PostMapping("/add-work-experience/{user_id}")
+    public String addWorkExperience(@ModelAttribute("workExperiences") WorkExperience workExperience,
+                                   @PathVariable("user_id") final String userId) {
+        var user = userAppService.getById(userId);
+
+        workExperience.setUserApp(user);
+        workExperienceService.save(workExperience);
+
+        return "redirect:/resume/" + userId;
+    }
+
+    @PostMapping("/edit-work-experience/{user_id}/{id}")
+    public String editWorkExperience(@ModelAttribute("workExperiences") WorkExperience workExperience, @PathVariable("id") final String id,
+                                   @PathVariable("user_id") final String userId) {
+        var user = userAppService.getById(userId);
+
+        workExperience.setId(id);
+        workExperience.setUserApp(user);
+        workExperienceService.save(workExperience);
+
+        return "redirect:/resume/" + userId;
+    }
+
+    @PostMapping("/delete-work-experience/{user_id}/{id}")
+    public String deleteWorkExperience(@PathVariable String id, @PathVariable("user_id") final String userId) {
+        log.info("Try to delete a work experience");
+        var workExperience = workExperienceService.getById(id);
+
+        workExperienceService.delete(workExperience);
+
+        return "redirect:/resume/" + userId;
+    }
+
+    @PostMapping("/add-certification/{user_id}")
+    public String addCertification(@ModelAttribute("certification") Certification certification,
+                                    @PathVariable("user_id") final String userId) {
+        var user = userAppService.getById(userId);
+
+        certification.setUserApp(user);
+        certificationService.save(certification);
+
+        return "redirect:/resume/" + userId;
+    }
+
+    @PostMapping("/edit-certification/{user_id}/{id}")
+    public String editCertification(@ModelAttribute("certification") Certification certification, @PathVariable("id") final String id,
+                                     @PathVariable("user_id") final String userId) {
+        var user = userAppService.getById(userId);
+
+        certification.setId(id);
+        certification.setUserApp(user);
+        certificationService.save(certification);
+
+        return "redirect:/resume/" + userId;
+    }
+
+    @PostMapping("/delete-certification/{user_id}/{id}")
+    public String deleteCertification(@PathVariable String id, @PathVariable("user_id") final String userId) {
+        log.info("Try to delete a job");
+        var certification = certificationService.getById(id);
+
+        certificationService.delete(certification);
+
+        return "redirect:/resume/" + userId;
+    }
+
+    @PostMapping("/add-education/{user_id}")
+    public String addEducation(@ModelAttribute("education") Education education,
+                                   @PathVariable("user_id") final String userId) {
+        var user = userAppService.getById(userId);
+
+        education.setUserApp(user);
+        educationService.save(education);
+
+        return "redirect:/resume/" + userId;
+    }
+
+    @PostMapping("/edit-education/{user_id}/{id}")
+    public String editEducation(@ModelAttribute("education") Education education, @PathVariable("id") final String id,
+                                    @PathVariable("user_id") final String userId) {
+        var user = userAppService.getById(userId);
+
+        education.setId(id);
+        education.setUserApp(user);
+        educationService.save(education);
+
+        return "redirect:/resume/" + userId;
+    }
+
+    @PostMapping("/delete-education/{user_id}/{id}")
+    public String deleteEducation(@PathVariable String id, @PathVariable("user_id") final String userId) {
+        log.info("Try to delete a job");
+        var education = educationService.getById(id);
+
+        educationService.delete(education);
+
+        return "redirect:/resume/" + userId;
+    }
 }

@@ -24,11 +24,11 @@
 
 <!--Main layout-->
 <main style="margin-top: 80px; margin-left: 50px">
-    <div class="card" style="width: 70rem; height: 15rem;">
-        <p id="page-title"><b>Resume file</b></p>
+    <div class="card" style="width: 70rem; height: 12rem;">
+        <p class="page-title"><b>Resume file</b></p>
 
         <!--Main layout-->
-        <div class="container pt-4">
+        <div class="container pt-1">
             <div class="col-6">
                 <!-- Button to open the modal -->
                 <button type="button" class="btn btn-primary btn-sm" id="addFiles"
@@ -64,7 +64,8 @@
              aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                    <form method="POST" action="/upload/{{userApp.id}}" enctype="multipart/form-data" onsubmit="return validateFileExtension()">
+                    <form method="POST" action="/upload/{{userApp.id}}" enctype="multipart/form-data"
+                          onsubmit="return validateFileExtension()">
                         <div class="modal-header">
                             <h5 class="modal-title" id="addFileTitle">Upload file</h5>
                             <button type="button" class="btn-close" data-mdb-dismiss="modal"
@@ -95,6 +96,844 @@
         {{#error}}
         <script>alert("Error file!")</script>
         {{/error}}
+    </div>
+    <br>
+    <div class="card" style="width: 70rem; margin-bottom: 2rem;">
+        <p class="page-title"><b>Resume form</b></p>
+        <div class="container-fluid pb-4">
+            {{#personalInfo}}
+            <div class="card" style="width: 65rem; margin-left: 2rem;">
+                <div class="container-fluid pt-1">
+                    <p class="resume-title"><b>Personal info</b></p>
+                    <button type="button" class="btn btn-primary btn-sm" data-mdb-toggle="modal"
+                            data-mdb-target="#editUserInfo{{id}}">
+                        <i class="fa-regular fa-pen-to-square"></i>&nbsp;Update
+                    </button>
+                    <div class="modal modal-lg fade" id="editUserInfo{{id}}" tabindex="-1" role="dialog"
+                         aria-labelledby="editUserInfo{{id}}" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <form action="/edit-personal-info/{{userApp.id}}/{{id}}" method="POST"
+                                      name="personalInfo">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="editUserInfoTitle{{id}}">Edit personal info</h5>
+                                        <button type="button" class="btn-close" data-mdb-dismiss="modal"
+                                                aria-label="Close"></button>
+                                    </div>
+
+                                    <div class="mymodal">
+                                        <div class="row">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="location{{id}}">Location<span
+                                                        class="error">*</span></label>
+                                                <input type="text" value="{{location}}"
+                                                       id="location{{id}}"
+                                                       name="location"
+                                                       class="form-control"
+                                                       required/>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="language{{id}}">Language<span
+                                                        class="error">*</span></label>
+                                                <input type="text" value="{{language}}"
+                                                       id="language{{id}}"
+                                                       name="language"
+                                                       class="form-control"
+                                                       required/>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="mainAreas{{id}}">Main areas of
+                                                    activity<span
+                                                            class="error">*</span></label>
+                                                <textarea id="mainAreas{{id}}" rows="4"
+                                                          name="mainAreas"
+                                                          class="form-control"
+                                                          required>{{mainAreas}}</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="skills{{id}}">Skills<span
+                                                        class="error">*</span></label>
+                                                <textarea id="skills{{id}}" rows="4"
+                                                          name="skills"
+                                                          class="form-control"
+                                                          required>{{skills}}</textarea>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                    data-mdb-dismiss="modal">
+                                                Close
+                                            </button>
+                                            <button type="submit" class="btn btn-primary">Save</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container-fluid pt-3">
+                        <div class="col-10">
+                            <table class="table table-bordered table-sm">
+                                <tr>
+                                    <td class="col-4">
+                                        First name
+                                    </td>
+                                    <td class="col-4">
+                                        {{userApp.firstName}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-4">
+                                        Last name
+                                    </td>
+                                    <td class="col-4">
+                                        {{userApp.lastName}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-4">
+                                        Location
+                                    </td>
+                                    <td class="col-4">
+                                        {{location}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-4">
+                                        Language
+                                    </td>
+                                    <td class="col-4">
+                                        {{language}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-4">
+                                        Main areas of activity
+                                    </td>
+                                    <td class="col-4">
+                                        {{mainAreas}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-4">
+                                        Skills
+                                    </td>
+                                    <td class="col-4">
+                                        {{skills}}
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            {{/personalInfo}}
+            <br>
+            <div class="card" style="width: 65rem; margin-left: 2rem;">
+                <div class="container-fluid pt-1">
+                    <p class="resume-title"><b>Work experience</b></p>
+                    <button type="button" class="btn btn-primary btn-sm mb-3" id="addWorkExperiences"
+                            data-mdb-toggle="modal" data-mdb-target="#addWorkExperience">
+                        <i class="fa-solid fa-plus"></i>&nbsp;&nbsp;Add
+                    </button>
+                    <div class="modal modal-lg fade" id="addWorkExperience" tabindex="-1" role="dialog"
+                         aria-labelledby="addWorkExperienceTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <form action="/add-work-experience/{{userApp.id}}" method="POST"
+                                      name="workExperiences">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="addWorkExperienceTitle{{id}}">Add work
+                                            experience</h5>
+                                        <button type="button" class="btn-close" data-mdb-dismiss="modal"
+                                                aria-label="Close"></button>
+                                    </div>
+
+                                    <div class="mymodal">
+                                        <div class="row">
+                                            <div class="col-11">
+                                                <div class="mb-3">
+                                                    <label class="form-label" for="companyName">Company name</label>
+                                                    <input type="text"
+                                                           id="companyName"
+                                                           name="companyName"
+                                                           class="form-control"
+                                                           required/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-5">
+                                                <div class="mb-3">
+                                                    <label class="form-label" for="startDate">Period</label>
+                                                    <input type="date"
+                                                           id="startDate"
+                                                           name="startDate"
+                                                           class="form-control"
+                                                           required/>
+                                                </div>
+                                            </div>
+                                            <div class="col-1">
+                                                <div class="mb-3" style="margin-top: 85%; margin-left: 50%">
+                                                    -
+                                                </div>
+                                            </div>
+                                            <div class="col-5">
+                                                <div style="margin-top: 11%; ">
+                                                    <input type="date"
+                                                           id="endDate"
+                                                           name="endDate"
+                                                           class="form-control"
+                                                           required/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-11">
+                                                <div class="mb-3">
+                                                    <label class="form-label" for="role">Role</label>
+                                                    <input type="text"
+                                                           id="role"
+                                                           name="role"
+                                                           class="form-control"
+                                                           required/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-11">
+                                                <div class="mb-3">
+                                                    <label class="form-label" for="projectsDescription">Projects
+                                                        description</label>
+                                                    <textarea
+                                                            id="projectsDescription" rows="4"
+                                                            name="projectsDescription"
+                                                            class="form-control"
+                                                            required></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                    data-mdb-dismiss="modal">
+                                                Close
+                                            </button>
+                                            <button type="submit" class="btn btn-primary">Save</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    {{#workExperiences}}
+                    <div class="container-fluid pt-3">
+                        <div class="col-10">
+                            <div>{{companyName}}</div>
+                            <button type="button" class="btn btn-primary btn-sm mb-2" data-mdb-toggle="modal"
+                                    data-mdb-target="#editWorkExperience{{id}}">
+                                <i class="fa-regular fa-pen-to-square"></i>&nbsp;Update
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm mb-2" data-mdb-toggle="modal"
+                                    data-mdb-target="#deleteWorkExperience{{id}}">
+                                <i class="fa-regular fa-trash-can"></i>&nbsp;Delete
+                            </button>
+                            <div class="modal modal-lg fade" id="editWorkExperience{{id}}" tabindex="-1" role="dialog"
+                                 aria-labelledby="editWorkExperience{{id}}" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <form action="/edit-work-experience/{{userApp.id}}/{{id}}" method="POST"
+                                              name="workExperiences">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="editWorkExperienceTitle{{id}}">Edit work experience for {{companyName}}</h5>
+                                                <button type="button" class="btn-close" data-mdb-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                            </div>
+
+                                            <div class="mymodal">
+                                                <div class="row">
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="companyName{{id}}">Company name<span
+                                                                class="error">*</span></label>
+                                                        <input type="text" value="{{companyName}}"
+                                                               id="companyName{{id}}"
+                                                               name="companyName"
+                                                               class="form-control"
+                                                               required/>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-5">
+                                                        <div class="mb-3">
+                                                            <label class="form-label" for="startDate{{id}}">Period</label>
+                                                            <input type="date" value="{{startDate}}"
+                                                                   id="startDate{{id}}"
+                                                                   name="startDate"
+                                                                   class="form-control"
+                                                                   required/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <div class="mb-3" style="margin-top: 85%; margin-left: 50%">
+                                                            -
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-5">
+                                                        <div style="margin-top: 11%; ">
+                                                            <input type="date" value="{{endDate}}"
+                                                                   id="endDate{{id}}"
+                                                                   name="endDate"
+                                                                   class="form-control"
+                                                                   required/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-11">
+                                                        <div class="mb-3">
+                                                            <label class="form-label" for="role{{id}}">Role</label>
+                                                            <input type="text" value="{{role}}"
+                                                                   id="role{{id}}"
+                                                                   name="role"
+                                                                   class="form-control"
+                                                                   required/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-11">
+                                                        <div class="mb-3">
+                                                            <label class="form-label" for="projectsDescription{{id}}">Projects
+                                                                description</label>
+                                                            <textarea
+                                                                    id="projectsDescription{{id}}" rows="4"
+                                                                    name="projectsDescription"
+                                                                    class="form-control"
+                                                                    required>{{projectsDescription}}</textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                            data-mdb-dismiss="modal">
+                                                        Close
+                                                    </button>
+                                                    <button type="submit" class="btn btn-primary">Save</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal fade" id="deleteWorkExperience{{id}}" tabindex="-1" role="dialog"
+                                 aria-labelledby="deleteWorkExperienceTitle{{id}}" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <form action="/delete-work-experience/{{userApp.id}}/{{id}}"
+                                              method="POST">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="deleteWorkExperienceTitle{{id}}">
+                                                    Delete
+                                                    work experience {{companyName}}</h5>
+                                                <button type="button" class="btn-close" data-mdb-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                            </div>
+                                            <div class="mymodal">
+                                                Are you sure you want to permanently delete this work experience?
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                        data-mdb-dismiss="modal">Close
+                                                </button>
+                                                <button type="submit" class="btn btn-primary">Delete</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <table class="table table-bordered table-sm">
+                                <tr>
+                                    <td>
+                                        Period
+                                    </td>
+                                    <td>
+                                        {{startDate}} - {{endDate}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Role
+                                    </td>
+                                    <td>
+                                        {{role}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Projects
+                                    </td>
+                                    <td>
+                                        {{projectsDescription}}
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    {{/workExperiences}}
+                </div>
+            </div>
+            <br>
+            <div class="card" style="width: 65rem; margin-left: 2rem;">
+                <div class="container-fluid pt-1">
+                    <p class="resume-title"><b>Certification</b></p>
+                    <button type="button" class="btn btn-primary btn-sm mb-3" id="addCertifications"
+                            data-mdb-toggle="modal" data-mdb-target="#addCertification">
+                        <i class="fa-solid fa-plus"></i>&nbsp;&nbsp;Add
+                    </button>
+                    <div class="modal modal-lg fade" id="addCertification" tabindex="-1" role="dialog"
+                         aria-labelledby="addCertificationTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <form action="/add-certification/{{userApp.id}}" method="POST"
+                                      name="certification">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="addCertificationTitle{{id}}">Add certification</h5>
+                                        <button type="button" class="btn-close" data-mdb-dismiss="modal"
+                                                aria-label="Close"></button>
+                                    </div>
+
+                                    <div class="mymodal">
+                                        <div class="row">
+                                            <div class="col-11">
+                                                <div class="mb-3">
+                                                    <label class="form-label" for="name">Name</label>
+                                                    <input type="text"
+                                                           id="name"
+                                                           name="name"
+                                                           class="form-control"
+                                                           required/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-5">
+                                                <div class="mb-3">
+                                                    <label class="form-label" for="startDateC">Period</label>
+                                                    <input type="date"
+                                                           id="startDateC"
+                                                           name="startDate"
+                                                           class="form-control"
+                                                           required/>
+                                                </div>
+                                            </div>
+                                            <div class="col-1">
+                                                <div class="mb-3" style="margin-top: 85%; margin-left: 50%">
+                                                    -
+                                                </div>
+                                            </div>
+                                            <div class="col-5">
+                                                <div style="margin-top: 11%; ">
+                                                    <input type="date"
+                                                           id="endDateC"
+                                                           name="endDate"
+                                                           class="form-control"
+                                                           required/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                    data-mdb-dismiss="modal">
+                                                Close
+                                            </button>
+                                            <button type="submit" class="btn btn-primary">Save</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    {{#certification}}
+                    <div class="container-fluid pt-3">
+                        <div class="col-10">
+                            <div>{{Name}}</div>
+                            <button type="button" class="btn btn-primary btn-sm mb-2" data-mdb-toggle="modal"
+                                    data-mdb-target="#editCertification{{id}}">
+                                <i class="fa-regular fa-pen-to-square"></i>&nbsp;Update
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm mb-2" data-mdb-toggle="modal"
+                                    data-mdb-target="#deleteCertification{{id}}">
+                                <i class="fa-regular fa-trash-can"></i>&nbsp;Delete
+                            </button>
+                            <div class="modal modal-lg fade" id="editCertification{{id}}" tabindex="-1" role="dialog"
+                                 aria-labelledby="editCertification{{id}}" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <form action="/edit-certification/{{userApp.id}}/{{id}}" method="POST"
+                                              name="certification">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="editCertificationTitle{{id}}">Edit certification {{name}}</h5>
+                                                <button type="button" class="btn-close" data-mdb-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                            </div>
+
+                                            <div class="mymodal">
+                                                <div class="row">
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="name{{id}}">Name<span
+                                                                class="error">*</span></label>
+                                                        <input type="text" value="{{name}}"
+                                                               id="name{{id}}"
+                                                               name="name"
+                                                               class="form-control"
+                                                               required/>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-5">
+                                                        <div class="mb-3">
+                                                            <label class="form-label" for="startDateC{{id}}">Period</label>
+                                                            <input type="date" value="{{startDate}}"
+                                                                   id="startDateC{{id}}"
+                                                                   name="startDate"
+                                                                   class="form-control"
+                                                                   required/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <div class="mb-3" style="margin-top: 85%; margin-left: 50%">
+                                                            -
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-5">
+                                                        <div style="margin-top: 11%; ">
+                                                            <input type="date" value="{{endDate}}"
+                                                                   id="endDateC{{id}}"
+                                                                   name="endDate"
+                                                                   class="form-control"
+                                                                   required/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                            data-mdb-dismiss="modal">
+                                                        Close
+                                                    </button>
+                                                    <button type="submit" class="btn btn-primary">Save</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal fade" id="deleteCertification{{id}}" tabindex="-1" role="dialog"
+                                 aria-labelledby="deleteCertificationTitle{{id}}" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <form action="/delete-certification/{{userApp.id}}/{{id}}"
+                                              method="POST">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="deleteCertificationTitle{{id}}">
+                                                    Delete
+                                                    certification {{name}}</h5>
+                                                <button type="button" class="btn-close" data-mdb-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                            </div>
+                                            <div class="mymodal">
+                                                Are you sure you want to permanently delete this certification?
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                        data-mdb-dismiss="modal">Close
+                                                </button>
+                                                <button type="submit" class="btn btn-primary">Delete</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <table class="table table-bordered table-sm">
+                                <tr>
+                                    <td>
+                                        Period
+                                    </td>
+                                    <td>
+                                        {{startDate}} - {{endDate}}
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    {{/certification}}
+                </div>
+            </div>
+            <br>
+            <div class="card" style="width: 65rem; margin-left: 2rem;">
+                <div class="container-fluid pt-1">
+                    <p class="resume-title"><b>Education</b></p>
+                    <button type="button" class="btn btn-primary btn-sm mb-3" id="addEducations"
+                            data-mdb-toggle="modal" data-mdb-target="#addEducation">
+                        <i class="fa-solid fa-plus"></i>&nbsp;&nbsp;Add
+                    </button>
+                    <div class="modal modal-lg fade" id="addEducation" tabindex="-1" role="dialog"
+                         aria-labelledby="addEducationTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <form action="/add-education/{{userApp.id}}" method="POST"
+                                      name="education">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="addEducationTitle{{id}}">Add education</h5>
+                                        <button type="button" class="btn-close" data-mdb-dismiss="modal"
+                                                aria-label="Close"></button>
+                                    </div>
+
+                                    <div class="mymodal">
+                                        <div class="row">
+                                            <div class="col-11">
+                                                <div class="mb-3">
+                                                    <label class="form-label" for="degree">Degree</label>
+                                                    <input type="text"
+                                                           id="degree"
+                                                           name="degree"
+                                                           class="form-control"
+                                                           required/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-11">
+                                                <div class="mb-3">
+                                                    <label class="form-label" for="university">University</label>
+                                                    <input type="text"
+                                                           id="university"
+                                                           name="university"
+                                                           class="form-control"
+                                                           required/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-5">
+                                                <div class="mb-3">
+                                                    <label class="form-label" for="startDateE">Period</label>
+                                                    <input type="date"
+                                                           id="startDateE"
+                                                           name="startDate"
+                                                           class="form-control"
+                                                           required/>
+                                                </div>
+                                            </div>
+                                            <div class="col-1">
+                                                <div class="mb-3" style="margin-top: 85%; margin-left: 50%">
+                                                    -
+                                                </div>
+                                            </div>
+                                            <div class="col-5">
+                                                <div style="margin-top: 11%; ">
+                                                    <input type="date"
+                                                           id="endDateE"
+                                                           name="endDate"
+                                                           class="form-control"
+                                                           required/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-11">
+                                                <div class="mb-3">
+                                                    <label class="form-label" for="speciality">Speciality</label>
+                                                    <input type="text"
+                                                           id="speciality"
+                                                           name="speciality"
+                                                           class="form-control"
+                                                           required/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                    data-mdb-dismiss="modal">
+                                                Close
+                                            </button>
+                                            <button type="submit" class="btn btn-primary">Save</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    {{#education}}
+                    <div class="container-fluid pt-3">
+                        <div class="col-10">
+                            <div>{{Degree}}</div>
+                            <button type="button" class="btn btn-primary btn-sm mb-2" data-mdb-toggle="modal"
+                                    data-mdb-target="#editEducation{{id}}">
+                                <i class="fa-regular fa-pen-to-square"></i>&nbsp;Update
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm mb-2" data-mdb-toggle="modal"
+                                    data-mdb-target="#deleteEducation{{id}}">
+                                <i class="fa-regular fa-trash-can"></i>&nbsp;Delete
+                            </button>
+                            <div class="modal modal-lg fade" id="editEducation{{id}}" tabindex="-1" role="dialog"
+                                 aria-labelledby="editEducation{{id}}" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <form action="/edit-education/{{userApp.id}}/{{id}}" method="POST"
+                                              name="education">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="editEducationTitle{{id}}">Edit education {{degree}}</h5>
+                                                <button type="button" class="btn-close" data-mdb-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                            </div>
+
+                                            <div class="mymodal">
+                                                <div class="row">
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="degree{{id}}">Degree<span
+                                                                class="error">*</span></label>
+                                                        <input type="text" value="{{degree}}"
+                                                               id="degree{{id}}"
+                                                               name="degree"
+                                                               class="form-control"
+                                                               required/>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="university{{id}}">University<span
+                                                                class="error">*</span></label>
+                                                        <input type="text" value="{{university}}"
+                                                               id="university{{id}}"
+                                                               name="university"
+                                                               class="form-control"
+                                                               required/>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-5">
+                                                        <div class="mb-3">
+                                                            <label class="form-label" for="startDateE{{id}}">Period</label>
+                                                            <input type="date" value="{{startDate}}"
+                                                                   id="startDateE{{id}}"
+                                                                   name="startDate"
+                                                                   class="form-control"
+                                                                   required/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <div class="mb-3" style="margin-top: 85%; margin-left: 50%">
+                                                            -
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-5">
+                                                        <div style="margin-top: 11%; ">
+                                                            <input type="date" value="{{endDate}}"
+                                                                   id="endDateE{{id}}"
+                                                                   name="endDate"
+                                                                   class="form-control"
+                                                                   required/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="speciality{{id}}">Speciality<span
+                                                                class="error">*</span></label>
+                                                        <input type="text" value="{{speciality}}"
+                                                               id="speciality{{id}}"
+                                                               name="speciality"
+                                                               class="form-control"
+                                                               required/>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                            data-mdb-dismiss="modal">
+                                                        Close
+                                                    </button>
+                                                    <button type="submit" class="btn btn-primary">Save</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal fade" id="deleteEducation{{id}}" tabindex="-1" role="dialog"
+                                 aria-labelledby="deleteEducationTitle{{id}}" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <form action="/delete-education/{{userApp.id}}/{{id}}"
+                                              method="POST">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="deleteEducationTitle{{id}}">
+                                                    Delete
+                                                    education {{degree}}</h5>
+                                                <button type="button" class="btn-close" data-mdb-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                            </div>
+                                            <div class="mymodal">
+                                                Are you sure you want to permanently delete this education?
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                        data-mdb-dismiss="modal">Close
+                                                </button>
+                                                <button type="submit" class="btn btn-primary">Delete</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <table class="table table-bordered table-sm">
+                                <tr>
+                                    <td>
+                                        University
+                                    </td>
+                                    <td>
+                                        {{university}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Period
+                                    </td>
+                                    <td>
+                                        {{startDate}} - {{endDate}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Speciality
+                                    </td>
+                                    <td>
+                                        {{speciality}}
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    {{/education}}
+                </div>
+            </div>
+        </div>
     </div>
 </main>
 </body>
@@ -168,15 +1007,15 @@
     }
 
     function deleteResume(documentName) {
-        fetch("/resumes/" + documentName, {
+        fetch("/resume/" + documentName, {
             method: "POST"
         }).then(response => {
-                if (response.ok) {
-                    location.reload();
-                } else {
-                    alert("Failed to delete the resume. Please try again.");
-                }
-            })
+            if (response.ok) {
+                location.reload();
+            } else {
+                alert("Failed to delete the resume. Please try again.");
+            }
+        })
             .catch(error => {
                 console.error("Error deleting the resume:", error);
             });

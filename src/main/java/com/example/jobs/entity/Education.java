@@ -1,8 +1,6 @@
 package com.example.jobs.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,4 +24,7 @@ public class Education {
     String speciality;
     LocalDate startDate;
     LocalDate endDate;
+    @ManyToOne
+    @JoinColumn(name = "user_app_id")
+    UserApp userApp;
 }

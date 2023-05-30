@@ -1,8 +1,6 @@
 package com.example.jobs.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,8 +20,11 @@ public class WorkExperience {
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     String id;
     String companyName;
-    String rol;
+    String role;
     LocalDate startDate;
     LocalDate endDate;
     String projectsDescription;
+    @ManyToOne
+    @JoinColumn(name = "user_app_id")
+    UserApp userApp;
 }

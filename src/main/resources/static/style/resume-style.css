@@ -16,10 +16,15 @@
     margin-top: 6%;
 }
 
-#page-title {
+.page-title {
     margin-left: 3%;
     margin-top: 1.5%;
     font-size: 1.5rem;
+}
+
+.resume-title {
+    margin-top: 1.5%;
+    font-size: 1rem;
 }
 
 body {
