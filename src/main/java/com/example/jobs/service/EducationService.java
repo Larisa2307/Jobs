@@ -2,6 +2,8 @@ package com.example.jobs.service;
 
 import com.example.jobs.entity.Education;
 import com.example.jobs.entity.UserApp;
+import com.example.jobs.mapper.EducationMapper;
+import com.example.jobs.model.EducationModel;
 import com.example.jobs.repository.EducationRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -29,5 +31,13 @@ public class EducationService {
 
     public List<Education> getAllByUserApp(UserApp userApp) {
         return educationRepository.findAllByUserApp(userApp);
+    }
+
+    public List<EducationModel> getEducationModelList(UserApp userApp) {
+        var educations = educationRepository.findAllByUserApp(userApp);
+
+        return educations.stream()
+                .map(EducationMapper::toModel)
+                .toList();
     }
 }

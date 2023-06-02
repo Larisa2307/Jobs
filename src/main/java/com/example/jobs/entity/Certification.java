@@ -1,17 +1,13 @@
 package com.example.jobs.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
-
-import java.time.LocalDate;
 
 @Getter
 @Setter
 @Entity
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class Certification {
@@ -20,8 +16,7 @@ public class Certification {
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     String id;
     String name;
-    LocalDate startDate;
-    LocalDate endDate;
+    Long year;
     @ManyToOne
     @JoinColumn(name = "user_app_id")
     UserApp userApp;

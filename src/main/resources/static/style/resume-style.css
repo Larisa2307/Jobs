@@ -24,7 +24,7 @@
 
 .resume-title {
     margin-top: 1.5%;
-    font-size: 1rem;
+    font-size: 1.2rem;
 }
 
 body {
@@ -46,4 +46,3 @@ body {
 .fileLabel:hover {
     background-color: #f9f9f9;
 }
-

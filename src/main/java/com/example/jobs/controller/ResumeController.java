@@ -36,7 +36,7 @@ public class ResumeController {
     final UserAppAnnouncementService userAppAnnouncementService;
 
     @GetMapping("/resume/{id}")
-    String getResumePage(Model model, @PathVariable String id) {
+    String getResumePage(Model model, @PathVariable String id, @RequestParam(required = false) final Boolean errors) {
         navbarService.activateNavbarTab(Page.RESUME, model);
         var userApp = userAppService.getById(id);
         Util.extractRole(model, userApp);
@@ -61,11 +61,11 @@ public class ResumeController {
             personalInfo = personalInfoService.getUserInfoByUserApp(userApp).get();
         }
 
-        var workExperiences = workExperienceService.getAllByUserApp(userApp);
+        var workExperiences = workExperienceService.getWorkExperienceModelList(userApp);
 
         var certification = certificationService.getAllByUserApp(userApp);
 
-        var education = educationService.getAllByUserApp(userApp);
+        var education = educationService.getEducationModelList(userApp);
 
         model.addAttribute("userApp", userApp);
         model.addAttribute("documentName", docName);
@@ -74,6 +74,7 @@ public class ResumeController {
         model.addAttribute("workExperiences", workExperiences);
         model.addAttribute("certification", certification);
         model.addAttribute("education", education);
+        model.addAttribute("errors", errors);
 
         return "resume";
     }
@@ -154,6 +155,10 @@ public class ResumeController {
                                    @PathVariable("user_id") final String userId) {
         var user = userAppService.getById(userId);
 
+        if (workExperience.getEndDate() != null && workExperience.getStartDate().isAfter(workExperience.getEndDate())) {
+            return "redirect:/resume/" + userId + "?errors=true";
+        }
+
         workExperience.setUserApp(user);
         workExperienceService.save(workExperience);
 
@@ -164,6 +169,10 @@ public class ResumeController {
     public String editWorkExperience(@ModelAttribute("workExperiences") WorkExperience workExperience, @PathVariable("id") final String id,
                                    @PathVariable("user_id") final String userId) {
         var user = userAppService.getById(userId);
+
+        if (workExperience.getEndDate() != null && workExperience.getStartDate().isAfter(workExperience.getEndDate())) {
+            return "redirect:/resume/" + userId + "?errors=true";
+        }
 
         workExperience.setId(id);
         workExperience.setUserApp(user);
@@ -220,6 +229,10 @@ public class ResumeController {
                                    @PathVariable("user_id") final String userId) {
         var user = userAppService.getById(userId);
 
+        if (education.getEndDate() != null && education.getStartDate().isAfter(education.getEndDate())) {
+            return "redirect:/resume/" + userId + "?errors=true";
+        }
+
         education.setUserApp(user);
         educationService.save(education);
 
@@ -230,6 +243,10 @@ public class ResumeController {
     public String editEducation(@ModelAttribute("education") Education education, @PathVariable("id") final String id,
                                     @PathVariable("user_id") final String userId) {
         var user = userAppService.getById(userId);
+
+        if (education.getEndDate() != null && education.getStartDate().isAfter(education.getEndDate())) {
+            return "redirect:/resume/" + userId + "?errors=true";
+        }
 
         education.setId(id);
         education.setUserApp(user);

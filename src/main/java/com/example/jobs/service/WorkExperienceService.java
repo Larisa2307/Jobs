@@ -2,6 +2,8 @@ package com.example.jobs.service;
 
 import com.example.jobs.entity.UserApp;
 import com.example.jobs.entity.WorkExperience;
+import com.example.jobs.mapper.WorkExperienceMapper;
+import com.example.jobs.model.WorkExperienceModel;
 import com.example.jobs.repository.WorkExperienceRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -29,5 +31,13 @@ public class WorkExperienceService {
 
     public List<WorkExperience> getAllByUserApp(UserApp userApp) {
         return workExperienceRepository.findAllByUserApp(userApp);
+    }
+
+    public List<WorkExperienceModel> getWorkExperienceModelList(UserApp userApp) {
+        var workExperiences = workExperienceRepository.findAllByUserApp(userApp);
+
+        return workExperiences.stream()
+                .map(WorkExperienceMapper::toModel)
+                .toList();
     }
 }
