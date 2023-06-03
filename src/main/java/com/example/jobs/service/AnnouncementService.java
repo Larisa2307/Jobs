@@ -43,7 +43,7 @@ public class AnnouncementService {
 
     private AnnouncementModel toAnnouncementModel(Announcement announcement, Job job, String available, int index) {
         var numberOfCandidates = userAppAnnouncementService.getUserAppByAnnouncement(announcement).size();
-        return AnnouncementMapper.toModel(announcement, job, available, numberOfCandidates, index);
+        return AnnouncementMapper.toModel(announcement, job, job.getCompany(), available, numberOfCandidates, index);
     }
 
     public void saveNewAnnouncement(AnnouncementModel announcementModel, Job job) {
@@ -61,6 +61,20 @@ public class AnnouncementService {
                 .map(announcement -> {
                     var available = announcement.getDateEnded().isAfter(LocalDate.now()) ? "Yes" : "No";
                     return toAnnouncementModel(announcement, announcement.getJob(), available, index.getAndIncrement());
+                })
+                .toList();
+    }
+
+    public List<AnnouncementModel> getAvailableAnnouncements() {
+        var announcements = announcementRepository.findAll();
+
+        var index = new AtomicInteger(1);
+        return announcements.stream()
+                .map(announcement -> {
+                    if (announcement.getDateEnded().isAfter(LocalDate.now())) {
+                        return toAnnouncementModel(announcement, announcement.getJob(), "Yes", index.getAndIncrement());
+                    }
+                    return null;
                 })
                 .toList();
     }

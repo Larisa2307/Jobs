@@ -6,6 +6,7 @@
 
     {{>fragments/links}}
     <link rel="stylesheet" href="../static/style/navigation-style.css">
+    <link rel="stylesheet" href="../static/style/dashboard-style.css">
     <!-- Page style -->
 
 </head>
@@ -16,15 +17,136 @@
 
     {{>fragments/sidebar}}
     {{>fragments/navbar}}
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </header>
 <!--Main Navigation-->
 
 <!--Main layout-->
-<main style="margin-top: 58px;">
-    <div class="container pt-4"> bun venit</div>
+<main style="margin-top: 80px; margin-left: 50px">
+    <div class="myCard card mb-3 px-5" style="width: 76rem;">
+        <p class="page-title"><b>Jobs</b></p>
+        <div class="row pt-1">
+            <div class="col-2 px-0 mt-5">
+                <label><b>Job Type:</b></label>
+                <div>
+                    <input type="checkbox" id="internshipCheckbox" onchange="filterJobs()"/>
+                    <label for="internshipCheckbox">Internship</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="partTimeCheckbox" onchange="filterJobs()"/>
+                    <label for="partTimeCheckbox">Part-time</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="fullTimeCheckbox" onchange="filterJobs()"/>
+                    <label for="fullTimeCheckbox">Full-time</label>
+                </div>
+                <br>
+                <label><b>Job Level:</b></label>
+                <div>
+                    <input type="checkbox" id="juniorCheckbox" onchange="filterJobs()"/>
+                    <label for="juniorCheckbox">Junior</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="midLevelCheckbox" onchange="filterJobs()"/>
+                    <label for="midLevelCheckbox">Mid-level</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="seniorCheckbox" onchange="filterJobs()"/>
+                    <label for="seniorCheckbox">Senior</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="managerCheckbox" onchange="filterJobs()"/>
+                    <label for="managerCheckbox">Manager</label>
+                </div>
+                <br>
+                <div class="pb-5">
+                    <label for="addressInput"><b>Address:</b></label>
+                    <input type="text" id="addressInput" class="form-control-sm" oninput="filterJobs()"/>
+                </div>
+            </div>
+            <div class="col-10">
+                <ul class="cards">
+                    {{#announcements}}
+                    <li class="cards_item">
+                        <div class="card" style="width: 15rem; height: 15rem; margin-right: 2.5%">
+                            <span class="small">{{datePosted}}</span>
+                            <p class="resume-title"><b>{{jobName}}</b></p>
+                            <span class="companyName">{{companyName}}</span>
+                            <span class="companyAddress" data-city="{{companyCity}}">{{companyCity}}</span>
+                            <span class="a-job">{{jobType}}, {{jobLevel}}</span>
+                            <a type="button" href="/job-announcement/{{userApp.id}}/{{id}}"
+                               class="btn btn-primary btn-sm mt-4 px-2" style="width: 55%;">
+                                <i class="fas fa-poll-h"></i>&nbsp; Show more
+                            </a>
+                        </div>
+                    </li>
+                    {{/announcements}}
+                </ul>
+            </div>
+        </div>
+    </div>
 </main>
 <!--Main layout-->
+<script>
+    function filterJobs() {
+        var jobTypeFilters = [
+            {id: "internshipCheckbox", type: "Internship"},
+            {id: "partTimeCheckbox", type: "Part-time"},
+            {id: "fullTimeCheckbox", type: "Full-time"}
+        ];
+        var jobLevelFilters = [
+            {id: "juniorCheckbox", level: "Junior"},
+            {id: "midLevelCheckbox", level: "Mid-level"},
+            {id: "seniorCheckbox", level: "Senior"},
+            {id: "managerCheckbox", level: "Manager"}
+        ];
+        var cards = document.getElementsByClassName("cards_item");
+        var addressInput = document.getElementById("addressInput").value.toLowerCase().trim();
 
+        var anyFilterSelected = false;
+
+        for (var i = 0; i < cards.length; i++) {
+            var jobType = cards[i].querySelector(".a-job").innerText.split(",")[0].trim();
+            var jobLevel = cards[i].querySelector(".a-job").innerText.split(",")[1].trim();
+            var companyCity = cards[i].querySelector(".companyAddress").getAttribute("data-city").toLowerCase().trim();
+            var displayCard = true;
+
+            var jobTypeFiltersChecked = jobTypeFilters.filter(filter => document.getElementById(filter.id).checked);
+            var jobLevelFiltersChecked = jobLevelFilters.filter(filter => document.getElementById(filter.id).checked);
+
+            if (jobTypeFiltersChecked.length > 0 || jobLevelFiltersChecked.length > 0 || addressInput) {
+                anyFilterSelected = true;
+            }
+
+            if (jobTypeFiltersChecked.length > 0) {
+                var jobTypeMatch = jobTypeFiltersChecked.some(filter => filter.type === jobType);
+                if (!jobTypeMatch) {
+                    displayCard = false;
+                }
+            }
+
+            if (jobLevelFiltersChecked.length > 0) {
+                var jobLevelMatch = jobLevelFiltersChecked.some(filter => filter.level === jobLevel);
+                if (!jobLevelMatch) {
+                    displayCard = false;
+                }
+            }
+
+            if (addressInput && !companyCity.includes(addressInput)) {
+                displayCard = false;
+            }
+
+            cards[i].style.display = displayCard ? "block" : "none";
+        }
+
+        if (!anyFilterSelected) {
+            for (var j = 0; j < cards.length; j++) {
+                cards[j].style.display = "block";
+            }
+        }
+
+    }
+
+</script>
 </body>
 </html>

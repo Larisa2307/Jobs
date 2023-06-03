@@ -26,8 +26,7 @@ public class JobsController {
     final UserAppAnnouncementService userAppAnnouncementService;
 
     private static List<String> jobTypes = List.of("Internship", "Part-time", "Full-time");
-    private static List<String> jobLevels = List.of("Entry level", "Junior", "Mid level", "Senior",
-            "Project manager", "Architect");
+    private static List<String> jobLevels = List.of("Junior", "Mid level", "Senior", "Manager");
 
 
     @GetMapping("/jobs-company/{id}")

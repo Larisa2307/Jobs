@@ -30,7 +30,10 @@ public class DashboardController {
         var userApp = userAppService.getById(id);
         Util.extractRole(model, userApp);
 
+        var announcements = announcementService.getAvailableAnnouncements();
+
         model.addAttribute("userApp", userApp);
+        model.addAttribute("announcements", announcements);
 
         return "dashboard";
     }

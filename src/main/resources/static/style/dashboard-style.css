@@ -1,0 +1,74 @@
+.page-title {
+    margin-top: 1.5%;
+    font-size: 2rem;
+}
+
+.resume-title {
+    margin-left: 1.5%;
+    font-size: 1.5rem;
+}
+
+.myCard {
+    background: #f1efef;
+}
+
+body {
+    background: #e7e7e7;
+}
+
+span.small {
+    margin-top: 10%;
+    margin-left: 1.5%;
+    font-size: x-small;
+    color: #948787;
+}
+
+span.companyName {
+    margin-left: 1.5%;
+}
+
+span.companyAddress {
+    margin-left: 1.5%;
+    font-size: smaller;
+    color: #948787;
+}
+
+span.job {
+    margin-top: 1.5%;
+    margin-left: 1.5%;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.cards_item {
+    display: flex;
+    padding: 1rem;
+}
+
+.card {
+   padding-left: 10%;
+}
+
+#paginationContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#paginationContainer a,
+#paginationContainer strong {
+    margin: 0 5px;
+    padding: 5px;
+    text-decoration: none;
+    color: #000;
+}
+
+#paginationContainer strong {
+    font-weight: bold;
+}

@@ -13,6 +13,7 @@ public class AnnouncementModel {
     String jobName;
     String jobType;
     String jobLevel;
+    LocalDate datePosted;
     LocalDate dateEnded;
     String description;
     String responsability;
@@ -21,4 +22,10 @@ public class AnnouncementModel {
     String skills;
     Integer numberOfCandidates;
     String available;
+    String companyName;
+    String companyDescription;
+    String companyEmail;
+    String companyPhone;
+    String companyCity;
+    String companyCountry;
 }
