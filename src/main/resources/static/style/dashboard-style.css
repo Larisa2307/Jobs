@@ -29,8 +29,12 @@ span.companyName {
 
 span.companyAddress {
     margin-left: 1.5%;
-    font-size: smaller;
-    color: #948787;
+    font-size: small;
+}
+
+span.smaller {
+    margin-left: 1.5%;
+    font-size: small;
 }
 
 span.job {
