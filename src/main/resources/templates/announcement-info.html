@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jobs - Announcement info</title>
+
+    {{>fragments/links}}
+    <link rel="stylesheet" href="../../static/style/navigation-style.css">
+    <link rel="stylesheet" href="../../static/style/announcement-info-style.css">
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Page style -->
+
+</head>
+<body>
+
+<!--Main Navigation-->
+<header>
+
+    {{>fragments/sidebar}}
+    {{>fragments/navbar}}
+
+</header>
+<!--Main Navigation-->
+
+<!--Main layout-->
+<main style="margin-top: 80px; margin-left: 50px">
+    {{#announcement}}
+    <div class="card my-5 px-3" style="width: 70rem;">
+        <div class="container pb-3">
+            <div class="row">
+                <div class="col-9">
+                    <span class="small"><i class="far fa-calendar"></i>&nbsp; {{datePosted}}</span>
+                </div>
+                <div class="col-3">
+                    <span class="small"><i class="far fa-calendar-times"></i>&nbsp; {{dateEnded}}</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-9">
+                    <p class="page-title"><b>{{jobName}}</b></p>
+                </div>
+                <div class="col-3">
+                    <button type="button"
+                            class="btn btn-primary btn-sm mt-4 px-2" style="width: 50%;">
+                        <i class="fas fa-plus"></i>&nbsp; Apply
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <span><i class="fas fa-building"></i>&nbsp;{{companyName}}</span>
+            </div>
+            <div class="row">
+                <span><i class="fas fa-map-marker-alt"></i>&nbsp; {{companyCity}}, {{companyCountry}}</span>
+            </div>
+            <div class="row">
+                <span><i class="fas fa-clock"></i>&nbsp;{{jobType}}</span>
+            </div>
+            <div class="row">
+                <span><i class="fas fa-signal"></i>&nbsp;{{jobLevel}}</span>
+            </div>
+        </div>
+    </div>
+    {{/announcement}}
+
+</main>
+</body>
+</html>

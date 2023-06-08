@@ -23,7 +23,7 @@
 
 <!--Main layout-->
 <main style="margin-top: 80px; margin-left: 50px">
-    <div class="myCard card mb-3 px-5" style="width: 76rem;">
+    <div class="myCard card m-3 px-5" style="width: 76rem;">
         <p class="page-title"><b>Jobs</b></p>
         <div class="row pt-1">
             <div class="col-2 px-0 mt-5">
@@ -68,13 +68,20 @@
                 <ul class="cards">
                     {{#announcements}}
                     <li class="cards_item">
-                        <div class="card" style="width: 15rem; height: 15rem; margin-right: 2.5%">
-                            <span class="small">{{datePosted}}</span>
+                        <div class="card" style="width: 17rem; height: 15rem; margin-right: 2.5%">
+                            <div class="row">
+                                <div class="col-6">
+                                    <span class="small"><i class="far fa-calendar"></i>&nbsp; {{datePosted}}</span>
+                                </div>
+                                <div class="col-6">
+                                    <span class="small"><i class="far fa-calendar-times"></i>&nbsp; {{dateEnded}}</span>
+                                </div>
+                            </div>
                             <p class="resume-title"><b>{{jobName}}</b></p>
-                            <span class="companyName">{{companyName}}</span>
-                            <span class="companyAddress" data-city="{{companyCity}}">{{companyCity}}</span>
-                            <span class="a-job">{{jobType}}, {{jobLevel}}</span>
-                            <a type="button" href="/job-announcement/{{userApp.id}}/{{id}}"
+                            <span class="companyName"><i class="fas fa-building"></i>&nbsp;{{companyName}}</span>
+                            <span class="companyAddress" data-city="{{companyCity}}"><i class="fas fa-map-marker-alt"></i>&nbsp; {{companyCity}}</span>
+                            <span class="a-job"><i class="fas fa-briefcase"></i>&nbsp;{{jobType}}, {{jobLevel}}</span>
+                            <a type="button" href="/announcement-info/{{userApp.id}}/{{id}}"
                                class="btn btn-primary btn-sm mt-4 px-2" style="width: 55%;">
                                 <i class="fas fa-poll-h"></i>&nbsp; Show more
                             </a>

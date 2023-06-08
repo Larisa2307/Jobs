@@ -1,0 +1,25 @@
+.mymodal {
+    margin-left: 3%;
+    margin-right: 3%;
+}
+
+.page-title {
+    margin-left: 3%;
+    margin-top: 1.5%;
+    font-size: 2rem;
+}
+
+.subtitle {
+    margin-top: 1.5%;
+    font-size: 1.2rem;
+}
+
+body {
+    background: #e7e7e7;
+}
+
+
+span.my-small {
+    margin-left: 5%;
+    color: #948787;
+}
