@@ -11,8 +11,8 @@ import static lombok.AccessLevel.PRIVATE;
 @NoArgsConstructor(access = PRIVATE)
 public class AnnouncementMapper {
 
-    public static AnnouncementModel toModel(final Announcement announcement, Job job, Company company, String available,
-                                            final int numberOfCandidates, final int index) {
+    public static AnnouncementModel toModel(final Announcement announcement, final Job job, final Company company,
+                                            final String available, final int numberOfCandidates, final int index) {
         return AnnouncementModel.builder()
                 .id(announcement.getId())
                 .jobName(job.getName())

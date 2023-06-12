@@ -20,14 +20,4 @@ public class EducationMapper {
                 .build();
     }
 
-    public static Education toEntity(EducationModel educationModel) {
-        return Education.builder()
-                .id(educationModel.getId())
-                .university(educationModel.getUniversity())
-                .degree(educationModel.getDegree())
-                .startDate(DateFormat.convertToLocalDate(educationModel.getStartDate()))
-                .endDate(DateFormat.convertToLocalDate(educationModel.getEndDate()))
-                .speciality(educationModel.getSpeciality())
-                .build();
-    }
 }

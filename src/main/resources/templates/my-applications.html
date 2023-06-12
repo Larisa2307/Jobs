@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jobs - Dashboard</title>
+
+    {{>fragments/links}}
+    <link rel="stylesheet" href="../static/style/navigation-style.css">
+    <link rel="stylesheet" href="../../static/style/dashboard-company-style.css">
+    <!-- Page style -->
+
+</head>
+<body>
+
+<!--Main Navigation-->
+<header>
+
+    {{>fragments/sidebar}}
+    {{>fragments/navbar}}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</header>
+<!--Main Navigation-->
+
+<!--Main layout-->
+<main style="margin-top: 80px; margin-left: 50px">
+    <div class="card" style="width: 70rem; height: 41rem;">
+        <p id="page-title"><b>My application</b></p>
+        <div class="container-fluid pt-4 table-responsive-lg">
+            <div class="tableFixHead">
+                <table class="table table-bordered table-sm dashboard-table">
+                    <thead>
+                    <tr>
+                        <th class="col-3">Job name</th>
+                        <th class="col-3">Company name</th>
+                        <th class="col-1">Job type</th>
+                        <th class="col-1">Job level</th>
+                        <th class="col-1">Available</th>
+                        <th class="col-2">Accepted</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {{#announcements}}
+                    <tr>
+                        <td class="col-3"><a href="/announcement-info/{{userApp.id}}/{{id}}">{{jobName}}</a></td>
+                        <td class="col-3">{{companyName}}</td>
+                        <td class="col-1">{{jobType}}</td>
+                        <td class="col-1">{{jobLevel}}</td>
+                        <td class="col-1">{{available}}</td>
+                        <td class="col-2">{{accepted}}</td>
+                    </tr>
+                    {{/announcements}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+<!--Main layout-->
+</body>
+</html>

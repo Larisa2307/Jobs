@@ -54,6 +54,7 @@ public class ResumeController {
             personalInfo.setId(UUID.randomUUID().toString());
             personalInfo.setLocation("");
             personalInfo.setLanguage("");
+            personalInfo.setActualRole("");
             personalInfo.setSkills("");
             personalInfo.setMainAreas("");
             personalInfo.setUserApp(userApp);
@@ -139,7 +140,7 @@ public class ResumeController {
     }
 
     @PostMapping("/edit-personal-info/{user_id}/{id}")
-    public String editPersonalInfo(@ModelAttribute("userInfo") PersonalInfo personalInfo, @PathVariable("id") final String id,
+    public String editPersonalInfo(@ModelAttribute("personalInfo") PersonalInfo personalInfo, @PathVariable("id") final String id,
                                    @PathVariable("user_id") final String userId) {
         var user = userAppService.getById(userId);
 

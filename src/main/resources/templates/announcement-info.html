@@ -144,12 +144,6 @@
     <script>alert("You need to upload a resume or complete your resume!")</script>
     {{/error}}
 
-    {{^duplicate}}
-    {{^error}}
-    <script>alert("You have successfully applied!")</script>
-    {{/error}}
-    {{/duplicate}}
-
     {{#duplicate}}
     <script>alert("You have already applied for this job!")</script>
     {{/duplicate}}

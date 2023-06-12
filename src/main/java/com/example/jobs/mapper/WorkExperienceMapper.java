@@ -20,14 +20,4 @@ public class WorkExperienceMapper {
                 .build();
     }
 
-    public static WorkExperience toEntry(final WorkExperienceModel workExperienceModel) {
-        return WorkExperience.builder()
-                .id(workExperienceModel.getId())
-                .companyName(workExperienceModel.getCompanyName())
-                .startDate(DateFormat.convertToLocalDate(workExperienceModel.getStartDate()))
-                .endDate(DateFormat.convertToLocalDate(workExperienceModel.getEndDate()))
-                .role(workExperienceModel.getRole())
-                .projectsDescription(workExperienceModel.getProjectsDescription())
-                .build();
-    }
 }

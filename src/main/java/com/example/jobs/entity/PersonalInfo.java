@@ -20,6 +20,7 @@ public class PersonalInfo {
     String id;
     String location;
     String language;
+    String actualRole;
     String mainAreas;
     String skills;
     @ManyToOne

@@ -56,11 +56,12 @@
                     {{firstName}} {{lastName}}
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-                    {{#isUserCompany}}
+
                     <li>
                         <a class="dropdown-item btn-outline-secondary" href="/user-profile/{{id}}">
                             <i class="far fa-user-circle"></i>&nbsp; My profile</a>
                     </li>
+                    {{#isUserCompany}}
                     <li>
                         <a class="dropdown-item btn-outline-secondary" href="/profile/{{id}}">
                             <i class="far fa-building"></i>&nbsp; Company profile</a>

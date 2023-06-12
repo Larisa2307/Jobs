@@ -149,6 +149,17 @@
                                         </div>
                                         <div class="row">
                                             <div class="mb-3">
+                                                <label class="form-label" for="actualRole{{id}}">Role<span
+                                                        class="error">*</span></label>
+                                                <input type="text" value="{{actualRole}}"
+                                                       id="actualRole{{id}}"
+                                                       name="actualRole"
+                                                       class="form-control"
+                                                       required/>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="mb-3">
                                                 <label class="form-label" for="mainAreas{{id}}">Main areas of
                                                     activity<span
                                                             class="error">*</span></label>
@@ -215,6 +226,14 @@
                                     </td>
                                     <td class="col-4">
                                         {{language}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-4">
+                                        Role
+                                    </td>
+                                    <td class="col-4">
+                                        {{actualRole}}
                                     </td>
                                 </tr>
                                 <tr>
