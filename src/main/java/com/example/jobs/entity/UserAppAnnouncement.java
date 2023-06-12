@@ -5,7 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
+
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -24,4 +27,7 @@ public class UserAppAnnouncement {
     @JoinColumn(name = "user_app_id")
     UserApp userApp;
     String accepted;
+
+    @CreationTimestamp
+    LocalDate appliedDate;
 }

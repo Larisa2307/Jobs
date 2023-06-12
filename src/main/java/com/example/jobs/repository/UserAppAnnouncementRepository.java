@@ -21,4 +21,7 @@ public interface UserAppAnnouncementRepository extends JpaRepository<UserAppAnno
 
     @Query("select ua from UserAppAnnouncement ua where ua.userApp = ?1")
     List<UserAppAnnouncement> findAnnouncementsByUserApp(UserApp userApp);
+
+    @Query("select ua from UserAppAnnouncement ua where ua.announcement = ?1")
+    List<UserAppAnnouncement> findUsersAppByAnnouncement(Announcement announcement);
 }

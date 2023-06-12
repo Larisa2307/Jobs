@@ -20,13 +20,12 @@
 <header>
 
     {{>fragments/sidebar}}
-    {{>fragments/navbar}}
 
 </header>
 <!--Main Navigation-->
 
 <!--Main layout-->
-<main style="margin-top: 80px; margin-left: 50px">
+<main style="margin-top: 30px; margin-left: 50px">
     <div class="card" style="width: 70rem; height: 12rem;">
         <p class="page-title"><b>Resume file</b></p>
 
@@ -284,7 +283,8 @@
                                         <div class="row">
                                             <div class="col-11">
                                                 <div class="mb-3">
-                                                    <label class="form-label" for="companyName">Company name</label>
+                                                    <label class="form-label" for="companyName">Company name<span
+                                                            class="error">*</span></label>
                                                     <input type="text"
                                                            id="companyName"
                                                            name="companyName"
@@ -296,7 +296,8 @@
                                         <div class="row">
                                             <div class="col-5">
                                                 <div class="mb-3">
-                                                    <label class="form-label" for="startDate">Period</label>
+                                                    <label class="form-label" for="startDate">Period<span
+                                                            class="error">*</span></label>
                                                     <input type="date"
                                                            id="startDate"
                                                            name="startDate"
@@ -321,7 +322,8 @@
                                         <div class="row">
                                             <div class="col-11">
                                                 <div class="mb-3">
-                                                    <label class="form-label" for="role">Role</label>
+                                                    <label class="form-label" for="role">Role<span
+                                                            class="error">*</span></label>
                                                     <input type="text"
                                                            id="role"
                                                            name="role"
@@ -334,7 +336,7 @@
                                             <div class="col-11">
                                                 <div class="mb-3">
                                                     <label class="form-label" for="projectsDescription">Projects
-                                                        description</label>
+                                                        description<span class="error">*</span></label>
                                                     <textarea
                                                             id="projectsDescription" rows="4"
                                                             name="projectsDescription"
@@ -395,7 +397,8 @@
                                                 <div class="row">
                                                     <div class="col-5">
                                                         <div class="mb-3">
-                                                            <label class="form-label" for="startDate{{id}}">Period</label>
+                                                            <label class="form-label" for="startDate{{id}}">Period<span
+                                                                    class="error">*</span></label>
                                                             <input type="date" id="startDate{{id}}" name="startDate"
                                                                    class="form-control" required value="{{startDate}}"/>
                                                         </div>
@@ -417,7 +420,8 @@
                                                 <div class="row">
                                                     <div class="col-11">
                                                         <div class="mb-3">
-                                                            <label class="form-label" for="role{{id}}">Role</label>
+                                                            <label class="form-label" for="role{{id}}">Role<span
+                                                                    class="error">*</span></label>
                                                             <input type="text" value="{{role}}"
                                                                    id="role{{id}}"
                                                                    name="role"
@@ -430,7 +434,7 @@
                                                     <div class="col-11">
                                                         <div class="mb-3">
                                                             <label class="form-label" for="projectsDescription{{id}}">Projects
-                                                                description</label>
+                                                                description<span class="error">*</span></label>
                                                             <textarea
                                                                     id="projectsDescription{{id}}" rows="4"
                                                                     name="projectsDescription"
@@ -534,7 +538,8 @@
                                         <div class="row">
                                             <div class="col-5">
                                                 <div class="mb-3">
-                                                    <label class="form-label" for="name">Name</label>
+                                                    <label class="form-label" for="name">Name<span
+                                                            class="error">*</span></label>
                                                     <input type="text"
                                                            id="name"
                                                            name="name"
@@ -546,7 +551,8 @@
                                         <div class="row">
                                             <div class="col-5">
                                                 <div class="mb-3">
-                                                    <label class="form-label" for="year">Year</label>
+                                                    <label class="form-label" for="year">Year<span
+                                                            class="error">*</span></label>
                                                     <input type="text"
                                                            id="year"
                                                            name="year"
@@ -596,6 +602,7 @@
                                                 <div class="row">
                                                     <div class="mb-3">
                                                         <label class="form-label" for="name{{id}}">Name<span
+                                                                class="error">*</span><span
                                                                 class="error">*</span></label>
                                                         <input type="text" value="{{name}}"
                                                                id="name{{id}}"
@@ -606,7 +613,8 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="mb-3">
-                                                        <label class="form-label" for="year{{id}}">Year</label>
+                                                        <label class="form-label" for="year{{id}}">Year<span
+                                                                class="error">*</span></label>
                                                         <input type="text" value="{{year}}"
                                                                id="year{{id}}"
                                                                name="year"
@@ -693,7 +701,8 @@
                                         <div class="row">
                                             <div class="col-11">
                                                 <div class="mb-3">
-                                                    <label class="form-label" for="degree">Degree</label>
+                                                    <label class="form-label" for="degree">Degree<span
+                                                            class="error">*</span></label>
                                                     <input type="text"
                                                            id="degree"
                                                            name="degree"
@@ -705,7 +714,8 @@
                                         <div class="row">
                                             <div class="col-11">
                                                 <div class="mb-3">
-                                                    <label class="form-label" for="university">University</label>
+                                                    <label class="form-label" for="university">University<span
+                                                            class="error">*</span></label>
                                                     <input type="text"
                                                            id="university"
                                                            name="university"
@@ -717,7 +727,8 @@
                                         <div class="row">
                                             <div class="col-5">
                                                 <div class="mb-3">
-                                                    <label class="form-label" for="startDateE">Period</label>
+                                                    <label class="form-label" for="startDateE">Period<span
+                                                            class="error">*</span></label>
                                                     <input type="date"
                                                            id="startDateE"
                                                            name="startDate"
@@ -742,7 +753,8 @@
                                         <div class="row">
                                             <div class="col-11">
                                                 <div class="mb-3">
-                                                    <label class="form-label" for="speciality">Speciality</label>
+                                                    <label class="form-label" for="speciality">Speciality<span
+                                                            class="error">*</span></label>
                                                     <input type="text"
                                                            id="speciality"
                                                            name="speciality"
@@ -792,6 +804,7 @@
                                                 <div class="row">
                                                     <div class="mb-3">
                                                         <label class="form-label" for="degree{{id}}">Degree<span
+                                                                class="error">*</span><span
                                                                 class="error">*</span></label>
                                                         <input type="text" value="{{degree}}"
                                                                id="degree{{id}}"
@@ -803,6 +816,7 @@
                                                 <div class="row">
                                                     <div class="mb-3">
                                                         <label class="form-label" for="university{{id}}">University<span
+                                                                class="error">*</span><span
                                                                 class="error">*</span></label>
                                                         <input type="text" value="{{university}}"
                                                                id="university{{id}}"
@@ -814,7 +828,8 @@
                                                 <div class="row">
                                                     <div class="col-5">
                                                         <div class="mb-3">
-                                                            <label class="form-label" for="startDateE{{id}}">Period</label>
+                                                            <label class="form-label" for="startDateE{{id}}">Period<span
+                                                                    class="error">*</span></label>
                                                             <input type="date" value="{{startDate}}"
                                                                    id="startDateE{{id}}"
                                                                    name="startDate"
@@ -839,6 +854,7 @@
                                                 <div class="row">
                                                     <div class="mb-3">
                                                         <label class="form-label" for="speciality{{id}}">Speciality<span
+                                                                class="error">*</span><span
                                                                 class="error">*</span></label>
                                                         <input type="text" value="{{speciality}}"
                                                                id="speciality{{id}}"

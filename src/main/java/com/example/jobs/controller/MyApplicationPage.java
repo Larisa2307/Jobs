@@ -28,7 +28,7 @@ public class MyApplicationPage {
         var userApp = userAppService.getById(id);
         Util.extractRole(model, userApp);
 
-        var announcements = userAppAnnouncementService.getCandidateModelList(userApp);
+        var announcements = userAppAnnouncementService.getAnnouncementModelList(userApp);
 
         model.addAttribute("userApp", userApp);
         model.addAttribute("announcements", announcements);

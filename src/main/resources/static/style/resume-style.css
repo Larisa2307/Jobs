@@ -14,10 +14,9 @@
     font-size: 1.2rem;
 }
 
-body {
-    background: #e7e7e7;
+.error {
+    color: #d71313;
 }
-
 
 .fileInput {
     display: none;

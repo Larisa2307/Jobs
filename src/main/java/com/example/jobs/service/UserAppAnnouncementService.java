@@ -3,7 +3,9 @@ package com.example.jobs.service;
 import com.example.jobs.entity.Announcement;
 import com.example.jobs.entity.UserApp;
 import com.example.jobs.entity.UserAppAnnouncement;
+import com.example.jobs.mapper.CandidateAnnouncementsMapper;
 import com.example.jobs.mapper.CandidateMapper;
+import com.example.jobs.model.CandidateAnnouncementsModel;
 import com.example.jobs.model.CandidateModel;
 import com.example.jobs.repository.UserAppAnnouncementRepository;
 import lombok.AllArgsConstructor;
@@ -36,6 +38,13 @@ public class UserAppAnnouncementService {
         return userAppAnnouncementRepository.findAnnouncementsByUserApp(userApp);
     }
 
+    private CandidateAnnouncementsModel toCandidateAnnouncementsModel(UserAppAnnouncement userAppAnnouncement, String available) {
+        if (userAppAnnouncement.getAccepted() == null) {
+            userAppAnnouncement.setAccepted("Pending response");
+        }
+        return CandidateAnnouncementsMapper.toModel(userAppAnnouncement, available);
+    }
+
     private CandidateModel toCandidateModel(UserAppAnnouncement userAppAnnouncement, String available) {
         if (userAppAnnouncement.getAccepted() == null) {
             userAppAnnouncement.setAccepted("Pending response");
@@ -43,8 +52,19 @@ public class UserAppAnnouncementService {
         return CandidateMapper.toModel(userAppAnnouncement, available);
     }
 
-    public List<CandidateModel> getCandidateModelList(UserApp userApp) {
+    public List<CandidateAnnouncementsModel> getAnnouncementModelList(UserApp userApp) {
         var announcementsByUserApp = userAppAnnouncementRepository.findAnnouncementsByUserApp(userApp);
+
+        return announcementsByUserApp.stream()
+                .map(userAppAnnouncement -> {
+                    var available = userAppAnnouncement.getAnnouncement().getDateEnded().isAfter(LocalDate.now()) ? "Yes" : "No";
+                    return toCandidateAnnouncementsModel(userAppAnnouncement, available);
+                })
+                .toList();
+    }
+
+    public List<CandidateModel> getCandidateModelList(Announcement announcement) {
+        var announcementsByUserApp = userAppAnnouncementRepository.findUsersAppByAnnouncement(announcement);
 
         return announcementsByUserApp.stream()
                 .map(userAppAnnouncement -> {
@@ -53,4 +73,5 @@ public class UserAppAnnouncementService {
                 })
                 .toList();
     }
+
 }

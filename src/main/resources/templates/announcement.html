@@ -15,12 +15,11 @@
 <!--Main Navigation-->
 <header>
     {{>fragments/sidebar}}
-    {{>fragments/navbar}}
 </header>
 
 <!--Main layout-->
 {{#userApp}}
-<main style="margin-top: 80px; margin-left: 50px">
+<main style="margin-top: 30px; margin-left: 50px">
     <div class="card" style="width: 70rem; height: 41rem;">
         <p id="page-title"><b>Announcement</b></p>
         <a type="button" href="/jobs-company/{{id}}" class="btn btn-primary btn-sm" id="addAnnouncement"
@@ -39,7 +38,7 @@
                         <th class="col3">End date</th>
                         <th class="col3">Skills</th>
                         <th class="col3 remove-description">Description</th>
-                        <th class="col3">Responsability</th>
+                        <th class="col3">Responsibility</th>
                         <th class="col3">Requirement</th>
                         <th class="col3">Benefit</th>
                     </tr>
@@ -76,7 +75,7 @@
                         <td class="col4">{{dateEnded}}</td>
                         <td class="col3">{{skills}}</td>
                         <td class="col3 remove-description">{{description}}</td>
-                        <td class="col3">{{responsability}}</td>
+                        <td class="col3">{{responsibility}}</td>
                         <td class="col3">{{requirement}}</td>
                         <td class="col3">{{benefit}}</td>
                         <!-- Modal Edit -->
@@ -168,12 +167,12 @@
                                             <div class="row">
                                                 <div class="col-12">
                                                     <label class="form-label"
-                                                           for="responsability{{index}}">Responsabilities<span
+                                                           for="responsibility{{index}}">Responsibility<span
                                                             class="error">*</span></label>
-                                                    <textarea id="responsability{{index}}" rows="4"
-                                                              name="responsability"
+                                                    <textarea id="responsibility{{index}}" rows="4"
+                                                              name="responsibility"
                                                               class="form-control"
-                                                              required>{{responsability}}</textarea>
+                                                              required>{{responsibility}}</textarea>
                                                 </div>
                                             </div>
                                             <br>

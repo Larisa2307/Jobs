@@ -24,7 +24,7 @@ public class AnnouncementMapper {
                 .description(announcement.getDescription())
                 .benefit(announcement.getBenefit())
                 .requirement(announcement.getRequirement())
-                .responsibility(announcement.getResponsability())
+                .responsibility(announcement.getResponsibility())
                 .index(index)
                 .numberOfCandidates(numberOfCandidates)
                 .available(available)
@@ -44,7 +44,7 @@ public class AnnouncementMapper {
                 .description(announcementModel.getDescription())
                 .benefit(announcementModel.getBenefit())
                 .requirement(announcementModel.getRequirement())
-                .responsability(announcementModel.getResponsibility())
+                .responsibility(announcementModel.getResponsibility())
                 .build();
     }
 }

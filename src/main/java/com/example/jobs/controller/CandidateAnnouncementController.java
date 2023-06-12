@@ -32,7 +32,7 @@ public class CandidateAnnouncementController {
         log.info("Candidates for announcement " + announcement.getJob().getName() +
                 " for company: " + announcement.getJob().getCompany().getCompanyName());
 
-        var candidates = userAppAnnouncementService.getUserAppByAnnouncement(announcement);
+        var candidates = userAppAnnouncementService.getCandidateModelList(announcement);
         model.addAttribute("announcement", announcementModel);
         model.addAttribute("candidates", candidates);
         model.addAttribute("userApp", userApp);

@@ -14,15 +14,11 @@
     font-size: 2rem;
 }
 
-body {
-    background: #e7e7e7;
-}
 #myForm {
     padding: 0 0 0 30px;
 }
 
-
-#description, #requirement, #responsability, #skills {
+#description, #requirement, #responsibility, #skills {
     width: 90%;
     height: 50%;
 }
@@ -82,6 +78,7 @@ tbody tr {
 .col3 {
     min-width: 250px;
 }
+
 
 .col4 {
     min-width: 200px;

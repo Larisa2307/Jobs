@@ -16,11 +16,10 @@
 <header>
 
     {{>fragments/sidebar}}
-    {{>fragments/navbar}}
 
 </header>
 
-<main style="margin-top: 70px; margin-left: 50px">
+<main style="margin-top: 30px; margin-left: 50px">
     <div class="card" style="width: 70rem; height: 28rem;">
         <p class="page-title"><b>Announcement</b></p>
         <div id="myForm">
@@ -56,7 +55,7 @@
                               class="form-control"
                               disabled>{{skills}}</textarea>
                 </div>
-                <div class="col-6 mb-2">
+                <div class="col-6 ">
                     <label for="description"><b>Description</b></label><br>
                     <textarea id="description" rows="4"
                               name="description"
@@ -74,11 +73,11 @@
                               disabled>{{requirement}}</textarea>
                 </div>
                 <div class="col-6">
-                    <label for="responsability"><b>Responsabilities</b></label><br>
-                    <textarea id="responsability" rows="4"
-                              name="responsability"
+                    <label for="responsibility"><b>Responsibility</b></label><br>
+                    <textarea id="responsibility" rows="4"
+                              name="responsibility"
                               class="form-control"
-                              disabled>{{responsability}}</textarea>
+                              disabled>{{responsibility}}</textarea>
                 </div>
             </div>
         </div>
@@ -98,19 +97,35 @@
                         <th class="col2">Last Name</th>
                         <th class="col3">Email</th>
                         <th class="col2">Phone number</th>
-                        <th class="col1">Accepted</th>
+                        <th class="col2">Applied date</th>
+                        <th class="col4">Accepted</th>
                     </tr>
                     </thead>
 
                     <tbody>
                     {{#candidates}}
                     <tr>
-                        <td class="col1"></td>
+                        <td class="col1">
+                            <div>
+                                <a class="hidden-arrow fa fa-ellipsis-v"
+                                   role="button" data-mdb-toggle="dropdown">
+                                </a>
+                                <ul class="dropdown-menu" style="min-width: 1px;">
+                                    <li>
+                                        <a type="button" href=""
+                                           class="btn btn-sm btn-outline-secondary">
+                                            <i class="fas fa-poll-h"></i>&nbsp;
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
                         <td class="col2">{{firstName}}</td>
                         <td class="col2">{{lastName}}</td>
                         <td class="col3">{{email}}</td>
-                        <td class="col2">{{phoneNumber}}</td>
-                        <td class="col2">{{accepted}}</td>
+                        <td class="col2">{{phone}}</td>
+                        <td class="col2">{{appliedDate}}</td>
+                        <td class="col4">{{accepted}}</td>
                     </tr>
                     {{/candidates}}
                     </tbody>

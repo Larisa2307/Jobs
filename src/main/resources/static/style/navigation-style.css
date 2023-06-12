@@ -1,5 +1,5 @@
 body {
-    background-color: #fbfbfb;
+    background-color: #e7e7e7;
 }
 
 @media (min-width: 991.98px) {
@@ -14,9 +14,10 @@ body {
     top: 0;
     bottom: 0;
     left: 0;
-    padding: 58px 0 0; /* Height of navbar */
+    /* Height of navbar */
+    padding: 2% 0;
     box-shadow: 0 2px 5px 0 rgb(0 0 0), 0 2px 10px 0 rgb(0 0 0);
-    width: 280px;
+    width: 300px;
     z-index: 600;
 }
 
@@ -25,28 +26,8 @@ body {
     padding-right: 100px;
 }
 
-@media (max-width: 1090px) {
-    .container-custom {
-        padding-left: 20px;
-        padding-right: 20px;
-    }
-}
-
-@media (max-width: 991.98px) {
-    .sidebar {
-        width: 100%;
-    }
-
-    main {
-        padding-left: 0;
-    }
-}
-
-@media (max-width: 800px) {
-    .container-custom {
-        padding-left: 0;
-        padding-right: 0;
-    }
+.vertical-center {
+    text-align: center;
 }
 
 .sidebar .active {
@@ -61,4 +42,19 @@ body {
     padding-top: 0.5rem;
     overflow-x: hidden;
     overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+}
+
+.imageContainer {
+    padding-bottom: 40%;
+}
+
+.image {
+    width: 180px;
+    height: 50px;
+    padding-left: 27%;
+}
+
+.profile {
+    padding-top: 100%;
+    padding-left: 20%;
 }

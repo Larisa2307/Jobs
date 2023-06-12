@@ -26,7 +26,7 @@ public class Announcement {
     LocalDate dateEnded;
     String skills;
     String description;
-    String responsability;
+    String responsibility;
     String requirement;
     String benefit;
 }

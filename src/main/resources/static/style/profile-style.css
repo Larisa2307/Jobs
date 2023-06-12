@@ -3,10 +3,6 @@
     src: url('../fonts/Trispace.ttf');
 }
 
-body {
-    background: #e7e7e7;
-}
-
 #page-title {
     font-size: 2rem;
 }
