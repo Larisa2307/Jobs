@@ -4,14 +4,27 @@
 }
 
 .page-title {
-    margin-left: 3%;
     margin-top: 1.5%;
     font-size: 2rem;
 }
 
 .subtitle {
+    margin-left: 1.5%;
     margin-top: 1.5%;
+    font-size: 1.5rem;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.miniTitle {
     font-size: 1.2rem;
+    margin-left: 1.5%;
+}
+
+.text {
+    margin-left: 1.5%;
+    margin-bottom: 0;
+    padding-bottom: 0;
 }
 
 body {

@@ -16,7 +16,7 @@ public class AnnouncementModel {
     LocalDate datePosted;
     LocalDate dateEnded;
     String description;
-    String responsability;
+    String responsibility;
     String requirement;
     String benefit;
     String skills;

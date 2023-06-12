@@ -28,7 +28,7 @@
 <!--Main layout-->
 <main style="margin-top: 80px; margin-left: 50px">
     {{#announcement}}
-    <div class="card my-5 px-3" style="width: 70rem;">
+    <div class="card mt-5 px-3" style="width: 70rem;">
         <div class="container pb-3">
             <div class="row">
                 <div class="col-9">
@@ -43,26 +43,117 @@
                     <p class="page-title"><b>{{jobName}}</b></p>
                 </div>
                 <div class="col-3">
-                    <button type="button"
-                            class="btn btn-primary btn-sm mt-4 px-2" style="width: 50%;">
-                        <i class="fas fa-plus"></i>&nbsp; Apply
+                    <button type="button" class="btn btn-primary btn-sm mt-4 px-2" id="applied"
+                            data-mdb-toggle="modal" data-mdb-target="#apply" style="width: 50%;">
+                        <i class="fa-solid fa-plus"></i>&nbsp;&nbsp;Apply
                     </button>
+                    <div class="modal modal-lg fade" id="apply" tabindex="-1" role="dialog"
+                         aria-labelledby="applyTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <form action="/apply/{{userApp.id}}/{{id}}" method="POST">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="applyTitle">Apply to {{jobName}}</h5>
+                                        <button type="button" class="btn-close" data-mdb-dismiss="modal"
+                                                aria-label="Close"></button>
+                                    </div>
+
+                                    <div class="mymodal">
+                                        <span>Are you sure you want to apply for this job?</span>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                                data-mdb-dismiss="modal">
+                                            Close
+                                        </button>
+                                        <button type="submit" class="btn btn-primary">Apply</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="row">
-                <span><i class="fas fa-building"></i>&nbsp;{{companyName}}</span>
+                <div class="col-4">
+                    <i class="fas fa-building"></i>&nbsp;{{companyName}}
+                </div>
+                <div class="col-3">
+                    <i class="fas fa-clock"></i>&nbsp;{{jobType}}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-4">
+                    <i class="fas fa-map-marker-alt"></i>&nbsp; {{companyCity}}, {{companyCountry}}
+                </div>
+                <div class="col-3">
+                    <i class="fas fa-signal"></i>&nbsp;{{jobLevel}}
+                </div>
             </div>
             <div class="row">
-                <span><i class="fas fa-map-marker-alt"></i>&nbsp; {{companyCity}}, {{companyCountry}}</span>
+
             </div>
             <div class="row">
-                <span><i class="fas fa-clock"></i>&nbsp;{{jobType}}</span>
+                <div class="col-5">
+                    <i class="fa fa-phone-square"></i>&nbsp;{{companyPhone}}
+                </div>
             </div>
             <div class="row">
-                <span><i class="fas fa-signal"></i>&nbsp;{{jobLevel}}</span>
+                <div class="col-12">
+                    <i class="fa fa-envelope"></i>&nbsp;{{companyEmail}}
+                </div>
             </div>
         </div>
     </div>
+    <br>
+    <div class="card" style="width: 70rem; margin-bottom: 2rem;">
+        <div class="container pb-3">
+            <p class="subtitle"><b>Company description</b></p>
+            <p class="text">{{companyDescription}}</p>
+        </div>
+
+        <div class="container pb-3">
+            <p class="subtitle"><b>Job description</b></p>
+            <p class="text">{{description}}</p>
+        </div>
+
+        <div class="container pb-3">
+            <p class="subtitle"><b>Skills</b></p>
+            <p class="text">{{skills}}</p>
+        </div>
+
+        <div class="container pb-3">
+            <p class="subtitle"><b>Responsibility</b></p>
+            <p class="text">{{responsibility}}</p>
+        </div>
+
+        <div class="container pb-3">
+            <p class="subtitle"><b>Requirement</b></p>
+            <p class="text">{{requirement}}</p>
+        </div>
+
+        {{^areBenefits}}
+        <div class="container pb-3">
+            <p class="subtitle"><b>Benefits</b></p>
+            <p class="text">{{benefit}}</p>
+        </div>
+        {{/areBenefits}}
+    </div>
+    {{#error}}
+    <script>alert("You need to upload a resume or complete your resume!")</script>
+    {{/error}}
+
+    {{^duplicate}}
+    {{^error}}
+    <script>alert("You have successfully applied!")</script>
+    {{/error}}
+    {{/duplicate}}
+
+    {{#duplicate}}
+    <script>alert("You have already applied for this job!")</script>
+    {{/duplicate}}
+
     {{/announcement}}
 
 </main>

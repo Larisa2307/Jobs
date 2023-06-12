@@ -24,7 +24,7 @@ public class AnnouncementMapper {
                 .description(announcement.getDescription())
                 .benefit(announcement.getBenefit())
                 .requirement(announcement.getRequirement())
-                .responsability(announcement.getResponsability())
+                .responsibility(announcement.getResponsability())
                 .index(index)
                 .numberOfCandidates(numberOfCandidates)
                 .available(available)
@@ -33,6 +33,7 @@ public class AnnouncementMapper {
                 .companyDescription(company.getDescription())
                 .companyCity(company.getCity())
                 .companyCountry(company.getCountry())
+                .companyPhone(company.getPhoneNumber())
                 .build();
     }
 
@@ -43,7 +44,7 @@ public class AnnouncementMapper {
                 .description(announcementModel.getDescription())
                 .benefit(announcementModel.getBenefit())
                 .requirement(announcementModel.getRequirement())
-                .responsability(announcementModel.getResponsability())
+                .responsability(announcementModel.getResponsibility())
                 .build();
     }
 }

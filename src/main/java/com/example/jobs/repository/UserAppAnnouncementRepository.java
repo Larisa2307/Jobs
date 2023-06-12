@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface UserAppAnnouncementRepository extends JpaRepository<UserAppAnnouncement, String> {
@@ -18,4 +19,7 @@ public interface UserAppAnnouncementRepository extends JpaRepository<UserAppAnno
 
     @Query("select ua.userApp, ua.accepted from UserAppAnnouncement ua join Announcement a on ua.announcement = a where a = ?1")
     List<CandidateDto> findCandidatesByAnnouncement(Announcement announcement);
+
+    @Query("select ua from UserAppAnnouncement ua where ua.userApp = ?1 and ua.announcement = ?2")
+    Optional<UserAppAnnouncement> findByUserAndAnnouncement(UserApp userApp, Announcement announcement);
 }
