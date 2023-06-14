@@ -17,48 +17,49 @@
             {{/isUserCompany}}
         </div>
         &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-        <div class="list-group list-group-flush mx-3 mt-4">
-            {{#isCandidate}}
-            <a href="/dashboard/{{id}}" class="list-group-item list-group-item-action ripple
+        <div class="container">
+            <div class="list-group list-group-flush mx-3 mt-4">
+                {{#isCandidate}}
+                <a href="/dashboard/{{id}}" class="list-group-item list-group-item-action ripple
         {{#dashboardActive}}active{{/dashboardActive}}" aria-current="true">
-                <i class="fas fa-chart-line fa-fw me-3"></i><span>Dashboard</span>
-            </a>
+                    <i class="fas fa-chart-line fa-fw me-3"></i><span>Dashboard</span>
+                </a>
 
-            <a href="/resume/{{id}}" class="list-group-item list-group-item-action ripple
+                <a href="/resume/{{id}}" class="list-group-item list-group-item-action ripple
         {{#resumeActive}}active{{/resumeActive}}" aria-current="true">
-                <i class="far fa-file-alt fa-fw me-3"></i><span>Resume</span>
-            </a>
+                    <i class="far fa-file-alt fa-fw me-3"></i><span>Resume</span>
+                </a>
 
-            <a href="/my-applications/{{id}}" class="list-group-item list-group-item-action ripple
+                <a href="/my-applications/{{id}}" class="list-group-item list-group-item-action ripple
         {{#myApplicationActive}}active{{/myApplicationActive}}" aria-current="true">
-                <i class="fas fa-list fa-fw me-3"></i><span>My applications</span>
-            </a>
-            {{/isCandidate}}
+                    <i class="fas fa-list fa-fw me-3"></i><span>My applications</span>
+                </a>
+                {{/isCandidate}}
 
-            {{#isUserCompany}}
-            <a href="/dashboard-company/{{id}}" class="list-group-item list-group-item-action ripple
+                {{#isUserCompany}}
+                <a href="/dashboard-company/{{id}}" class="list-group-item list-group-item-action ripple
         {{#dashboardActive}}active{{/dashboardActive}}" aria-current="true">
-                <i class="fas fa-chart-line fa-fw me-3"></i><span>Dashboard</span>
-            </a>
+                    <i class="fas fa-chart-line fa-fw me-3"></i><span>Dashboard</span>
+                </a>
 
-            <a href="/jobs-company/{{id}}" class="list-group-item list-group-item-action py-2 ripple
+                <a href="/jobs-company/{{id}}" class="list-group-item list-group-item-action py-2 ripple
         {{#jobs-companyActive}}active{{/jobs-companyActive}}" aria-current="true">
-                <i class="fas fa-briefcase fa-fw me-3"></i><span>Jobs company</span>
-            </a>
-            {{^isDecider}}
-            <a href="/announcement/{{id}}" class="list-group-item list-group-item-action py-2 ripple
+                    <i class="fas fa-briefcase fa-fw me-3"></i><span>Jobs company</span>
+                </a>
+                {{^isDecider}}
+                <a href="/announcement/{{id}}" class="list-group-item list-group-item-action py-2 ripple
         {{#announcementActive}}active{{/announcementActive}}">
-                <i class="fa-solid fa-list-ul fa-fw me-3"></i><span>Announcement</span>
-            </a>
-            {{/isDecider}}
-            {{/isUserCompany}}
-            {{#isAdmin}}
-            <a href="/users-company/{{id}}" class="list-group-item list-group-item-action py-2 ripple
+                    <i class="fa-solid fa-list-ul fa-fw me-3"></i><span>Announcement</span>
+                </a>
+                {{/isDecider}}
+                {{/isUserCompany}}
+                {{#isAdmin}}
+                <a href="/users-company/{{id}}" class="list-group-item list-group-item-action py-2 ripple
         {{#users-companyActive}}active{{/users-companyActive}}">
-                <i class="fa fa-users fa-fw me-3"></i><span>Users company</span>
-            </a>
-            {{/isAdmin}}
-
+                    <i class="fa fa-users fa-fw me-3"></i><span>Users company</span>
+                </a>
+                {{/isAdmin}}
+            </div>
         </div>
         <div class="profile">
             <!-- Avatar -->

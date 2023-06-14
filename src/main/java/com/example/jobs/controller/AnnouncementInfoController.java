@@ -29,7 +29,7 @@ public class AnnouncementInfoController {
     final UserAppAnnouncementService userAppAnnouncementService;
 
     @GetMapping("/announcement-info/{user_id}/{id}")
-    String getAnnouncementPage(Model model, @PathVariable("user_id") String userId, @PathVariable("id") String id,
+    String getAnnouncementInfoPage(Model model, @PathVariable("user_id") String userId, @PathVariable("id") String id,
                                @RequestParam(required = false) final Boolean error,
                                @RequestParam(required = false) final Boolean duplicate) {
         navbarService.activateNavbarTab(Page.DASHBOARD, model);
@@ -52,8 +52,25 @@ public class AnnouncementInfoController {
         return "announcement-info";
     }
 
+    @GetMapping("/announcement-info/{id}")
+    String getMainAnnouncementInfoPage(Model model, @PathVariable("id") String id) {
+
+        var announcementModel = announcementService.getAnnouncementModelById(id);
+        log.info("Announcement info " + announcementModel.getJobName() +
+                " for company: " + announcementModel.getCompanyName());
+
+
+        boolean areBenefits = announcementModel.getBenefit() == null || "".equals(announcementModel.getBenefit());
+
+        model.addAttribute("announcement", announcementModel);
+        model.addAttribute("areBenefits", areBenefits);
+
+        return "main-announcement-info";
+    }
+
+
     @PostMapping("/apply/{user_id}/{id}")
-    public String addJob(@PathVariable("id") String id, @PathVariable("user_id") final String userId) {
+    public String applyPost(@PathVariable("id") String id, @PathVariable("user_id") final String userId) {
         var user = userAppService.getById(userId);
         var announcementModel = announcementService.getAnnouncementModelById(id);
         var announcement = announcementService.getAnnouncementById(id);
@@ -81,6 +98,13 @@ public class AnnouncementInfoController {
         userAppAnnouncementService.save(userAppAnnouncement);
 
         return "redirect:/announcement-info/" + userId + "/" + id;
+    }
+
+    @PostMapping("/apply")
+    public String applyPost() {
+
+
+        return "main-announcement-info";
     }
 
 }

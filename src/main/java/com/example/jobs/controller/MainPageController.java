@@ -28,6 +28,9 @@ public class MainPageController {
     @GetMapping("/main-page")
     String getMainPage(Model model) {
 
+        var announcements = announcementService.getAvailableAnnouncements();
+
+        model.addAttribute("announcements", announcements);
         return "main-page";
     }
 
