@@ -35,6 +35,12 @@ public class AnnouncementService {
         return announcementRepository.existsByJob(job).isPresent();
     }
 
+    public void saveNewAnnouncement(AnnouncementModel announcementModel, Job job) {
+        Announcement announcement = toAnnouncement(announcementModel, job);
+        announcement.setId(announcementModel.getId());
+        announcementRepository.save(announcement);
+    }
+
     private Announcement toAnnouncement(AnnouncementModel announcementModel, Job job) {
         Announcement announcement = AnnouncementMapper.toEntry(announcementModel);
         announcement.setJob(job);
@@ -46,11 +52,8 @@ public class AnnouncementService {
         return AnnouncementMapper.toModel(announcement, job, job.getCompany(), available, numberOfCandidates, index);
     }
 
-    public void saveNewAnnouncement(AnnouncementModel announcementModel, Job job) {
-        Announcement announcement = toAnnouncement(announcementModel, job);
-        announcement.setId(announcementModel.getId());
-
-        announcementRepository.save(announcement);
+    public Announcement getAnnouncementByJob(Job job) {
+        return announcementRepository.findByJob(job);
     }
 
     public List<AnnouncementModel> getAnnouncementModelList(Company company) {
@@ -83,9 +86,5 @@ public class AnnouncementService {
         var announcement = announcementRepository.findById(id).get();
         var available = announcement.getDateEnded().isAfter(LocalDate.now()) ? "Yes" : "No";
         return toAnnouncementModel(announcement, announcement.getJob(), available, 1);
-    }
-
-    public Announcement getAnnouncementByJob(Job job) {
-        return announcementRepository.findByJob(job);
     }
 }

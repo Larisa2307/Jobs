@@ -32,3 +32,8 @@
 .fileLabel:hover {
     background-color: #f9f9f9;
 }
+
+.my-cont {
+    padding-left: 3%;
+    padding-right: 3%;
+}

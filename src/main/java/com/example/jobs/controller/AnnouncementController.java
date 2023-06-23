@@ -11,9 +11,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-@RequiredArgsConstructor
-@Controller
+
+
 @Slf4j
+@Controller
+@RequiredArgsConstructor
+@RequestMapping
 public class AnnouncementController {
 
     final JobService jobService;
@@ -63,3 +66,4 @@ public class AnnouncementController {
         return "redirect:/announcement/" + userId;
     }
 }
+

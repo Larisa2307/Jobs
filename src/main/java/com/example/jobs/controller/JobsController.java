@@ -30,7 +30,7 @@ public class JobsController {
 
 
     @GetMapping("/jobs-company/{id}")
-    String getDashboardEmployerPage(Model model, @PathVariable String id, @RequestParam(required = false) final Boolean duplicate) {
+    String getJobsPage(Model model, @PathVariable String id, @RequestParam(required = false) final Boolean duplicate) {
         navbarService.activateNavbarTab(Page.JOBS_COMPANY, model);
 
         var userApp = userAppService.getById(id);

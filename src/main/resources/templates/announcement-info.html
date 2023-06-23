@@ -28,7 +28,7 @@
 <main style="margin-top: 30px; margin-left: 50px">
     {{#announcement}}
     <div class="card mt-5 px-3" style="width: 70rem;">
-        <div class="container pb-3">
+        <div class="my-cont pb-3">
             <div class="row">
                 <div class="col-9">
                     <span class="small"><i class="far fa-calendar"></i>&nbsp; {{datePosted}}</span>
@@ -107,35 +107,35 @@
     </div>
     <br>
     <div class="card" style="width: 70rem; margin-bottom: 2rem;">
-        <div class="container pb-3">
+        <div class="my-cont pb-3">
             <p class="subtitle"><b>Company description</b></p>
-            <p class="text">{{companyDescription}}</p>
+            <pre class="text">{{companyDescription}}</pre>
         </div>
 
-        <div class="container pb-3">
+        <div class="my-cont pb-3">
             <p class="subtitle"><b>Job description</b></p>
-            <p class="text">{{description}}</p>
+            <pre class="text">{{description}}</pre>
         </div>
 
-        <div class="container pb-3">
+        <div class="my-cont pb-3">
             <p class="subtitle"><b>Skills</b></p>
-            <p class="text">{{skills}}</p>
+            <pre class="text">{{skills}}</pre>
         </div>
 
-        <div class="container pb-3">
+        <div class="my-cont pb-3">
             <p class="subtitle"><b>Responsibility</b></p>
-            <p class="text">{{responsibility}}</p>
+            <pre class="text">{{responsibility}}</pre>
         </div>
 
-        <div class="container pb-3">
+        <div class="my-cont pb-3">
             <p class="subtitle"><b>Requirement</b></p>
-            <p class="text">{{requirement}}</p>
+            <pre class="text">{{requirement}}</pre>
         </div>
 
         {{^areBenefits}}
-        <div class="container pb-3">
+        <div class="my-cont pb-3">
             <p class="subtitle"><b>Benefits</b></p>
-            <p class="text">{{benefit}}</p>
+            <pre class="text">{{benefit}}</pre>
         </div>
         {{/areBenefits}}
     </div>
@@ -151,4 +151,8 @@
 
 </main>
 </body>
-</html>
+<script>
+    function replaceNewLines(text) {
+        return text.replace('\n', "<br>");
+    }
+</script></html>

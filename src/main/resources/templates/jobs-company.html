@@ -139,6 +139,7 @@
                                    role="button" data-mdb-toggle="dropdown">
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end" style="min-width: 1px;">
+                                    {{^isDecider}}
                                     <li>
                                         <button type="button" class="btn btn-sm btn-outline-secondary" data-mdb-toggle="modal"
                                                 style="width: 100%;"
@@ -146,7 +147,7 @@
                                             <i class="fa-solid fa-plus"></i>&nbsp; Add announcement
                                         </button>
                                     </li>
-                                    {{^isOperator}}
+                                    {{/isDecider}}
                                     <li>
                                         <button type="button" class="btn btn-sm btn-outline-secondary" data-mdb-toggle="modal"
                                                 style="width: 100%;"
@@ -161,7 +162,6 @@
                                             <i class="fa-regular fa-trash-can"></i>&nbsp;Delete
                                         </button>
                                     </li>
-                                    {{/isOperator}}
                                 </ul>
                             </div>
                         </td>

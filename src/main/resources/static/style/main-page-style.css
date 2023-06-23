@@ -1,11 +1,12 @@
 .page-title {
     margin-top: 1.5%;
-    font-size: 2rem;
+    font-size: 1.4rem;
 }
 
 .resume-title {
-    margin-left: 1.5%;
-    font-size: 1.7rem;
+    font-size: 1.4rem;
+    margin-left: -5%;
+    margin-top: 5%;
 }
 
 .myCard {
@@ -24,22 +25,22 @@ span.small {
 }
 
 span.companyName {
-    margin-left: 1.5%;
+    margin-left: -5%;
 }
 
 span.companyAddress {
-    margin-left: 1.5%;
+    margin-left: -5%;
     font-size: small;
 }
 
 span.smaller {
-    margin-left: 1.5%;
+    margin-left: -5%;
     font-size: small;
 }
 
 span.job {
     margin-top: 1.5%;
-    margin-left: 1.5%;
+    margin-left: -5%;
 }
 
 .cards {
@@ -76,3 +77,8 @@ span.job {
 #paginationContainer strong {
     font-weight: bold;
 }
+
+.my-button {
+    margin-left: 15%;
+}
+

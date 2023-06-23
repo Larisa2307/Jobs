@@ -25,6 +25,10 @@
     margin-left: 1.5%;
     margin-bottom: 0;
     padding-bottom: 0;
+    font-family: Arial, sans-serif;;
+    font-size: inherit;
+    line-height: inherit;
+    white-space: pre-wrap;
 }
 
 span.my-small {
