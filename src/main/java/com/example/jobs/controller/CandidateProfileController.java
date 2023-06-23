@@ -28,9 +28,8 @@ public class CandidateProfileController {
     final UserAppAnnouncementService userAppAnnouncementService;
 
     @GetMapping("/candidate/{userId}/{id}")
-    String getResumePage(Model model, @PathVariable("id") String id, @PathVariable("userId") String userId,
-                         @RequestParam(required = false) final Boolean errors) {
-        navbarService.activateNavbarTab(Page.RESUME, model);
+    String getResumePage(Model model, @PathVariable("id") String id, @PathVariable("userId") String userId) {
+
         var userApp = userAppService.getById(userId);
         Util.extractRole(model, userApp);
 
@@ -52,14 +51,18 @@ public class CandidateProfileController {
         var education = educationService.getEducationModelList(candidate);
 
         model.addAttribute("userApp", userApp);
+        model.addAttribute("candidate", candidate);
         model.addAttribute("documentName", docName);
-        model.addAttribute("isDocument", documentService.getDocumentByUserApp(userApp).isPresent());
-        model.addAttribute("personalInfo", personalInfo);
+        model.addAttribute("isDocument", documentService.getDocumentByUserApp(candidate).isPresent());
+        model.addAttribute("personalInfo", personalInfo.get());
+        model.addAttribute("hasPersonalInfo", personalInfo.isPresent());
         model.addAttribute("workExperiences", workExperiences);
+        model.addAttribute("hasWorkExperiences", workExperiences.isEmpty());
         model.addAttribute("certification", certification);
+        model.addAttribute("hasCertification", certification.isEmpty());
         model.addAttribute("education", education);
-        model.addAttribute("errors", errors);
+        model.addAttribute("hasEducation", education.isEmpty());
 
-        return "candidate-profile";
+        return "candidate";
     }
 }

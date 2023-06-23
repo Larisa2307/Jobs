@@ -23,7 +23,6 @@ public class CandidateAnnouncementController {
 
     @GetMapping("/candidate-announcement/{user_id}/{id}")
     String getCandidatesPage(Model model,  @PathVariable("user_id") String userId, @PathVariable("id") String id) {
-        navbarService.activateNavbarTab(Page.DASHBOARD, model);
 
         var announcement = announcementService.getAnnouncementById(id);
         var announcementModel = announcementService.getAnnouncementModelById(id);

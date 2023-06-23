@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jobs - Candidate Profile</title>
+
+    {{>fragments/links}}
+    <link rel="stylesheet" href="../../static/style/navigation-style.css">
+    <link rel="stylesheet" href="../../static/style/resume-style.css">
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Page style -->
+
+</head>
+<body>
+
+<!--Main Navigation-->
+<header>
+
+    {{>fragments/sidebar}}
+
+</header>
+<!--Main Navigation-->
+
+<!--Main layout-->
+<main style="margin-top: 30px; margin-left: 50px">
+    {{#candidate}}
+    <div class="card" style="width: 70rem; height: 5rem; margin-bottom: 2rem;">
+        <div class="row">
+            <div class="col-4 mt-3 px-5">
+                <p class="page-title"><b>{{firstName}} {{lastName}}</b></p>
+            </div>
+            <div class="col-2 mt-4">
+                <button type="button" class="btn btn-primary btn-sm" id="accepted"
+                        data-mdb-toggle="modal" data-mdb-target="#accepted">
+                    <i class="fas fa-upload"></i>&nbsp;&nbsp;Accepted
+                </button>
+            </div>
+            <div class="col-3 mt-4 px-3">
+                <button type="button" class="btn btn-primary btn-sm" id="scheduleInterview"
+                        data-mdb-toggle="modal" data-mdb-target="#scheduleInterview">
+                    <i class="fas fa-upload"></i>&nbsp;&nbsp;Schedule interview
+                </button>
+            </div>
+            <div class="col-2 mt-4 px-0">
+                <button type="button" class="btn btn-primary btn-sm" id="rejected"
+                        data-mdb-toggle="modal" data-mdb-target="#rejected">
+                    <i class="fas fa-upload"></i>&nbsp;&nbsp;Rejected
+                </button>
+            </div>
+        </div>
+    </div>
+    {{#isDocument}}
+    <div class="card" style="width: 70rem; height: 12rem;">
+        <p class="page-title"><b>Resume file</b></p>
+
+        <!--Main layout-->
+        <div class="my-cont pt-1">
+            <br>
+
+            <table class="table table-bordered table-sm">
+                <tr>
+                    <td class="col-4">
+                        {{documentName}}
+                    </td>
+                    <td class="col-4">
+                        <button type="button" class="btn btn-primary btn-sm" id="downloadFile"
+                                onclick="downloadResume('{{documentName}}')">
+                            <i class="fas fa-download"></i>&nbsp;&nbsp;Download
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    {{/isDocument}}
+    <br>
+    <div class="card" style="width: 70rem; margin-bottom: 2rem;">
+        <p class="page-title"><b>Resume form</b></p>
+        <div class="container-fluid pb-4">
+            {{#personalInfo}}
+            <div class="card" style="width: 65rem; margin-left: 2rem;">
+                <div class="container-fluid pt-1">
+                    <p class="resume-title"><b>Personal info</b></p>
+
+                    <div class="container-fluid pt-3">
+                        <div class="col-10">
+                            <table class="table table-bordered table-sm">
+                                <tr>
+                                    <td class="col-4">
+                                        Email
+                                    </td>
+                                    <td class="col-4">
+                                        {{candidate.email}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-4">
+                                        Phone number
+                                    </td>
+                                    <td class="col-4">
+                                        {{candidate.phone}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-4">
+                                        Location
+                                    </td>
+                                    <td class="col-4">
+                                        {{location}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-4">
+                                        Language
+                                    </td>
+                                    <td class="col-4">
+                                        {{language}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-4">
+                                        Role
+                                    </td>
+                                    <td class="col-4">
+                                        {{actualRole}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-4">
+                                        Main areas of activity
+                                    </td>
+                                    <td class="col-4">
+                                        {{mainAreas}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-4">
+                                        Skills
+                                    </td>
+                                    <td class="col-4">
+                                        {{skills}}
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            {{/personalInfo}}
+            <br>
+            <div class="card" style="width: 65rem; margin-left: 2rem;">
+                <div class="container-fluid pt-1">
+                    <p class="resume-title"><b>Work experience</b></p>
+
+                    {{#workExperiences}}
+                    <div class="container-fluid pt-3">
+                        <div class="col-10">
+                            <div><b>{{companyName}}</b></div>
+
+                            <table class="table table-bordered table-sm">
+                                <tr>
+                                    <td>
+                                        Period
+                                    </td>
+                                    <td>
+                                        {{startDate}} - {{endDate}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Role
+                                    </td>
+                                    <td>
+                                        {{role}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Projects
+                                    </td>
+                                    <td>
+                                        {{projectsDescription}}
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    {{/workExperiences}}
+                </div>
+            </div>
+            <br>
+            <div class="card" style="width: 65rem; margin-left: 2rem;">
+                <div class="container-fluid pt-1">
+                    <p class="resume-title"><b>Certification</b></p>
+
+                    {{#certification}}
+                    <div class="container-fluid pt-3">
+                        <div class="col-10">
+                            <div><b>{{Name}}</b></div>
+                            <table class="table table-bordered table-sm">
+                                <tr>
+                                    <td>
+                                        Year
+                                    </td>
+                                    <td>
+                                        {{year}}
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    {{/certification}}
+                </div>
+            </div>
+            <br>
+            <div class="card" style="width: 65rem; margin-left: 2rem;">
+                <div class="container-fluid pt-1">
+                    <p class="resume-title"><b>Education</b></p>
+
+                    {{#education}}
+                    <div class="container-fluid pt-3">
+                        <div class="col-10">
+                            <div><b>{{Degree}}</b></div>
+                            <table class="table table-bordered table-sm">
+                                <tr>
+                                    <td>
+                                        University
+                                    </td>
+                                    <td>
+                                        {{university}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Period
+                                    </td>
+                                    <td>
+                                        {{startDate}} - {{endDate}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Speciality
+                                    </td>
+                                    <td>
+                                        {{speciality}}
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    {{/education}}
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/candidate}}
+</main>
+</body>
+
+<script>
+    document.getElementById("fileInput").addEventListener("change", function () {
+        var fileName = this.value.split("\\").pop();
+        var label = document.getElementById("fileInputLabel");
+        var fileNameDisplay = document.getElementById("fileNameDisplay");
+        var clearFileNameButton = document.getElementById("clearFileName");
+        if (fileName) {
+            label.textContent = "Choose a file";
+            fileNameDisplay.textContent = fileName;
+            clearFileNameButton.style.display = "inline-block";
+        } else {
+            label.textContent = "Choose a file";
+            fileNameDisplay.textContent = "";
+            clearFileNameButton.style.display = "none";
+        }
+    });
+
+    var modal = document.getElementById("addFile");
+    modal.addEventListener("show.bs.modal", function () {
+        var fileInput = document.getElementById("fileInput");
+        var label = document.getElementById("fileInputLabel");
+        var fileNameDisplay = document.getElementById("fileNameDisplay");
+        var clearFileNameButton = document.getElementById("clearFileName");
+        fileInput.value = "";
+        label.textContent = "Choose a file";
+        fileNameDisplay.textContent = "";
+        clearFileNameButton.style.display = "none";
+    });
+
+    document.getElementById("clearFileName").addEventListener("click", function () {
+        var fileInput = document.getElementById("fileInput");
+        var label = document.getElementById("fileInputLabel");
+        var fileNameDisplay = document.getElementById("fileNameDisplay");
+        fileInput.value = "";
+        label.textContent = "Choose a file";
+        fileNameDisplay.textContent = "";
+        this.style.display = "none";
+    });
+
+    function downloadResume(documentName) {
+        var downloadUrl = "/download/" + encodeURIComponent(documentName);
+
+        fetch(downloadUrl)
+            .then(response => response.blob())
+            .then(blob => {
+                var a = document.createElement("a");
+                a.href = URL.createObjectURL(blob);
+                a.download = documentName;
+
+                a.click();
+            })
+            .catch(error => {
+                console.error("Error downloading file:", error);
+            });
+    }
+
+</script>
+</html>
