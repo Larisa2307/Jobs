@@ -9,7 +9,7 @@ import static lombok.AccessLevel.PRIVATE;
 
 @NoArgsConstructor(access = PRIVATE)
 public class CandidateMapper {
-    public static CandidateModel toModel(final UserAppAnnouncement userAppAnnouncement, final String available) {
+    public static CandidateModel toModel(final UserAppAnnouncement userAppAnnouncement) {
         return CandidateModel.builder()
                 .id(userAppAnnouncement.getUserApp().getId())
                 .firstName(userAppAnnouncement.getUserApp().getFirstName())
@@ -18,6 +18,7 @@ public class CandidateMapper {
                 .phone(userAppAnnouncement.getUserApp().getPhone())
                 .email(userAppAnnouncement.getUserApp().getEmail())
                 .accepted(userAppAnnouncement.getAccepted())
+                .decision(userAppAnnouncement.getDecision())
                 .build();
     }
 }

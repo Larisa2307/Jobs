@@ -42,14 +42,20 @@ public class UserAppAnnouncementService {
         if (userAppAnnouncement.getAccepted() == null) {
             userAppAnnouncement.setAccepted("Pending response");
         }
+
         return CandidateAnnouncementsMapper.toModel(userAppAnnouncement, available);
     }
 
-    private CandidateModel toCandidateModel(UserAppAnnouncement userAppAnnouncement, String available) {
+    private CandidateModel toCandidateModel(UserAppAnnouncement userAppAnnouncement) {
         if (userAppAnnouncement.getAccepted() == null) {
             userAppAnnouncement.setAccepted("Pending response");
         }
-        return CandidateMapper.toModel(userAppAnnouncement, available);
+
+        if (userAppAnnouncement.getDecision() == null) {
+            userAppAnnouncement.setDecision("Pending response");
+        }
+
+        return CandidateMapper.toModel(userAppAnnouncement);
     }
 
     public List<CandidateAnnouncementsModel> getAnnouncementModelList(UserApp userApp) {
@@ -67,10 +73,7 @@ public class UserAppAnnouncementService {
         var announcementsByUserApp = userAppAnnouncementRepository.findUsersAppByAnnouncement(announcement);
 
         return announcementsByUserApp.stream()
-                .map(userAppAnnouncement -> {
-                    var available = userAppAnnouncement.getAnnouncement().getDateEnded().isAfter(LocalDate.now()) ? "Yes" : "No";
-                    return toCandidateModel(userAppAnnouncement, available);
-                })
+                .map(this::toCandidateModel)
                 .toList();
     }
 

@@ -22,7 +22,7 @@ public class CandidateAnnouncementController {
     final UserAppAnnouncementService userAppAnnouncementService;
 
     @GetMapping("/candidate-announcement/{user_id}/{id}")
-    String getCandidatesPage(Model model,  @PathVariable("user_id") String userId, @PathVariable("id") String id) {
+    String getCandidatesPage(Model model, @PathVariable("user_id") String userId, @PathVariable("id") String id) {
 
         var announcement = announcementService.getAnnouncementById(id);
         var announcementModel = announcementService.getAnnouncementModelById(id);
@@ -32,6 +32,7 @@ public class CandidateAnnouncementController {
                 " for company: " + announcement.getJob().getCompany().getCompanyName());
 
         var candidates = userAppAnnouncementService.getCandidateModelList(announcement);
+
         model.addAttribute("announcement", announcementModel);
         model.addAttribute("candidates", candidates);
         model.addAttribute("userApp", userApp);

@@ -27,7 +27,7 @@ public class UserAppAnnouncement {
     @JoinColumn(name = "user_app_id")
     UserApp userApp;
     String accepted;
-
+    String decision;
     @CreationTimestamp
     LocalDate appliedDate;
 }

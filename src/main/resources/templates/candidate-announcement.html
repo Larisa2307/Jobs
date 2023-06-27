@@ -20,6 +20,10 @@
 </header>
 
 <main style="margin-top: 30px; margin-left: 50px">
+    <ul class="breadcrumb">
+        <li><a href="/dashboard-company/{{userApp.id}}">Dashboard</a></li>
+        <li>Announcement info</li>
+    </ul>
     <div class="card" style="width: 70rem; height: 28rem;">
         <p class="page-title"><b>Announcement</b></p>
         <div id="myForm">
@@ -82,7 +86,6 @@
             </div>
         </div>
         {{/announcement}}
-        </form>
     </div>
     <br>
     <div class="card" style="width: 70rem; height: 41rem;">
@@ -98,7 +101,7 @@
                         <th class="col3">Email</th>
                         <th class="col2">Phone number</th>
                         <th class="col2">Applied date</th>
-                        <th class="col4">Accepted</th>
+                        <th class="col4">Decision</th>
                     </tr>
                     </thead>
 
@@ -112,7 +115,7 @@
                                 </a>
                                 <ul class="dropdown-menu" style="min-width: 1px;">
                                     <li>
-                                        <a type="button" href="/candidate/{{userApp.id}}/{{id}}"
+                                        <a type="button" href="/candidate/{{userApp.id}}/{{announcement.id}}/{{id}}"
                                            class="btn btn-sm btn-outline-secondary">
                                             <i class="fas fa-poll-h"></i>&nbsp; Show details
                                         </a>
@@ -125,7 +128,7 @@
                         <td class="col3">{{email}}</td>
                         <td class="col2">{{phone}}</td>
                         <td class="col2">{{appliedDate}}</td>
-                        <td class="col4">{{accepted}}</td>
+                        <td class="col4">{{decision}}</td>
                     </tr>
                     {{/candidates}}
                     </tbody>

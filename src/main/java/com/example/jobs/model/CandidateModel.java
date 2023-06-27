@@ -13,4 +13,5 @@ public class CandidateModel {
     String phone;
     String appliedDate;
     String accepted;
+    String decision;
 }

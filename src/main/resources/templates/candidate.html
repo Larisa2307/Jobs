@@ -5,8 +5,8 @@
     <title>Jobs - Candidate Profile</title>
 
     {{>fragments/links}}
-    <link rel="stylesheet" href="../../static/style/navigation-style.css">
-    <link rel="stylesheet" href="../../static/style/resume-style.css">
+    <link rel="stylesheet" href="../../../static/style/navigation-style.css">
+    <link rel="stylesheet" href="../../../static/style/resume-style.css">
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -26,6 +26,11 @@
 
 <!--Main layout-->
 <main style="margin-top: 30px; margin-left: 50px">
+    <ul class="breadcrumb">
+        <li><a href="/dashboard-company/{{userApp.id}}">Dashboard</a></li>
+        <li><a href="/candidate-announcement/{{userApp.id}}/{{announcementId}}">Announcement info</a></li>
+        <li>Candidate info</li>
+    </ul>
     {{#candidate}}
     <div class="card" style="width: 70rem; height: 5rem; margin-bottom: 2rem;">
         <div class="row">
@@ -33,23 +38,102 @@
                 <p class="page-title"><b>{{firstName}} {{lastName}}</b></p>
             </div>
             <div class="col-2 mt-4">
-                <button type="button" class="btn btn-primary btn-sm" id="accepted"
+                <button type="button" class="btn btn-primary btn-sm" id="accept"
                         data-mdb-toggle="modal" data-mdb-target="#accepted">
                     <i class="fas fa-upload"></i>&nbsp;&nbsp;Accepted
                 </button>
+                <div class="modal fade" id="accepted" tabindex="-1" role="dialog"
+                     aria-labelledby="acceptedTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <form action="/accepted-candidate/{{userApp.id}}/{{announcementId}}/{{id}}"
+                                  method="POST">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="acceptedTitle">
+                                        Accept {{firstName}} {{lastName}}</h5>
+                                    <button type="button" class="btn-close" data-mdb-dismiss="modal"
+                                            aria-label="Close"></button>
+                                </div>
+                                <div class="mymodal">
+                                   Are you sure you want to accept this candidate?
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                            data-mdb-dismiss="modal">Close
+                                    </button>
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="col-3 mt-4 px-3">
                 <button type="button" class="btn btn-primary btn-sm" id="scheduleInterview"
-                        data-mdb-toggle="modal" data-mdb-target="#scheduleInterview">
+                        data-mdb-toggle="modal" data-mdb-target="#interview">
                     <i class="fas fa-upload"></i>&nbsp;&nbsp;Schedule interview
                 </button>
+                <div class="modal fade" id="interview" tabindex="-1" role="dialog"
+                     aria-labelledby="interviewTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <form action="/interview-candidate/{{userApp.id}}/{{announcementId}}/{{id}}"
+                                  method="POST">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="interviewTitle">
+                                        Accept {{firstName}} {{lastName}}</h5>
+                                    <button type="button" class="btn-close" data-mdb-dismiss="modal"
+                                            aria-label="Close"></button>
+                                </div>
+                                <div class="mymodal">
+                                    Are you sure you want to schedule an interview with this candidate?
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                            data-mdb-dismiss="modal">Close
+                                    </button>
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="col-2 mt-4 px-0">
-                <button type="button" class="btn btn-primary btn-sm" id="rejected"
+                <button type="button" class="btn btn-primary btn-sm" id="reject"
                         data-mdb-toggle="modal" data-mdb-target="#rejected">
                     <i class="fas fa-upload"></i>&nbsp;&nbsp;Rejected
                 </button>
             </div>
+            <div class="modal fade" id="rejected" tabindex="-1" role="dialog"
+                 aria-labelledby="rejectedTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <form action="/rejected-candidate/{{userApp.id}}/{{announcementId}}/{{id}}"
+                              method="POST">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="rejectedTitle">
+                                    Rejected {{firstName}} {{lastName}}</h5>
+                                <button type="button" class="btn-close" data-mdb-dismiss="modal"
+                                        aria-label="Close"></button>
+                            </div>
+                            <div class="mymodal">
+                                Are you sure you want to reject this candidate?
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary"
+                                        data-mdb-dismiss="modal">Close
+                                </button>
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
         </div>
     </div>
     {{#isDocument}}
