@@ -28,8 +28,8 @@ public class UserCompanyController {
 
     final NavbarService navbarService;
     final CompanyService companyService;
-    final MailSenderService mailSenderService;
     final UserAppService userAppService;
+    final MailSenderService mailSenderService;
 
     static final List<String> roles = List.of("Admin", "Operator", "Decider");
 

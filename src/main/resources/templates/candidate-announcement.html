@@ -7,6 +7,7 @@
     {{>fragments/links}}
     <link rel="stylesheet" href="../../static/style/navigation-style.css">
     <link rel="stylesheet" href="../../static/style/candidate-announcement-style.css">
+
     <!-- Page style -->
 
 </head>
@@ -88,7 +89,7 @@
         {{/announcement}}
     </div>
     <br>
-    <div class="card" style="width: 70rem; height: 41rem;">
+    <div class="card mb-5" style="width: 70rem; height: 41rem;">
         <p class="page-title"><b>Candidates</b></p>
         <div class="container-fluid pt-4 table-responsive-lg">
             <div class="tableFixHead">
@@ -116,9 +117,23 @@
                                 <ul class="dropdown-menu" style="min-width: 1px;">
                                     <li>
                                         <a type="button" href="/candidate/{{userApp.id}}/{{announcement.id}}/{{id}}"
-                                           class="btn btn-sm btn-outline-secondary">
+                                           class="btn btn-sm btn-outline-secondary"  style="width: 100%;">
                                             <i class="fas fa-poll-h"></i>&nbsp; Show details
                                         </a>
+                                    </li>
+                                    <li>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary"
+                                                style="width: 100%;"
+                                                data-mdb-toggle="modal" data-mdb-target="#sendDecision{{id}}">
+                                            <i class="fas fa-upload"></i>&nbsp;&nbsp;Send decision
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary"
+                                                style="width: 100%;"
+                                                data-mdb-toggle="modal" data-mdb-target="#sendScheduleInterview{{id}}">
+                                            <i class="fas fa-upload"></i>&nbsp;&nbsp;Schedule interview
+                                        </button>
                                     </li>
                                 </ul>
                             </div>
@@ -129,13 +144,75 @@
                         <td class="col2">{{phone}}</td>
                         <td class="col2">{{appliedDate}}</td>
                         <td class="col4">{{decision}}</td>
+
+                        <div class="modal fade" id="sendDecision{{id}}" tabindex="-1" role="dialog"
+                             aria-labelledby="sendDecisionTitle{{id}}" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centred" role="document">
+                                <div class="modal-content">
+                                    <form action="/send-decision/{{userApp.id}}/{{announcement.id}}/{{id}}"
+                                          method="POST" name="decision">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="sendDecisionTitle{{id}}">
+                                                Accept {{firstName}} {{lastName}}
+                                            </h5>
+                                            <button type="button" class="btn-close" data-mdb-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                        </div>
+                                        <div class="mymodal">
+                                            <select  id="decision"
+                                                     class="form-control" name="decision"
+                                                     required>
+                                                <option style="display: none" value="">Select decision</option>
+                                                <option class="autocomplete-item" value="Accepted"> Accepted</option>
+                                                <option class="autocomplete-item" value="Rejected"> Rejected</option>
+                                            </select>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                    data-mdb-dismiss="modal">Close
+                                            </button>
+                                            <button type="submit" class="btn btn-primary">Send</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="sendScheduleInterview{{id}}" tabindex="-1" role="dialog"
+                             aria-labelledby="sendScheduleInterviewTitle{{id}}" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centred" role="document">
+                                <div class="modal-content">
+                                    <form action="/schedule-interview/{{userApp.id}}/{{announcement.id}}/{{id}}"
+                                          method="POST" name="dateAndHour">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="sendScheduleInterviewTitle{{id}}">
+                                                Schedule interview for {{firstName}} {{lastName}}
+                                            </h5>
+                                            <button type="button" class="btn-close" data-mdb-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                        </div>
+                                        <div class="mymodal">
+                                            <input type="datetime-local" id="dateAndHour" name="dateAndHour">
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                    data-mdb-dismiss="modal">Close
+                                            </button>
+                                            <button type="submit" class="btn btn-primary">Send</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </tr>
                     {{/candidates}}
                     </tbody>
                 </table>
+
             </div>
         </div>
     </div>
 </main>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.5.0/js/bootstrap.min.js"></script>
 </body>
 </html>

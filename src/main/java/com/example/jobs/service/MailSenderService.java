@@ -33,4 +33,38 @@ public class MailSenderService {
         sendMail(email, subject, body);
     }
 
+    public void sendMailWithDecision(String email, String decision, String companyName, String jobName) {
+        var subject = "Application information";
+        String body;
+        if ("Accepted".equals(decision)) {
+            body = "Hello! From the " + companyName + " company," +
+                    " we inform you that you have been accepted for the position of " + jobName + ". " +
+                    "To establish more details, we will contact you by phone.\n" +
+                    "\n" +
+                    "A good day,\n" +
+                    companyName + " company!";
+        } else {
+            body = "Hello! From the " + companyName + " company," +
+                    " we inform you that you have been rejected for the position of " + jobName + ". " +
+                    "Good luck in the future!\n" +
+                    "\n" +
+                    "A good day,\n" +
+                    companyName + " company!";
+        }
+
+        sendMail(email, subject, body);
+    }
+
+    public void sendMailToScheduleInterview(String email, String companyName, String jobName,
+                                            String date, String hour) {
+        var subject = "Application information";
+        var body = "Hello! From the " + companyName + " company," +
+                " we inform you that we would like to schedule an interview on " + date + " at " + hour +
+                " to have a discussion related to the " + jobName + " position you applied for.\n" +
+                "\n" +
+                "A good day,\n" +
+                companyName + " company!";
+
+        sendMail(email, subject, body);
+    }
 }
