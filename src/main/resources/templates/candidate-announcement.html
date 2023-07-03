@@ -115,12 +115,15 @@
                                    role="button" data-mdb-toggle="dropdown">
                                 </a>
                                 <ul class="dropdown-menu" style="min-width: 1px;">
+                                    {{^isOperator}}
                                     <li>
                                         <a type="button" href="/candidate/{{userApp.id}}/{{announcement.id}}/{{id}}"
                                            class="btn btn-sm btn-outline-secondary"  style="width: 100%;">
                                             <i class="fas fa-poll-h"></i>&nbsp; Show details
                                         </a>
                                     </li>
+                                    {{/isOperator}}
+                                    {{^isDecider}}
                                     <li>
                                         <button type="button" class="btn btn-sm btn-outline-secondary"
                                                 style="width: 100%;"
@@ -135,6 +138,7 @@
                                             <i class="fas fa-upload"></i>&nbsp;&nbsp;Schedule interview
                                         </button>
                                     </li>
+                                    {{/isDecider}}
                                 </ul>
                             </div>
                         </td>

@@ -23,6 +23,7 @@ public class AnnouncementMapper {
                 .skills(announcement.getSkills())
                 .description(announcement.getDescription())
                 .benefit(announcement.getBenefit())
+                .hasBenefits("".equals(announcement.getBenefit()) || announcement.getBenefit() == null)
                 .requirement(announcement.getRequirement())
                 .responsibility(announcement.getResponsibility())
                 .index(index)

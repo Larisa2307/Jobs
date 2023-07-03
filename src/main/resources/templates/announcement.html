@@ -8,7 +8,15 @@
     {{>fragments/links}}
     <link rel="stylesheet" href="../static/style/navigation-style.css">
     <link rel="stylesheet" href="../static/style/announcement-style.css">
-
+    <style>
+        .truncate {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3; /* Number of lines to show before truncation */
+            -webkit-box-orient: vertical;
+        }
+    </style>
 </head>
 <body>
 
@@ -73,11 +81,49 @@
                         <td class="col4">{{jobType}}</td>
                         <td class="col4">{{jobLevel}}</td>
                         <td class="col4">{{dateEnded}}</td>
-                        <td class="col3">{{skills}}</td>
-                        <td class="col3 remove-description">{{description}}</td>
-                        <td class="col3">{{responsibility}}</td>
-                        <td class="col3">{{requirement}}</td>
-                        <td class="col3">{{benefit}}</td>
+                        <td class="col3">
+                            <pre class="text truncate" id="{{id}}content1">{{skills}}</pre>
+                            <button class="btn btn-outline-secondary btn-sm pt-0"
+                                    id="{{id}}toggleButton1"
+                                    onclick="toggleContent('{{id}}content1')">
+                                Read More
+                            </button>
+                        </td>
+                        <td class="col3 remove-description">
+                            <pre class="text truncate" id="{{id}}content2">{{description}}</pre>
+                            <button class="btn btn-outline-secondary btn-sm"
+                                    id="{{id}}toggleButton2"
+                                    onclick="toggleContent('{{id}}content2')">
+                                Read More
+                            </button>
+
+                        </td>
+                        <td class="col3">
+                            <pre class="text truncate" id="{{id}}content3">{{responsibility}}</pre>
+                            <button class="btn btn-outline-secondary btn-sm"
+                                    id="{{id}}toggleButton3"
+                                    onclick="toggleContent('{{id}}content3')">
+                                Read More
+                            </button>
+                        </td>
+                        <td class="col3">
+                            <pre class="text truncate" id="{{id}}content4">{{requirement}}</pre>
+                            <button class="btn btn-outline-secondary btn-sm"
+                                    id="{{id}}toggleButton4"
+                                    onclick="toggleContent('{{id}}content4')">
+                                Read More
+                            </button>
+                        </td>
+                        <td class="col3">
+                            <pre class="text truncate" id="{{id}}content5">{{benefit}}</pre>
+                            {{^hasBenefits}}
+                            <button class="btn btn-outline-secondary btn-sm"
+                                    id="{{id}}toggleButton5"
+                                    onclick="toggleContent('{{id}}content5')">
+                                Read More
+                            </button>
+                            {{/hasBenefits}}
+                        </td>
                         <!-- Modal Edit -->
                         <div class="modal modal-lg fade" id="edit{{index}}" tabindex="-1" role="dialog"
                              aria-labelledby="editAnnouncementTitle{{index}}" aria-hidden="true">
@@ -249,6 +295,35 @@
     </div>
 </main>
 
+<script>
+    function toggleContent(contentId) {
+        var content = document.getElementById(contentId);
+        var button = document.getElementById(contentId.replace('content', 'toggleButton'));
+
+        if (content.classList.contains('truncate')) {
+            content.classList.remove('truncate');
+            button.textContent = 'Read Less';
+        } else {
+            content.classList.add('truncate');
+            button.textContent = 'Read More';
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var contentElements = document.querySelectorAll('.truncate');
+
+        contentElements.forEach(function(content) {
+            var button = document.getElementById(content.id.replace('content', 'toggleButton'));
+
+            var lineHeight = parseInt(getComputedStyle(content).lineHeight);
+            console.log(lineHeight);
+            var maxHeight =50; // Adjust this value as needed for two lines
+
+            var hasOverflow = content.scrollHeight > maxHeight;
+            button.style.display = hasOverflow ? 'inline-block' : 'none';
+        });
+    });
+</script>
 
 </body>
 </html>

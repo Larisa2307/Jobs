@@ -83,6 +83,12 @@ tbody tr {
     width: 100%;
 }
 
+.text {
+    font-family: Arial, sans-serif;
+    font-size: inherit;
+    line-height: inherit;
+    white-space: pre-wrap;
+}
 
 
 

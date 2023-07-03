@@ -19,6 +19,7 @@ public class AnnouncementModel {
     String responsibility;
     String requirement;
     String benefit;
+    Boolean hasBenefits;
     String skills;
     Integer numberOfCandidates;
     String available;
