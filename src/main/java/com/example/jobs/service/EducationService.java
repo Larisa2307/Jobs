@@ -29,10 +29,6 @@ public class EducationService {
         return educationRepository.findById(id).get();
     }
 
-    public List<Education> getAllByUserApp(UserApp userApp) {
-        return educationRepository.findAllByUserApp(userApp);
-    }
-
     public List<EducationModel> getEducationModelList(UserApp userApp) {
         var educations = educationRepository.findAllByUserApp(userApp);
 

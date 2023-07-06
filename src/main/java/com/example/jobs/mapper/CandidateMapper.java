@@ -19,6 +19,11 @@ public class CandidateMapper {
                 .email(userAppAnnouncement.getUserApp().getEmail())
                 .accepted(userAppAnnouncement.getAccepted())
                 .decision(userAppAnnouncement.getDecision())
+                .interview("Interview".equals(userAppAnnouncement.getDecision()) ||
+                        "Accepted".equals(userAppAnnouncement.getDecision()) ||
+                        "Rejected".equals(userAppAnnouncement.getDecision()))
+                .isAccepted("Accepted".equals(userAppAnnouncement.getDecision()) ||
+                        "Rejected".equals(userAppAnnouncement.getDecision()))
                 .build();
     }
 }

@@ -37,11 +37,13 @@
             <div class="col-4 mt-3 px-5">
                 <p class="page-title"><b>{{firstName}} {{lastName}}</b></p>
             </div>
+            {{^isAccepted}}
             <div class="col-2 mt-4">
                 <button type="button" class="btn btn-primary btn-sm" id="accept"
                         data-mdb-toggle="modal" data-mdb-target="#accepted">
                     <i class="fas fa-upload"></i>&nbsp;&nbsp;Accepted
                 </button>
+
                 <div class="modal fade" id="accepted" tabindex="-1" role="dialog"
                      aria-labelledby="acceptedTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -55,7 +57,7 @@
                                             aria-label="Close"></button>
                                 </div>
                                 <div class="mymodal">
-                                   Are you sure you want to accept this candidate?
+                                    Are you sure you want to accept this candidate?
                                 </div>
 
                                 <div class="modal-footer">
@@ -69,6 +71,8 @@
                     </div>
                 </div>
             </div>
+            {{/isAccepted}}
+            {{^interview}}
             <div class="col-3 mt-4 px-3">
                 <button type="button" class="btn btn-primary btn-sm" id="scheduleInterview"
                         data-mdb-toggle="modal" data-mdb-target="#interview">
@@ -101,6 +105,8 @@
                     </div>
                 </div>
             </div>
+            {{/interview}}
+            {{^isAccepted}}
             <div class="col-2 mt-4 px-0">
                 <button type="button" class="btn btn-primary btn-sm" id="reject"
                         data-mdb-toggle="modal" data-mdb-target="#rejected">
@@ -133,8 +139,9 @@
                     </div>
                 </div>
             </div>
+            {{/isAccepted}}
         </div>
-        </div>
+    </div>
     </div>
     {{#isDocument}}
     <div class="card" style="width: 70rem; height: 12rem;">
@@ -160,6 +167,7 @@
         </div>
     </div>
     {{/isDocument}}
+    {{^isResumeForm}}
     <br>
     <div class="card" style="width: 70rem; margin-bottom: 2rem;">
         <p class="page-title"><b>Resume form</b></p>
@@ -235,12 +243,14 @@
             </div>
             <br>
             {{/personalInfo}}
+            {{#workExperiences}}
             <br>
+
             <div class="card" style="width: 65rem; margin-left: 2rem;">
                 <div class="container-fluid pt-1">
                     <p class="resume-title"><b>Work experience</b></p>
 
-                    {{#workExperiences}}
+
                     <div class="container-fluid pt-3">
                         <div class="col-10">
                             <div><b>{{companyName}}</b></div>
@@ -273,15 +283,15 @@
                             </table>
                         </div>
                     </div>
-                    {{/workExperiences}}
+
                 </div>
             </div>
+            {{/workExperiences}}
+            {{#certification}}
             <br>
             <div class="card" style="width: 65rem; margin-left: 2rem;">
                 <div class="container-fluid pt-1">
                     <p class="resume-title"><b>Certification</b></p>
-
-                    {{#certification}}
                     <div class="container-fluid pt-3">
                         <div class="col-10">
                             <div><b>{{Name}}</b></div>
@@ -297,15 +307,16 @@
                             </table>
                         </div>
                     </div>
-                    {{/certification}}
                 </div>
             </div>
+            {{/certification}}
+            {{#education}}
             <br>
             <div class="card" style="width: 65rem; margin-left: 2rem;">
                 <div class="container-fluid pt-1">
                     <p class="resume-title"><b>Education</b></p>
 
-                    {{#education}}
+
                     <div class="container-fluid pt-3">
                         <div class="col-10">
                             <div><b>{{Degree}}</b></div>
@@ -337,11 +348,12 @@
                             </table>
                         </div>
                     </div>
-                    {{/education}}
                 </div>
             </div>
+            {{/education}}
         </div>
     </div>
+    {{/isResumeForm}}
     {{/candidate}}
 </main>
 </body>

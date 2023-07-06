@@ -153,7 +153,7 @@ public class ResumeController {
 
     @PostMapping("/add-work-experience/{user_id}")
     public String addWorkExperience(@ModelAttribute("workExperiences") WorkExperience workExperience,
-                                   @PathVariable("user_id") final String userId) {
+                                    @PathVariable("user_id") final String userId) {
         var user = userAppService.getById(userId);
 
         if (workExperience.getEndDate() != null && workExperience.getStartDate().isAfter(workExperience.getEndDate())) {
@@ -168,7 +168,7 @@ public class ResumeController {
 
     @PostMapping("/edit-work-experience/{user_id}/{id}")
     public String editWorkExperience(@ModelAttribute("workExperiences") WorkExperience workExperience, @PathVariable("id") final String id,
-                                   @PathVariable("user_id") final String userId) {
+                                     @PathVariable("user_id") final String userId) {
         var user = userAppService.getById(userId);
 
         if (workExperience.getEndDate() != null && workExperience.getStartDate().isAfter(workExperience.getEndDate())) {
@@ -194,7 +194,7 @@ public class ResumeController {
 
     @PostMapping("/add-certification/{user_id}")
     public String addCertification(@ModelAttribute("certification") Certification certification,
-                                    @PathVariable("user_id") final String userId) {
+                                   @PathVariable("user_id") final String userId) {
         var user = userAppService.getById(userId);
 
         certification.setUserApp(user);
@@ -205,7 +205,7 @@ public class ResumeController {
 
     @PostMapping("/edit-certification/{user_id}/{id}")
     public String editCertification(@ModelAttribute("certification") Certification certification, @PathVariable("id") final String id,
-                                     @PathVariable("user_id") final String userId) {
+                                    @PathVariable("user_id") final String userId) {
         var user = userAppService.getById(userId);
 
         certification.setId(id);
@@ -227,7 +227,7 @@ public class ResumeController {
 
     @PostMapping("/add-education/{user_id}")
     public String addEducation(@ModelAttribute("education") Education education,
-                                   @PathVariable("user_id") final String userId) {
+                               @PathVariable("user_id") final String userId) {
         var user = userAppService.getById(userId);
 
         if (education.getEndDate() != null && education.getStartDate().isAfter(education.getEndDate())) {
@@ -242,7 +242,7 @@ public class ResumeController {
 
     @PostMapping("/edit-education/{user_id}/{id}")
     public String editEducation(@ModelAttribute("education") Education education, @PathVariable("id") final String id,
-                                    @PathVariable("user_id") final String userId) {
+                                @PathVariable("user_id") final String userId) {
         var user = userAppService.getById(userId);
 
         if (education.getEndDate() != null && education.getStartDate().isAfter(education.getEndDate())) {

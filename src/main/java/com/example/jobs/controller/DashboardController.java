@@ -1,7 +1,6 @@
 package com.example.jobs.controller;
 
 import com.example.jobs.entity.Page;
-import com.example.jobs.entity.UserApp;
 import com.example.jobs.service.*;
 import com.example.jobs.util.Util;
 import lombok.RequiredArgsConstructor;
@@ -55,7 +54,7 @@ public class DashboardController {
     }
 
     @PostMapping("/delete-announcement-dashboard/{user_id}/{announcementId}")
-    public String deleteCategory(@PathVariable String announcementId, @PathVariable("user_id") final String userId) {
+    public String deleteAnnouncement(@PathVariable String announcementId, @PathVariable("user_id") final String userId) {
         log.info("Try to delete an announcement");
         announcementService.deleteAnnouncement(announcementId);
 

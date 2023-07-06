@@ -29,10 +29,6 @@ public class WorkExperienceService {
         return workExperienceRepository.findById(id).get();
     }
 
-    public List<WorkExperience> getAllByUserApp(UserApp userApp) {
-        return workExperienceRepository.findAllByUserApp(userApp);
-    }
-
     public List<WorkExperienceModel> getWorkExperienceModelList(UserApp userApp) {
         var workExperiences = workExperienceRepository.findAllByUserApp(userApp);
 

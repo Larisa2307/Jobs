@@ -23,10 +23,6 @@ public class DocumentService {
 
     final DocumentRepository documentRepository;
 
-    public Document getDocumentById(String id) {
-        return documentRepository.findById(id).orElse(null);
-    }
-
     public Document getDocumentByName(String name) {
         return documentRepository.findByName(name);
     }

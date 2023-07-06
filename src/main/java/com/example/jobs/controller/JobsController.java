@@ -61,7 +61,7 @@ public class JobsController {
     }
 
     @PostMapping("/edit-job/{user_id}/{id}")
-    public String editCategory(@ModelAttribute("job") Job job, @PathVariable("id") final String id,
+    public String editJob(@ModelAttribute("job") Job job, @PathVariable("id") final String id,
                                @PathVariable("user_id") final String userId) {
         var user = userAppService.getById(userId);
         var company = user.getCompany();
@@ -76,7 +76,7 @@ public class JobsController {
 
 
     @PostMapping("/delete-job/{user_id}/{id}")
-    public String deleteCategory(@PathVariable String id, @PathVariable("user_id") final String userId) {
+    public String deleteJob(@PathVariable String id, @PathVariable("user_id") final String userId) {
         log.info("Try to delete a job");
         var job = jobService.getById(id);
 

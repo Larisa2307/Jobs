@@ -25,8 +25,8 @@ public class ProfileController {
     final UserAppService userAppService;
 
     @GetMapping("/profile/{id}")
-    String getProfileIdPage(Model model, @PathVariable String id,
-                            @RequestParam(required = false) final boolean errorEmail) {
+    String getProfilePage(Model model, @PathVariable String id,
+                          @RequestParam(required = false) final boolean errorEmail) {
         var userApp = userAppService.getById(id);
         Util.extractRole(model, userApp);
         var company = userApp.getCompany();
@@ -43,7 +43,7 @@ public class ProfileController {
     }
 
     @PostMapping("/edit/{user_id}/{id}")
-    public String postUpdateCustomer(@ModelAttribute("company") Company company, @PathVariable("id") String id,
+    public String editProfileCompany(@ModelAttribute("company") Company company, @PathVariable("id") String id,
                                      @PathVariable("user_id") String userID) {
         var newCompany = companyService.getById(id);
         log.info("Try to edit profile of company: " + newCompany.getCompanyName());

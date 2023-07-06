@@ -37,14 +37,6 @@ public class UserAppService {
         return userAppRepository.findById(id).get();
     }
 
-    public Optional<UserApp> getUserCompanyByCredentials(String email, String password) {
-        return userAppRepository.findByEmailAndPassword(email, password);
-    }
-
-    public Optional<UserApp> getUserByEmail(String email) {
-        return userAppRepository.getUserByEmail(email);
-    }
-
     public boolean existsByEmailAndDifferentId(String email, String id) {
         return userAppRepository.getByEmailAndDifferentId(email, id).isPresent();
     }

@@ -14,4 +14,6 @@ public class CandidateModel {
     String appliedDate;
     String accepted;
     String decision;
+    Boolean interview;
+    Boolean isAccepted;
 }

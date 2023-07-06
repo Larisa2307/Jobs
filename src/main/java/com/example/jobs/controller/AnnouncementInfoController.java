@@ -30,8 +30,8 @@ public class AnnouncementInfoController {
 
     @GetMapping("/announcement-info/{user_id}/{id}")
     String getAnnouncementInfoPage(Model model, @PathVariable("user_id") String userId, @PathVariable("id") String id,
-                               @RequestParam(required = false) final Boolean error,
-                               @RequestParam(required = false) final Boolean duplicate) {
+                                   @RequestParam(required = false) final Boolean error,
+                                   @RequestParam(required = false) final Boolean duplicate) {
         navbarService.activateNavbarTab(Page.DASHBOARD, model);
 
         var announcementModel = announcementService.getAnnouncementModelById(id);
@@ -102,8 +102,6 @@ public class AnnouncementInfoController {
 
     @PostMapping("/apply")
     public String applyPost() {
-
-
         return "main-announcement-info";
     }
 

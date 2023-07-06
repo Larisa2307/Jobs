@@ -23,13 +23,6 @@ public class DateFormat {
         return FORMAT.format(date);
     }
 
-    public static LocalDate convertToLocalDate(String dateString) {
-        if ("present".equals(dateString)) {
-            return null;
-        }
-        return LocalDate.parse(dateString, BASIC_FORMAT);
-    }
-
     public static String timeFormat(LocalDateTime date) {
 
         return TIME_FORMAT.format(date);

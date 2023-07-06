@@ -1,7 +1,5 @@
 package com.example.jobs.controller;
 
-import com.example.jobs.entity.Page;
-import com.example.jobs.entity.UserApp;
 import com.example.jobs.service.*;
 import com.example.jobs.util.DateFormat;
 import com.example.jobs.util.Util;

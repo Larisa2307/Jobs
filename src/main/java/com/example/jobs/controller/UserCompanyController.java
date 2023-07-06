@@ -71,8 +71,8 @@ public class UserCompanyController {
     }
 
     @PostMapping("/edit-user/{user_id}/{id}")
-    public String editCategory(@ModelAttribute("user") UserApp user, @PathVariable("id") final String id,
-                               @PathVariable("user_id") final String userId) {
+    public String editUser(@ModelAttribute("user") UserApp user, @PathVariable("id") final String id,
+                           @PathVariable("user_id") final String userId) {
         var userCompany = userAppService.getById(id);
         var company = userCompany.getCompany();
         log.info("Try to edit a job: " + userCompany.getFirstName() + " " + userCompany.getLastName()
@@ -90,7 +90,7 @@ public class UserCompanyController {
     }
 
     @PostMapping("/delete-user/{user_id}/{id}")
-    public String deleteCategory(@PathVariable String id, @PathVariable("user_id") final String userId) {
+    public String deletUser(@PathVariable String id, @PathVariable("user_id") final String userId) {
         log.info("Try to delete an announcement");
         userAppService.deleteUser(userAppService.getById(id));
 

@@ -1,6 +1,5 @@
 package com.example.jobs.controller;
 
-import com.example.jobs.entity.Page;
 import com.example.jobs.service.*;
 import com.example.jobs.util.Util;
 import lombok.RequiredArgsConstructor;
@@ -10,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @RequiredArgsConstructor
 @Controller
@@ -35,6 +33,8 @@ public class CandidateProfileController {
         Util.extractRole(model, userApp);
 
         var candidate = userAppService.getById(id);
+        var candidateApp = userAppAnnouncementService
+                .getCandidateModelByAnnouncement(candidate, announcementService.getAnnouncementById(annId));
 
         String docName;
         if (documentService.getDocumentByUserApp(candidate).isEmpty()) {
@@ -50,28 +50,35 @@ public class CandidateProfileController {
         var certification = certificationService.getAllByUserApp(candidate);
 
         var education = educationService.getEducationModelList(candidate);
+        var resumeForm = personalInfo.isEmpty() && workExperiences.isEmpty() &&
+                certification.isEmpty() && education.isEmpty();
+
+        System.out.println(candidateApp.getInterview());
+
+        System.out.println(candidateApp.getIsAccepted());
 
         model.addAttribute("userApp", userApp);
-        model.addAttribute("candidate", candidate);
+        model.addAttribute("candidate", candidateApp);
         model.addAttribute("announcementId", annId);
         model.addAttribute("documentName", docName);
         model.addAttribute("isDocument", documentService.getDocumentByUserApp(candidate).isPresent());
-        model.addAttribute("personalInfo", personalInfo.get());
         model.addAttribute("hasPersonalInfo", personalInfo.isPresent());
+        personalInfo.ifPresent(info -> model.addAttribute("personalInfo", info));
         model.addAttribute("workExperiences", workExperiences);
         model.addAttribute("hasWorkExperiences", workExperiences.isEmpty());
         model.addAttribute("certification", certification);
         model.addAttribute("hasCertification", certification.isEmpty());
         model.addAttribute("education", education);
         model.addAttribute("hasEducation", education.isEmpty());
+        model.addAttribute("isResumeForm", resumeForm);
 
         return "candidate";
     }
 
     @PostMapping("/accepted-candidate/{userId}/{annId}/{id}")
     public String acceptCandidate(@PathVariable("id") String id,
-                                 @PathVariable("annId") String annId,
-                                 @PathVariable("userId") String userId) {
+                                  @PathVariable("annId") String annId,
+                                  @PathVariable("userId") String userId) {
         log.info("Try to accept a candidate");
         var candidate = userAppService.getById(id);
         var announcement = announcementService.getAnnouncementById(annId);
@@ -86,8 +93,8 @@ public class CandidateProfileController {
 
     @PostMapping("/interview-candidate/{userId}/{annId}/{id}")
     public String interviewCandidate(@PathVariable("id") String id,
-                                  @PathVariable("annId") String annId,
-                                  @PathVariable("userId") String userId) {
+                                     @PathVariable("annId") String annId,
+                                     @PathVariable("userId") String userId) {
         log.info("Try to accept a candidate");
         var candidate = userAppService.getById(id);
         var announcement = announcementService.getAnnouncementById(annId);
@@ -102,8 +109,8 @@ public class CandidateProfileController {
 
     @PostMapping("/rejected-candidate/{userId}/{annId}/{id}")
     public String rejectCandidate(@PathVariable("id") String id,
-                                 @PathVariable("annId") String annId,
-                                 @PathVariable("userId") String userId) {
+                                  @PathVariable("annId") String annId,
+                                  @PathVariable("userId") String userId) {
         log.info("Try to delete a job");
         var candidate = userAppService.getById(id);
         var announcement = announcementService.getAnnouncementById(annId);

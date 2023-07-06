@@ -12,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
-
 @Slf4j
 @Controller
 @RequiredArgsConstructor
@@ -43,7 +42,7 @@ public class AnnouncementController {
     }
 
     @PostMapping("/edit-announcement/{user_id}/{id}")
-    public String editCategory(@ModelAttribute("announcement") AnnouncementModel announcement,
+    public String editAnnouncement(@ModelAttribute("announcement") AnnouncementModel announcement,
                                @PathVariable("id") final String id,
                                @PathVariable("user_id") final String userId) {
         Job job = announcementService.getAnnouncementById(id).getJob();
@@ -59,7 +58,7 @@ public class AnnouncementController {
     }
 
     @PostMapping("/delete-announcement/{user_id}/{announcementId}")
-    public String deleteCategory(@PathVariable String announcementId, @PathVariable("user_id") final String userId) {
+    public String deleteAnnouncement(@PathVariable String announcementId, @PathVariable("user_id") final String userId) {
         log.info("Try to delete an announcement");
         announcementService.deleteAnnouncement(announcementId);
 

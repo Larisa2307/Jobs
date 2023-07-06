@@ -34,10 +34,6 @@ public class UserAppAnnouncementService {
         return userAppAnnouncementRepository.findByUserAndAnnouncement(userApp, announcement);
     }
 
-    public List<UserAppAnnouncement> getAnnouncementsByUserApp(UserApp userApp) {
-        return userAppAnnouncementRepository.findAnnouncementsByUserApp(userApp);
-    }
-
     private CandidateAnnouncementsModel toCandidateAnnouncementsModel(UserAppAnnouncement userAppAnnouncement, String available) {
         if (userAppAnnouncement.getAccepted() == null) {
             userAppAnnouncement.setAccepted("Pending response");
@@ -75,6 +71,13 @@ public class UserAppAnnouncementService {
         return announcementsByUserApp.stream()
                 .map(this::toCandidateModel)
                 .toList();
+    }
+
+    public CandidateModel getCandidateModelByAnnouncement(UserApp userApp, Announcement announcement) {
+        var announcementByUserApp = userAppAnnouncementRepository
+                .findByUserAndAnnouncement(userApp, announcement);
+
+        return toCandidateModel(announcementByUserApp.get());
     }
 
 }
