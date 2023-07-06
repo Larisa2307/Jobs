@@ -41,7 +41,6 @@ table {
 }
 
 .tableFixHead {
-    overflow-y: scroll;
     position: static;
     margin-left: 5%;
     width: 82%;
